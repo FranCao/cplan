@@ -6,7 +6,9 @@ ruby '2.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
+# Use postgres as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -52,6 +54,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  #needed for logging on Heroku
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
