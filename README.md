@@ -5,20 +5,55 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 
+2.6, you know it.
 
-* System dependencies
+## System dependencies
+- Install Postgres
+	```
+	brew install postgresql
+	```
 
-* Configuration
+- Create a Postgres user
+	By doing the following steps:
+	```
+		/usr/local/opt/postgres/bin/createuser -s postgres
+		createuser cplan -d
+	```
 
-* Database creation
+## Getting the right local setup
 
-* Database initialization
+1. Ensure you have postgres installed, then start the server by using 
+    ```
+        brew services start postgresql
+    ```
 
-* How to run the test suite
+2. Ensure you have all gems installed by using 
+    ```
+        bundle
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Ensure you have local db created by running 
+    ```
+        rails db:create
+    ```
 
-* Deployment instructions
+4. Run all the migrations
+    ```
+        rake db:migrate
+    ``` 
+Now you are off the hook and **go do your business**!
 
-* ...
+
+## How to run the test suite
+
+To run a rspec test:
+```
+    rspec spec/
+```
+
+
+
+## Deployment instructions
+
+TBD
