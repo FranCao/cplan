@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  last_name: MyString
+  first_name: MyString
+  degree: MyString
+  track: MyString
+  graduation_semester: MyString
+  graduation_year: 1
+  initial_total_credit: 1
+
+two:
+  uid: MyString
+  last_name: MyString
+  first_name: MyString
+  degree: MyString
+  track: MyString
+  graduation_semester: MyString
+  graduation_year: 1
+  initial_total_credit: 1
