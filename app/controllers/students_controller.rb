@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
 	# after sso, if a student does not have our profile, create it
 	def create
