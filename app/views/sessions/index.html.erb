@@ -9,4 +9,21 @@ body {
 </style>
 <%= stylesheet_link_tag 'application.css' %>
 
-<h4 align ='right'><%= link_to "Sign in to LionMail", '/auth/google_oauth2' %></h4>
+<div class="row">
+  <div class="col-md-3" align="right">
+    <a class="btn btn-outline-dark" href='/auth/google_oauth2' role="button" style="text-transform:none">
+      <img width="70px" style="margin-bottom:3px; margin-right:5px" alt="Sign in with Lionmail" src="https://cuit.columbia.edu/sites/default/files/styles/cu_crop/public/content/LionMail%20logo.png?itok=fLp1cPo7" />
+      Sign in with Lionmail
+    </a>
+  </div>
+</div>
+
+<!-- Minified CSS and JS -->
+<link   rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+        crossorigin="anonymous">
+</script>
