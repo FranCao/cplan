@@ -29,6 +29,7 @@ class StudentsController < ApplicationController
 			:uid,
 			:last_name,
 			:first_name,
+			:email,
 			:degree,
 			:track,
 			:graduation_semester,
