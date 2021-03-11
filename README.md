@@ -42,6 +42,11 @@ Things you may want to cover:
     ```
         rake db:migrate
     ``` 
+
+5. Add seeds data
+    ```
+         rails db:seed
+    ```
 Now you are off the hook and **go do your business**!
 
 
