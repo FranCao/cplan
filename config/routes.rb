@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'homepage#index'
+  resources :sessions, only: [:new, :create, :destroy]
 
-  get '/auth/:provider/callback', to: 'homepage#omniauth'
+  root 'sessions#index'
 
-  get '/home', to: 'homepage#index'
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+  get '/auth/failure', to: redirect('/')
+
+  get '/home', to: 'sessions#index'
 end
