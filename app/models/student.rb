@@ -9,5 +9,4 @@ class Student < ApplicationRecord
             student.password = SecureRandom.hex
         end
     end
-
 end
