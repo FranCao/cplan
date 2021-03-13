@@ -30,12 +30,12 @@ Scenario: Business Major, Entrepreneur track
 
 Scenario: Not logged in
     Given I am not logged in
-    I should be on the login page
+    Then I should be on the login page
 
 Scenario: Empty form
     Given I am logged in 
     When I click submit
-    I should see “Error: Please fill in the required fields”
+    Then I should see “Error: Please fill in the required fields”
     When I choose "Computer Science" from major
-    Then I click submit
-    I should see “Error: Please fill in the required fields”
+    And I click submit
+    Then I should see “Error: Please fill in the required fields”

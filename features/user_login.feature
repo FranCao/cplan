@@ -30,4 +30,3 @@ Scenario: Menu Options
     And I should see “Home”
     And I should see “Schedule”
     And I should see “Log out”
-
