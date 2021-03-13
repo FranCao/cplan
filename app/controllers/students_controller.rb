@@ -7,13 +7,20 @@ class StudentsController < ApplicationController
 		@students = Student.all
 	end
 
+	def show
+		id = params[:id]
+		@student = Student.find(id)
+	end
+
 	def create
 		begin
 			@student = Student.create!(student_params)
 		rescue Exception => e
 			puts e
 		end
-		render json: true
+		flash[:notice] = "#{@student.first_name} #{@student.last_name} was successfully created."
+		@student = Student.find_by_email(@student.email)
+		redirect_to student_path(@student)
 	end
 
 	def new
@@ -31,6 +38,13 @@ class StudentsController < ApplicationController
 		@student = Student.find_by(uid: @uid)
 		@student.update_attributes!(student_params)
 	end
+
+	def destroy
+		@student = Student.find(params[:id])
+		@student.destroy
+		flash[:notice] = "Student '#{@student.first_name} #{@student.last_name}' deleted."
+		redirect_to movies_path
+	  end
 
 	private
 

@@ -4,31 +4,31 @@
 
 students = [
 	{
-		:uid => 'lk123345',
 		:last_name => 'kim',
 		:first_name => 'leo',
 		:degree => 'master',
 		:track => 'software systems',
+		:email => 'kimleo@columbia.edu',
 		:graduation_semester => 'spring',
 		:graduation_year => 2021,
 		:initial_total_credit => 10
 	},
 	{
-		:uid => 'll123345',
 		:last_name => 'lee',
 		:first_name => 'leo',
 		:degree => 'master',
 		:track => 'software systems',
+		:email => 'kimleo@columbia.edu',
 		:graduation_semester => 'spring',
 		:graduation_year => 2021,
 		:initial_total_credit => 10
 	},
 	{
-		:uid => '1',
 		:last_name => 'liang',
 		:first_name => 'yunbo',
 		:degree => 'master',
 		:track => 'machine learning',
+		:email => 'kimleo@columbia.edu',
 		:graduation_semester => 'spring',
 		:graduation_year => 2021,
 		:initial_total_credit => 10

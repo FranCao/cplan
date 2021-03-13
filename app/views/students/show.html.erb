@@ -1,4 +1,18 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Audit Degree<h1>
+<ul id="audit">
+  <li>
+    Name:
+    <%= @student.first_name %> <%= @student.last_name %>
+  </li>
+  <li>
+    Email:
+    <%= @student.email%>
+  </li>
+  <li>
+    Graduation Year:
+    <%= @student.graduation_year %>
+  </li>
+</ul>
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

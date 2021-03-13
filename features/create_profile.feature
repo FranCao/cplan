@@ -4,10 +4,11 @@ Feature: Create Profile
 
 Background:Given I am logged in
 Scenario: CS major, Software systems track
-    
-    When I select "Software Systems" from "student_track"
-    When I select "Fall 2021" from expected graduation date
-    When I select 12 from total credit
+    Given I am on the create profile page
+    When I fill in "First Name" with "Yunbo"
+    When I fill in "Last Name with "Liang"
+    When I select "Software Systems" from "Select Your Track"
+    When I fill in "Expected Graduation Year" with "2021"
     And I click submit
     Then I should be on the audit degree page
 

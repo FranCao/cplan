@@ -16,7 +16,9 @@ module NavigationHelpers
       when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
       
       when /^I am on the homepage/ then '/home'
-  
+
+      when /^the create profile page/ then "/students/new"
+      when /^the audit degree page for "(.*)"/ then "/students/#{Movie.find_by_email($1).id}"
       # Add more mappings here.
       # Here is an example that pulls values out of the Regexp:
       #
