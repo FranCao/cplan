@@ -4,10 +4,10 @@ require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
 Given /I am not logged in/ do
-  browser.text_field(:id, "login-btn").exists
+  page.has_link?("/auth/google_oauth2")
 end
 
-Given /^(?:|I )am logged (.+)$/ do
+Given /I am logged in/ do
   session[:stub_student_id] = "stub_student_id"
 end
 
