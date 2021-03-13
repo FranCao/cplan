@@ -5,7 +5,7 @@ Feature: User Login
 
 Scenario: Logging in
     Given I am not logged in
-    When I follow "/auth/google_oauth2"
+    When I click "Sign in with Lionmail"
     Then I should be on login
 
 Scenario: On courses page

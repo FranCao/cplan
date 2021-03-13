@@ -17,7 +17,7 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
 	expect(page).to have_current_path(page_name)
 end
 
-When('I click {string}') do |string|
+When('I click "Sign in with Lionmail"') do
   visit('/auth/google_oauth2/callback')
 end
 
