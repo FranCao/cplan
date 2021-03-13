@@ -9,20 +9,16 @@ Background:
 Scenario: Logging in
     Given I am not logged in
     When I click "Sign in with Lionmail"
-    Then I should redirect to single sign on page
+    Then I should redirect to login page
 
-Scenario: Already logged in
-    Given I am logged in
-    Then I should not see “Sign in with LionMail”
-    And I should see “Adam Smith”
+Scenario: On courses page
+    Given I am not logged in
+    When I am on courses page
+    Then I should redirect to login page
 
-Scenario: First time user log in
-    Given I am logged in
-    Then I should be on Create Profile page
-
-Scenario: Normal user log in
-    Given I am logged in
-    Then I should be on Audit Degree page
+Scenario: Logged In
+    When I am logged in
+    Then I should redirect to home page
 
 Scenario: Menu Options
     Given I am logged in
