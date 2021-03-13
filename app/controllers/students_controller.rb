@@ -29,13 +29,13 @@ class StudentsController < ApplicationController
 
 	# when user add info, need to add `add_related_class`
 	def edit
-		@uid = params[:id]
-		@student = Student.find_by(uid: @uid)
+		@email = params[:id]
+		@student = Student.find_by(email: @email)
 	end
 
 	def update
-		@uid = params[:id]
-		@student = Student.find_by(uid: @uid)
+		@email = params[:id]
+		@student = Student.find_by(email: @email)
 		@student.update_attributes!(student_params)
 	end
 
@@ -50,7 +50,6 @@ class StudentsController < ApplicationController
 
 	def student_params
 		params.require(:student).permit(
-			:uid,
 			:last_name,
 			:first_name,
 			:email,
