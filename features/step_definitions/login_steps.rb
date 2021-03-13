@@ -18,8 +18,12 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
 end
 
 
-When('I click "Sign in with Lionmail"') do
-  visit('/auth/google_oauth2/callback')
+# When('I click "Sign in with Lionmail"') do
+#   visit('/auth/google_oauth2/callback')
+# end
+
+When /^(?:|I )click "([^"]*)"$/ do |link|
+  click_link(link)
 end
 
 When /I am on courses page/ do

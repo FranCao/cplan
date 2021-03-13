@@ -9,10 +9,8 @@ body {
 </style>
 <%= stylesheet_link_tag 'application.css' %>
 
-<div id="start-btn">
-  <% if logged_in? %>
-    <a class="btn btn-outline-dark" href='/home' role="button" style="text-transform:none">Start Planning</a>
-  <% else %>
-    <a class="btn btn-outline-dark" href='/auth/google_oauth2' role="button" style="text-transform:none">Start Planning</a>
-  <% end %>
-</div>
+<% if logged_in? %>
+  <%= link_to "Start Planning", '/home', :class => 'start' %>
+<% else %>
+  <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'start' %>
+<% end %>
