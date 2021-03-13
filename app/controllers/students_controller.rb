@@ -2,6 +2,11 @@ class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
 	# after sso, if a student does not have our profile, create it
+
+	def index
+		@students = Student.all
+	end
+
 	def create
 		begin
 			@student = Student.create!(student_params)
@@ -9,6 +14,10 @@ class StudentsController < ApplicationController
 			puts e
 		end
 		render json: true
+	end
+
+	def new
+		@student = Student.new
 	end
 
 	# when user add info, need to add `add_related_class`

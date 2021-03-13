@@ -14,7 +14,3 @@ Then /^(?:|I )should redirect to  (.+)$/ do |page_name|
 	current_path = URI.parse(current_url).path
 	assert page.current_path == page_name
 end
-
-Given /I am on the home page/ do
-  visit path_to("home")
-end

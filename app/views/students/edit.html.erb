@@ -1,6 +1,9 @@
-<h1>Editing Student</h1>
-
-<%= render 'form', student: @student %>
-
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<h2>Edit Profile</h2>
+<%= form_tag student_path(@student), :method => :put do %>
+  <%= label :student, :uid, 'UID', :class => 'col-form-label' %>
+  <%= text_field :student, 'uid', :class => 'form-control' %>
+  <%= label :student, :first_name, 'First Name', :class => 'col-form-label' %>
+  <br/>
+  <%= submit_tag 'Update student Info', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', students_path, :class => 'btn btn-secondary' %>
+<% end %>
