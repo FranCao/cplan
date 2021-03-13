@@ -1,8 +1,9 @@
 require 'uri'
 require 'cgi'
+
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
-Given /^(?:|I )am not logged (.+)$/ do
+Given /I am not logged in/ do
   browser.text_field(:id, "login-btn").exists
 end
 
@@ -15,6 +16,6 @@ Then /^(?:|I )should redirect to  (.+)$/ do |page_name|
 	assert page.current_path == page_name
 end
 
-Given /I am on the home page/ do
-  visit path_to("home")
-end
+# Given /I am on the home page/ do
+#   visit path_to("home")
+# end
