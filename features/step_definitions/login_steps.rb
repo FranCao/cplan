@@ -1,20 +1,36 @@
 require 'uri'
 require 'cgi'
+
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
-Given /^(?:|I )am not logged (.+)$/ do
-  browser.text_field(:id, "login-btn").exists
+Given /I am not logged in/ do
+  page.has_link?("/auth/google_oauth2")
 end
 
-Given /^(?:|I )am logged (.+)$/ do
-  session[:stub_student_id] = "stub_student_id"
+Given /I am logged in/ do
+  # request.session['stub_student_id'] => "1233"
+  ENV['stub_student_id'] = "1233"
 end
 
-Then /^(?:|I )should redirect to  (.+)$/ do |page_name|
-	current_path = URI.parse(current_url).path
-	assert page.current_path == page_name
+Then /^(?:|I )should be on (.+)$/ do |page_name|
+	# expect(page).to have_content(page_name)
+	expect(page).to have_current_path(page_name)
 end
 
-Given /I am on the home page/ do
-  visit path_to("home")
+
+# When('I click "Sign in with Lionmail"') do
+#   visit('/auth/google_oauth2/callback')
+# end
+
+When /^(?:|I )click "([^"]*)"$/ do |link|
+  click_link(link)
+end
+
+When /I am on courses page/ do
+	visit "/courses"
+end
+
+Then /I should not see my id/ do
+	# expect(page).to have_content('Start Planning')
+	expect(page).not_to have_content("Log out")
 end

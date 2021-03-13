@@ -7,5 +7,4 @@ Scenario: Seeing the homepage for a new Rails project
     Then I should see the CPlan logo
     And I should see “Sign in”
     And I should see “Start Planning”
-    And I should see an image of the school as the background
     And I should see a Columbia University logo
