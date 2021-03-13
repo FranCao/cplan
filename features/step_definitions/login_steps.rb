@@ -12,11 +12,22 @@ Given /I am logged in/ do
   ENV['stub_student_id'] = "1233"
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
-	# expect(page).to have_content(page_name)
-	expect(page).to have_current_path(page_name)
+# Then /^(?:|I )should be on (.+)$/ do |page_name|
+# 	# expect(page).to have_content(page_name)
+# 	expect(page).to have_current_path(page_name)
+# end
+
+# Then /I should be on login/ do
+# 	expect(page).to have_current_path(/accounts\.google\.com\/o\/oauth2\/auth\//)
+# end
+
+Then /I should be on login/ do
+	expect(page).to have_current_path(/signin\/oauth\/error/)
 end
 
+Then /I should be back on the home page/ do
+	expect(page).to have_current_path('/')
+end
 
 # When('I click "Sign in with Lionmail"') do
 #   visit('/auth/google_oauth2/callback')
