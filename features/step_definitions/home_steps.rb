@@ -6,9 +6,6 @@ Given /I am on the home page/ do
     visit home_path
 end
 
-# Then /I should see the CPlan logo/ do
-#     page.should have_xpath("//img[@src=\"/assets/cplan-logo-eb0d83b5ba91fa41a7fbf188f1e5c3032a229da1c30d0537b3a1d983ffc52bdf.png\"]")
-
 Then /I should see the CPlan logo/ do
     expect(page).to have_xpath("//img[contains(@src,'cplan-logo')]")
 end
