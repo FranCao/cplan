@@ -22,6 +22,16 @@ students = [
 		:graduation_semester => 'spring',
 		:graduation_year => 2021,
 		:initial_total_credit => 10
+	},
+	{
+		:uid => '1',
+		:last_name => 'liang',
+		:first_name => 'yunbo',
+		:degree => 'master',
+		:track => 'machine learning',
+		:graduation_semester => 'spring',
+		:graduation_year => 2021,
+		:initial_total_credit => 10
 	}
 ]
 

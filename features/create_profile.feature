@@ -2,8 +2,9 @@ Feature: Create Profile
     As a first time user, I need to fill out my profile to proceed to other features
     If I am not logged in, I should redirect to homepage
 
+Background:Given I am logged in
 Scenario: CS major, Software systems track
-    Given I am logged in
+    
     When I choose "Computer Science" from major
     When I choose "Software Systems" from track
     When I choose "Fall 2021" from expected graduation date
@@ -12,7 +13,6 @@ Scenario: CS major, Software systems track
     Then I should be on the audit degree page
 
 Scenario: CS major, Machine Learning track
-    Given I am logged in
     When I choose "Computer Science" from major
     When I choose "Machine Learning" from track
     When I choose "Spring 2022" from expected graduation date
@@ -21,7 +21,6 @@ Scenario: CS major, Machine Learning track
     Then I should be on the audit degree page
 
 Scenario: Business Major, Entrepreneur track
-    Given I am logged in
     When I choose "Business" from major
     When I choose "Entrepreneur" from track
     When I choose "Spring 2022" from expected graduation date

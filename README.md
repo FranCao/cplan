@@ -34,6 +34,11 @@ Things you may want to cover:
     ```
 
 3. Ensure you have local db created by running 
+    Make sure to grant permission for db create:
+    ```
+        sudo -u postgres psql -c "ALTER USER cplan CREATEDB"
+    ```
+    Then:
     ```
         rails db:create
     ```
