@@ -16,6 +16,9 @@ Then /^(?:|I )should redirect to  (.+)$/ do |page_name|
 	assert page.current_path == page_name
 end
 
+When('I click {string}') do |string|
+  visit('/auth/google_oauth2/callback')
+end
 # Given /I am on the home page/ do
 #   visit path_to("home")
 # end
