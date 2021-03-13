@@ -17,6 +17,7 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
 	expect(page).to have_current_path(page_name)
 end
 
+
 When('I click "Sign in with Lionmail"') do
   visit('/auth/google_oauth2/callback')
 end
@@ -25,3 +26,7 @@ When /I am on courses page/ do
 	visit "/courses"
 end
 
+Then /I should not see my id/ do
+	# expect(page).to have_content('Start Planning')
+	expect(page).not_to have_content("Log out")
+end

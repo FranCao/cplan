@@ -9,17 +9,10 @@ Scenario: Logging in
     Then I should be on login
 
 Scenario: On courses page
+    Given I am on the home page
     Given I am not logged in
-    When I am on courses page
-    Then I should be on login
+    Then I should not see "Log out"
 
 Scenario: Logged In
     When I am logged in
     Then I should be on /
-
-Scenario: Menu Options
-    Given I am logged in
-    Then I should be able to press on "Adam Smith"
-    And I should see “Home”
-    And I should see “Schedule”
-    And I should see “Log out”
