@@ -11,7 +11,7 @@ Bundler.require(*Rails.groups)
 module Cplan
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 5.2
 
     # Configuration for the application, engines, and railties goes here.
     # config.middleware.insert_after ActiveRecord::Migration::CheckPending, ActionDispatch::Cookies
