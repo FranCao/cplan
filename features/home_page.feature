@@ -3,7 +3,7 @@ Feature: Homepage View
     So that I can login
 
 Scenario: Seeing the homepage for a new Rails project
-    Given I am on the homepage
+    Given I am on the home page
     Then I should see the CPlan logo
     And I should see “Sign in”
     And I should see “Start Planning”

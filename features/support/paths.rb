@@ -14,6 +14,8 @@ module NavigationHelpers
       case page_name
   
       when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
+      
+      when /^I am on the homepage/ then '/home'
   
       # Add more mappings here.
       # Here is an example that pulls values out of the Regexp:
