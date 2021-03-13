@@ -26,7 +26,7 @@ Scenario: Normal user log in
 
 Scenario: Menu Options
     Given I am logged in
-    Then I should be able to click my username on the top right
+    Then I should be able to click on "Adam Smith"
     And I should see “Home”
     And I should see “Schedule”
     And I should see “Log out”
