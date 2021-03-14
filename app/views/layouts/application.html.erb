@@ -12,45 +12,7 @@
   </head>
 
   <body>
-    
-    <div class="container">
-      <div class = "row">
-        <div id="cplan-logo" class="col-xs-3 mr-auto align-self-center">
-          <%= link_to(image_tag("cplan-logo.png"), home_path) %>
-        </div>
-
-        <% if logged_in? %>
-          <div class="dropdown col-xs-3 align-self-center">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= current_user.first_name %> <%= current_user.last_name %>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="/home">Home</a>
-              <a class="dropdown-item" href="/courses">Courses</a>
-              <a data-method="delete" class="dropdown-item" href="/logout">Log Out</a>
-            </div>
-          </div>
-        <% else %>
-          <div id="login-btn">
-            <%# <a class="btn btn-outline-dark" href='/auth/google_oauth2' role="button" style="text-transform:none">
-              <img width="70px" style="margin-bottom:3px; margin-right:5px" alt="Sign in with Lionmail" src="https://cuit.columbia.edu/sites/default/files/styles/cu_crop/public/content/LionMail%20logo.png?itok=fLp1cPo7" />
-              Sign in with Lionmail
-            </a> %>
-            <%= link_to '/auth/google_oauth2', :class => 'sign-link' do %>
-              <%= image_tag 'https://cuit.columbia.edu/sites/default/files/styles/cu_crop/public/content/LionMail%20logo.png?itok=fLp1cPo7', :class => 'sign-img'%>
-            <% end %>
-            <%= link_to 'Sign in', '/auth/google_oauth2', :class => 'sign-in'%>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
     <%= yield %>
   </body>
-
-
-  <div id="footer" class="card-footer">
-    <%= image_tag("Columbia_logo.png", {:style => "width:25%; margin-bottom:1.5%; margin-left:1.5%"}) %>
-  </div>
 
 </html>
