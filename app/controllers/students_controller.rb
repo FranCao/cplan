@@ -24,19 +24,23 @@ class StudentsController < ApplicationController
 	end
 
 	def new
-		@student = Student.new
+		id = params[:id]
+		@student = Student.find_by(id)
 	end
 
 	# when user add info, need to add `add_related_class`
 	def edit
-		@email = params[:id]
-		@student = Student.find_by(email: @email)
+		id = params[:id]
+		@student = Student.find(id)
 	end
 
 	def update
-		@email = params[:id]
-		@student = Student.find_by(email: @email)
-		@student.update_attributes!(student_params)
+		@student = Student.find params[:id]
+		params[:student].keys.each do |key|
+			@student.update!(key => params[:student][key])
+		end
+		flash[:notice] = "#{@student.first_name} #{@student.last_name} was successfully updated."
+		redirect_to student_path(@student)
 	end
 
 	def destroy

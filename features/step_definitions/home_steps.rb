@@ -2,10 +2,6 @@ require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
-Given /I am on the home page/ do
-    visit home_path
-end
-
 Then /I should see the CPlan logo/ do
     expect(page).to have_xpath("//img[contains(@src,'cplan-logo')]")
 end

@@ -29,11 +29,3 @@ end
 When /I am on courses page/ do
 	visit "/courses"
 end
-<<<<<<< HEAD
-=======
-
-Then /I should not see my id/ do
-	# expect(page).to have_content('Start Planning')
-	expect(page).not_to have_content("Log out")
-end
->>>>>>> main

@@ -12,10 +12,8 @@ module NavigationHelpers
     #
     def path_to(page_name)
       case page_name
-  
-      when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
-      
-      when /^I am on the homepage/ then '/home'
+        
+      when /^the home page/ then '/home'
 
       when /^the create profile page/ then "/students/new"
       when /^the audit degree page for "(.*)"/ then "/students/#{Movie.find_by_email($1).id}"

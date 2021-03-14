@@ -1,9 +1,18 @@
 <h2>Edit Profile</h2>
 <%= form_tag student_path(@student), :method => :put do %>
-  <%= label :student, :uid, 'UID', :class => 'col-form-label' %>
-  <%= text_field :student, 'uid', :class => 'form-control' %>
-  <%= label :student, :first_name, 'First Name', :class => 'col-form-label' %>
+  <%= label :student, :first_name, 'First Name', :class => 'col-form-label'%>
+  <%= text_field :student, :first_name, :class => 'form-control',value:@student.first_name%>
+  <%= label :student, :last_name, 'Last Name', :class => 'col-form-label' %>
+  <%= text_field :student, :last_name, :class => 'form-control',value:@student.last_name %>
+  <%= label :student, :major, 'Select Your Major', :class => 'col-form-label'  %>
+  <%= select :student, :major, ["Math", "Computer Science"], include_blank: true %>
+  <%= label :student, :track, 'Select Your Track', :class => 'col-form-label'  %>
+  <%= select :student, :track, ["Software Systems", "Machine Learning"], include_blank: true %>
+  <%= label :student, :graduation_year, 'Expected Graduation Year', :class => 'col-form-label'  %>
+  <%= text_field :student, :graduation_year, :class => 'form-control' %>
+  <%= label :student, :graduation_semester, 'Expected Graduation Semester', :class => 'col-form-label'  %>
+  <%= select :student, :graduation_semester, ["Spring", "Summer", "Fall"] %>
   <br/>
-  <%= submit_tag 'Update student Info', :class => 'btn btn-primary' %>
+  <%= submit_tag 'Submit', :class => 'btn btn-primary' %>
   <%= link_to 'Cancel', students_path, :class => 'btn btn-secondary' %>
 <% end %>
