@@ -7,8 +7,16 @@ body {
   background-position: center;
 }
 </style>
+
+<body class="splash">
+
 <div id="start" class = "container h-100">
   <div class = "row">
     <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'btn btn-primary' %>
   </div>
 </div>
+
+<%= link_to "Start Planning", '/auth/google_oauth2', :class => 'start' %>
+
+
+</body>
