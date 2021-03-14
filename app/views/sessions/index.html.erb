@@ -4,13 +4,13 @@
     <title>Cplan</title>
   </head>
 
-  <body class="d-flex h-100 text-white bg-primary">
+  <body class="session d-flex h-100 text-white bg-primary">
     <div class="container-fluid d-flex w-100 vh-100 p-3 mx-auto flex-column">
       <header class = "mb-auto">
-      <div class="d-flex justify-content-between">
-        <div id="cplan-logo" class="col align-self-center">
-          <%= link_to(image_tag("cplan-logo.png"), home_path) %>
-        </div>
+        <div class="d-flex justify-content-between">
+          <div id="cplan-logo" class="col align-self-center">
+            <%= link_to(image_tag("cplan-logo.png"), home_path) %>
+          </div>
           <% if logged_in? %>
             <div class="dropdown align-self-center">
               <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,7 +24,7 @@
             </div>
           <% else %>
             <div class="align-self-center">
-              <%= link_to '/auth/google_oauth2', :class => 'sign-link' do %>
+              <%= link_to '/auth/google_oauth2' do %>
                 <%= image_tag 'https://cuit.columbia.edu/sites/default/files/styles/cu_crop/public/content/LionMail%20logo.png?itok=fLp1cPo7', :class => 'sign-img'%>
               <% end %>
               <%= link_to 'Sign in', '/auth/google_oauth2', :class => 'sign-in'%>
@@ -33,7 +33,7 @@
         </div>
       </header>
       <main class="align-self-center">
-        <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'btn btn-primary position-relative top-50 start-50' %>
+        <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'btn btn-primary' %>
       </main>
       <footer class = "mt-auto">
         <%= image_tag("Columbia_logo.png", {:style => "width:25%; margin-bottom:1.5%; margin-left:1.5%"}) %>

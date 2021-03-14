@@ -16,30 +16,3 @@
 $primary: #000d74;
 
 @import "bootstrap";
-
-#cplan-logo {
-    padding: 2%;
-}
-
-.sign-img {
-    width: 70px;
-}
-
-.sign-in:link, .sign-in:visited {
-    background-color: #336699;
-    color: white;
-    padding: 4px 10px;
-    text-align: center; 
-    display: inline-block;
-    text-decoration: none;
-}
-
-.vertical-center {
-  min-height: 100%;
-  min-height: 100vh; 
-  display: flex;
-  align-items: center;
-}
-
-
-

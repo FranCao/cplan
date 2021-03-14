@@ -5,7 +5,7 @@ $primary: #000d74;
 
 @import "bootstrap";
 
-body {
+.session {
     background-color: #000d74;
     height:100%;
     width:100%;
@@ -32,7 +32,7 @@ body {
 .sign-in:link, .sign-in:visited {
     background-color: #336699;
     color: white;
-    padding: 4px 10px;
+    padding: 2px 5px;
     text-align: center; 
     display: inline-block;
     text-decoration: none;
