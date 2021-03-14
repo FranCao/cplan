@@ -6,8 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -18,9 +19,19 @@
     </div>
 
     <% if logged_in? %>
-      <div id="name-dd">
-        <%= current_user.first_name %> <%= current_user.last_name %>
-      </div>
+
+      <nav role="navigation">
+      <ul>
+        <li><a href="#" aria-haspopup="true"><%= current_user.first_name %> <%= current_user.last_name %></a>
+          <ul class="dropdown" aria-label="submenu">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a data-method="delete" href="/logout">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+      </nav>
+
     <% else %>
       <div id="login-btn">
         <%# <a class="btn btn-outline-dark" href='/auth/google_oauth2' role="button" style="text-transform:none">
