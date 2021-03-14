@@ -19,5 +19,5 @@ end
 # end
 
 Then('I should see a Columbia University logo') do
-    expect(page).to have_xpath("//img[contains(@src,'header-example1-bp')]")
+    expect(page).to have_xpath("//img[contains(@src,'Columbia_logo')]")
 end

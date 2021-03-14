@@ -2,12 +2,14 @@ Feature: Create Profile
     As a first time user, I need to fill out my profile to proceed to other features
     If I am not logged in, I should redirect to homepage
 
-Background:Given I am logged in
-  Given the following students exist:
-  | first_name        | last_name | email                   |
-  | Yunbo             | Liang     | yunboliang@columbia.edu |
-  | leo               | lee       | leolee@columbia.edu     |
-  | Joy               | Li        | joyli@columbia.edu      |
+Background: 
+    Given I am logged in
+    Given the following students exist:
+    | first_name        | last_name | email                   |
+    | Yunbo             | Liang     | yunboliang@columbia.edu |
+    | leo               | lee       | leolee@columbia.edu     |
+    | Joy               | Li        | joyli@columbia.edu      |
+
 Scenario: CS major, Software systems track
     Given I am on the create profile page for "Yunbo"
     When I select "Software Systems" from "Select Your Track"

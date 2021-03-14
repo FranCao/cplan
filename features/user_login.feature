@@ -3,17 +3,18 @@ Feature: User Login
     Or they can go to their audit page if they are logged in
 
 @javascript
-Scenario: Logging in
+Scenario: Logging in when I am on the homepage
     Given I am on the home page
     Given I am not logged in
     When I click "Start Planning"
-    Then I should be on login
+    Then I should redirect to Google Authentication
 
-Scenario: On courses page
+Scenario: What I should see on the homepage if I am not logged in
     Given I am on the home page
     Given I am not logged in
     Then I should not see "Log out"
 
-Scenario: Logged In
+Scenario: What happens after I log in
+    Given I am on the home page
     When I am logged in
-    Then I should be back on the home page
+    Then I should be on the students page
