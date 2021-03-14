@@ -44,47 +44,26 @@ end
 
 courses = [
 	{
-		:department => 'COMS',
-		:course => 'W4111',
-		:section_num => 1,
-		:call_num => 11926,
-		:day => 80,
-		:start => Time.parse('13:10 UTC'),
-		:end => Time.parse('14:25 UTC'),
-		:location => 'ONLINE',
-		:instructor => 'Kenneth A Ross',
-		:enrollment => 175,
-		:semester => 'Spring',
-		:year => 2021
-	},
-	{
-		:department => 'COMS',
-		:course => 'W4111',
-		:section_num => 2,
-		:call_num => 11927,
-		:day => 4,
-		:start => Time.parse('10:10 UTC'),
-		:end => Time.parse('12:40 UTC'),
-		:location => 'International Affairs: Building',
-		:instructor => 'Donald F Ferguson',
-		:enrollment => 250,
-		:semester => 'Spring',
-		:year => 2021
-	},
-	{
-		:department => 'COMS',
-		:course => 'W4111',
-		:section_num => 3,
-		:call_num => 13636,
-		:day => 8,
-		:start => Time.parse('10:10 UTC'),
-		:end => Time.parse('12:40 UTC'),
-		:location => 'ONLINE',
-		:instructor => 'Alexandros Biliris',
-		:enrollment => 100,
-		:semester => 'Spring',
-		:year => 2021
-	},
+		:year => "2021",
+		:semester => "Summer",
+		:school_code => "SEAS",
+		:call_number => "11494",
+		:subject => "COMS",
+		:course_number => "4732",
+		:section_number => "1",
+		:course_identifier => "COMSW4732",
+		:course_name => "Computer Vision II: Learning",
+		:subterm_name => "05/03-06/14",
+		:subterm_code => "A",
+		:time => "TR 10:10AM-12:40PM",
+		:instructor_name => "Carl Vondrick",
+		:instructor_uni => "cv2428",
+		:location_name => "",
+		:location_room => "ONLINE",
+		:enrollment_max => "120",
+		:enrollment_number => "33",
+		:method => "On-Line Only",
+	}
 ]
 
 courses.each do |course|

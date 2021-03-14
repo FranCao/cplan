@@ -10,27 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_231905) do
+ActiveRecord::Schema.define(version: 2021_03_14_224114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
-    t.string "department"
-    t.string "course"
-    t.integer "section_num"
-    t.integer "call_num"
-    t.integer "day"
-    t.time "start"
-    t.time "end"
-    t.string "location"
-    t.string "instructor"
-    t.integer "enrollment"
+    t.string "year"
     t.string "semester"
-    t.integer "year"
+    t.string "school_code"
+    t.string "call_number"
+    t.string "subject"
+    t.string "course_number"
+    t.string "section_number"
+    t.string "course_identifier"
+    t.string "course_name"
+    t.string "subterm_name"
+    t.string "subterm_code"
+    t.string "time"
+    t.string "instructor_name"
+    t.string "instructor_uni"
+    t.string "location_name"
+    t.string "location_room"
+    t.string "enrollment_max"
+    t.string "enrollment_number"
+    t.string "method"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["call_num"], name: "uniq_call_num", unique: true
+    t.index ["call_number"], name: "uniq_call_number", unique: true
   end
 
   create_table "students", force: :cascade do |t|
