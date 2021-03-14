@@ -108,6 +108,7 @@
   nav {
     font-family: monospace;
     float: right;
+    top: 30px;
   }
   ul {
     background: #3498DB;

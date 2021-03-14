@@ -1,13 +1,4 @@
-<style>
-# body {
-#   background-image: url('https://www.columbia.edu/content/sites/default/files/styles/cu_crop/public/content/Morningside%20Campus%20at%20Dusk%202.jpg?itok=SkwvzD5S');
-#   background-repeat: no-repeat;
-#   background-attachment: fixed;
-#   background-size: 100%
-#   background-position: center;
-#   background-color: #8a8da3;
-# }
-</style>
+<body class="splash">
 
 <%= stylesheet_link_tag 'application.css' %>
 
@@ -16,3 +7,5 @@
 <% else %>
   <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'start' %>
 <% end %>
+
+</body>
