@@ -16,4 +16,4 @@ Scenario: On courses page
 
 Scenario: Logged In
     When I am logged in
-    Then I should be on /
+    Then I should be back on the home page
