@@ -10,34 +10,34 @@
   </thead>
   <thead>
     <tr>
+      <th>Year</th>
+      <th>Semester</th>
       <th>Course</th>
       <th>Section</th>
-      <th>Day</th>
       <th>Time</th>
       <th>Instructor</th>
-      <th>Semester</th>
     </tr>
   </thead>
   <tbody>
     <% @courses.each do |course| %>
       <tr>
         <td>
-          <%= course.department %><%= course.course %>
+          <%= course.year %>
         </td>
         <td>
-          00<%= course.section_num %>
+          <%= course.semester %>
         </td>
         <td>
-          <%= translateDay(course) %>
+          <%= course.course_identifier %> <%= course.course_name %>
         </td>
         <td>
-          <%= translateTime(course.start) %> - <%= translateTime(course.end) %>
+          <%= course.section_number %>
         </td>
         <td>
-          <%= course.instructor %>
+          <%= course.time %>
         </td>
         <td>
-          <%= course.semester %> <%= course.year %>
+          <%= course.instructor_name %>
         </td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
