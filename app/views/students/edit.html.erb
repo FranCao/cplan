@@ -1,20 +1,64 @@
-<h2>Edit Profile</h2>
-<%= form_tag student_path(@student), :method => :put do %>
-  <%= label :student, :first_name, 'First Name', :class => 'col-form-label'%>
-  <%= text_field :student, :first_name, :class => 'form-control',value:@student.first_name%>
-  <%= label :student, :last_name, 'Last Name', :class => 'col-form-label' %>
-  <%= text_field :student, :last_name, :class => 'form-control',value:@student.last_name %>
-  <%= label :student, :major, 'Select Your Major', :class => 'col-form-label'  %>
-  <%= select :student, :major, ["Math", "Computer Science"], include_blank: true %>
-  <%= label :student, :track, 'Select Your Track', :class => 'col-form-label'  %>
-  <%= select :student, :track, ["Software Systems", "Machine Learning"], include_blank: true %>
-  <%= label :student, :graduation_year, 'Expected Graduation Year', :class => 'col-form-label'  %>
-  <%= text_field :student, :graduation_year, :class => 'form-control' %>
-  <%= label :student, :graduation_semester, 'Expected Graduation Semester', :class => 'col-form-label'  %>
-  <%= select :student, :graduation_semester, ["Spring", "Summer", "Fall"] %>
-  <br/>
-  <%= submit_tag 'Submit', :class => 'btn btn-primary' %>
-  <%= link_to 'Cancel', students_path, :class => 'btn btn-secondary' %>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+  </head>
 
+  <body class="d-flex h-100 bg-primary">
+    <div class="container-fluid d-flex w-100 vh-100 p-3 mx-auto flex-column">
+      <header class = "mb-auto">
+        <div class="d-flex justify-content-between">
+          <div id="cplan-logo" class="col align-self-center">
+            <%= link_to(image_tag("cplan-logo.png"), home_path) %>
+          </div>
+          <% if logged_in? %>
+            <div class="dropdown align-self-center">
+              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.first_name %> <%= current_user.last_name %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/home">Home</a>
+                <a class="dropdown-item" href="/courses">Courses</a>
+                <a data-method="delete" class="dropdown-item" href="/logout">Log Out</a>
+              </div>
+            </div>
+          <% else %>
+            <div class="align-self-center">
+              <%= link_to '/auth/google_oauth2' do %>
+                <%= image_tag 'https://cuit.columbia.edu/sites/default/files/styles/cu_crop/public/content/LionMail%20logo.png?itok=fLp1cPo7', :class => 'sign-img'%>
+              <% end %>
+              <%= link_to 'Sign in', '/auth/google_oauth2', :class => 'sign-in'%>
+            </div>
+          <% end %>
+        </div>
+      </header>
+      <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+        <div>
+          <h2>Edit Profile</h2>
+          <%= form_tag student_path(@student), :method => :put do %>
+            <%= label :student, :first_name, 'First Name', :class => 'col-form-label'%>
+            <%= text_field :student, :first_name, :class => 'form-control',value:@student.first_name%>
+            <%= label :student, :last_name, 'Last Name', :class => 'col-form-label' %>
+            <%= text_field :student, :last_name, :class => 'form-control',value:@student.last_name %>
+            <%= label :student, :major, 'Select Your Major', :class => 'col-form-label'  %>
+            <%= select :student, :major, ["Math", "Computer Science"], include_blank: true %>
+            <%= label :student, :track, 'Select Your Track', :class => 'col-form-label'  %>
+            <%= select :student, :track, ["Software Systems", "Machine Learning"], include_blank: true %>
+            <%= label :student, :graduation_year, 'Expected Graduation Year', :class => 'col-form-label'  %>
+            <%= text_field :student, :graduation_year, :class => 'form-control' %>
+            <%= label :student, :graduation_semester, 'Expected Graduation Semester', :class => 'col-form-label'  %>
+            <%= select :student, :graduation_semester, ["Spring", "Summer", "Fall"] %>
+            <br/>
+            <%= submit_tag 'Submit', :class => 'btn btn-primary' %>
+            <%= link_to 'Cancel', students_path, :class => 'btn btn-secondary' %>
+          <% end %>
+        </div>
+      </main>
+      <footer class = "mt-auto">
+        <%= image_tag("Columbia_logo.png", {:style => "width:25%; margin-bottom:1.5%; margin-left:1.5%"}) %>
+      </footer>
+    </div>
+    <%= yield %>
+  </body>
 
+</html>
