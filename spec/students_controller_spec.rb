@@ -3,18 +3,19 @@ require 'rails_helper'
 describe StudentsController, :type => :controller do
 
 	describe 'create' do
-		it "calls Model.create" do
-			@student_info = {last_name: "Fake student"}
+		it "render the flash" do
+			@student_info = {email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
 			Student.stub(:create!).with(@student_info).and_return(Student.new(@student_info))
-			
-			expect(student).to receive(:create!).with(@student_info)
-			post :create, student: @student_info
+			Student.stub(:find_by_email).with("fake@google.com").and_return(Student.new({id:'12'}))
+
+			post :create, params:{student: @student_info}
+			expect(flash[:notice]).to match(/was successfully/)
 		end
 	end
 
 	describe 'edit' do
 		it "render the form" do
-			@fake_results = {last_name: "Fake student"}
+			@fake_results = {last_name: "Fake student", first_name: "fak"}
 			Student.stub(:find).with("1").and_return(@fake_results)
 			get :edit, params: {id: 1}
 			expect(response).to render_template("edit")
