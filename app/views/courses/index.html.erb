@@ -31,7 +31,7 @@
           <%= translateDay(course) %>
         </td>
         <td>
-          <%= course.start.strftime("%I:%M %p") %> - <%= course.end.strftime("%I:%M %p") %>
+          <%= translateTime(course.start) %> - <%= translateTime(course.end) %>
         </td>
         <td>
           <%= course.instructor %>
