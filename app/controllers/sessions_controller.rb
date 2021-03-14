@@ -11,6 +11,12 @@ class SessionsController < ApplicationController
     redirect_to home_path
   end
 
+  # logout
+  def destroy
+    session.clear
+    redirect_to home_path
+  end
+
   private
 
   def auth
