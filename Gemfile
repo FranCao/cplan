@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'bootstrap', '~> 4.5.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
