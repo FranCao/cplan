@@ -43,10 +43,14 @@ Things you may want to cover:
         rails db:create
     ```
 
-4. Run all the migrations
+<!-- 4. Run all the migrations
     ```
         rake db:migrate
-    ``` 
+    ```  -->
+4. Load schemas
+    ```
+        rake db:schema:load
+    ```
 
 5. Add seeds data
     ```
