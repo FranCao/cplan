@@ -10,6 +10,9 @@ class StudentsController < ApplicationController
 	def show
 		id = params[:id]
 		@student = Student.find(id)
+		if @student.graduation_year.nil?
+			redirect_to edit_student_path(@student)
+		end
 	end
 
 	def create
@@ -47,7 +50,7 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 		@student.destroy
 		flash[:notice] = "Student '#{@student.first_name} #{@student.last_name}' deleted."
-		redirect_to movies_path
+		redirect_to students_path
 	  end
 
 	private

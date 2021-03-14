@@ -8,6 +8,12 @@ class SessionsController < ApplicationController
     @student = Student.from_omniauth(auth)
     @student.save
     session[:student_id] = @student.id
+    redirect_to student_path(@student)
+  end
+
+  # logout
+  def destroy
+    session.clear
     redirect_to home_path
   end
 

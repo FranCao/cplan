@@ -1,16 +1,18 @@
 <style>
-body {
-  background-image: url('https://www.columbia.edu/content/sites/default/files/styles/cu_crop/public/content/Morningside%20Campus%20at%20Dusk%202.jpg?itok=SkwvzD5S');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
-  background-position: center;
-}
+# body {
+#   background-image: url('https://www.columbia.edu/content/sites/default/files/styles/cu_crop/public/content/Morningside%20Campus%20at%20Dusk%202.jpg?itok=SkwvzD5S');
+#   background-repeat: no-repeat;
+#   background-attachment: fixed;
+#   background-size: 100%
+#   background-position: center;
+#   background-color: #8a8da3;
+# }
 </style>
+
 <%= stylesheet_link_tag 'application.css' %>
 
 <% if logged_in? %>
-  <%= link_to "Start Planning", '/home', :class => 'start' %>
+  <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'start' %>
 <% else %>
   <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'start' %>
 <% end %>

@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get '/auth/failure', to: redirect('/')
 
   get '/home', to: 'sessions#index'
+  delete '/logout', to: 'sessions#destroy'
 
-  resources :students
   #tentative route
   # post '/students/:uid/relatedClass' => 'students#add_related_class'
 
