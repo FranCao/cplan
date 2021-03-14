@@ -2,9 +2,9 @@ class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
 
-	# def index
-	# 	@students = Student.all
-	# end
+	def index
+		@students = Student.all
+	end
 
 	def show
 		id = params[:id]
