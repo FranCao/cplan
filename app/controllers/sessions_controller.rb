@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @student = Student.from_omniauth(auth)
     @student.save
     session[:student_id] = @student.id
-    redirect_to home_path
+    redirect_to student_path(@student)
   end
 
   private
