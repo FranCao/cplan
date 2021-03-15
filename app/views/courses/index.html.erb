@@ -4,11 +4,11 @@
     <title>Courses</title>
   </head>
 
-  <main class="course-list d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
-    <div>
+  <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+    <div class="d-flex flex-column">
       <p id="notice"><%= notice %></p>
       <h1>Courses</h1>
-      <table>
+      <table class="course-list" >
         <thead>
           <tr>
             <th colspan="3"></th>
@@ -49,11 +49,13 @@
           <% end %>
         </tbody>
       </table>
-      <% if params[:id] %>
-        <%= link_to 'Back', '/students/' + params[:id], :class => 'btn btn-secondary' %>
-      <% else %>
-        <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
-      <% end %>
+      <footer class="mt-auto pb-5">
+        <% if params[:id] %>
+          <%= link_to 'Back', '/students/' + params[:id], :class => 'btn btn-secondary' %>
+        <% else %>
+          <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
+        <% end %>
+      </footer>
     </div>
   </main>
 
