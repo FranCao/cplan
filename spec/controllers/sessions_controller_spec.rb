@@ -8,7 +8,7 @@ describe SessionsController, type: :controller do
     describe '#GET #omniauth' do
         it "should successfully create a session" do
             session[:student_id].should be_nil
-            get :omniauth, provider: :google_oauth2
+            get :omniauth
             session[:student_id].should_not be_nil
         end
     end
