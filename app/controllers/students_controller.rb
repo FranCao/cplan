@@ -9,7 +9,8 @@ class StudentsController < ApplicationController
 	def show
 		id = params[:id]
 		@student = Student.find(id)
-		if @student.graduation_year == nil or @student.graduation_year.nil?
+		# if @student.graduation_year == nil or @student.graduation_year.nil?
+		if @student.graduation_year == nil || @student.graduation_year.nil?
 			redirect_to edit_student_path(@student)
 		end
 	end
@@ -21,10 +22,10 @@ class StudentsController < ApplicationController
 		redirect_to student_path(@student)
 	end
 
-	def new
-		id = params[:id]
-		@student = Student.find_by(id)
-	end
+	# def new
+	# 	id = params[:id]
+	# 	@student = Student.find_by(id)
+	# end
 
 	# when user add info, need to add `add_related_class`
 	def edit
