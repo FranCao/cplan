@@ -10,7 +10,7 @@
         <p id="notice"><%= notice %></p>
         <h1>Courses</h1>
       </div>
-      <div class="h-75">
+      <div class="course-list h-75">
         <table>
           <thead>
             <tr>
@@ -27,32 +27,30 @@
               <th>Instructor</th>
             </tr>
           </thead>
-          <div class="course-list">
-            <tbody>
-              <% @courses.each do |course| %>
-                <tr>
-                  <td>
-                    <%= course.year %>
-                  </td>
-                  <td>
-                    <%= course.semester %>
-                  </td>
-                  <td>
-                    <%= course.course_identifier %> <%= course.course_name %>
-                  </td>
-                  <td>
-                    <%= course.section_number %>
-                  </td>
-                  <td>
-                    <%= course.time %>
-                  </td>
-                  <td>
-                    <%= course.instructor_name %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </div>
+          <tbody>
+            <% @courses.each do |course| %>
+              <tr>
+                <td>
+                  <%= course.year %>
+                </td>
+                <td>
+                  <%= course.semester %>
+                </td>
+                <td>
+                  <%= course.course_identifier %> <%= course.course_name %>
+                </td>
+                <td>
+                  <%= course.section_number %>
+                </td>
+                <td>
+                  <%= course.time %>
+                </td>
+                <td>
+                  <%= course.instructor_name %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
       </div>
       <footer class="mt-auto pb-3">
