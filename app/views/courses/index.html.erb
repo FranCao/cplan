@@ -6,50 +6,56 @@
 
   <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
     <div class="d-flex flex-column">
-      <p id="notice"><%= notice %></p>
-      <h1>Courses</h1>
-      <table class="course-list" >
-        <thead>
-          <tr>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Semester</th>
-            <th>Course</th>
-            <th>Section</th>
-            <th>Time</th>
-            <th>Instructor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @courses.each do |course| %>
+      <div class="mb-auto">
+        <p id="notice"><%= notice %></p>
+        <h1>Courses</h1>
+      </div>
+      <div class="h-75">
+        <table>
+          <thead>
             <tr>
-              <td>
-                <%= course.year %>
-              </td>
-              <td>
-                <%= course.semester %>
-              </td>
-              <td>
-                <%= course.course_identifier %> <%= course.course_name %>
-              </td>
-              <td>
-                <%= course.section_number %>
-              </td>
-              <td>
-                <%= course.time %>
-              </td>
-              <td>
-                <%= course.instructor_name %>
-              </td>
+              <th colspan="3"></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <footer class="mt-auto pb-5">
+          </thead>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Semester</th>
+              <th>Course</th>
+              <th>Section</th>
+              <th>Time</th>
+              <th>Instructor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <div class="course-list">
+              <% @courses.each do |course| %>
+                <tr>
+                  <td>
+                    <%= course.year %>
+                  </td>
+                  <td>
+                    <%= course.semester %>
+                  </td>
+                  <td>
+                    <%= course.course_identifier %> <%= course.course_name %>
+                  </td>
+                  <td>
+                    <%= course.section_number %>
+                  </td>
+                  <td>
+                    <%= course.time %>
+                  </td>
+                  <td>
+                    <%= course.instructor_name %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+            </div>
+        </table>
+      </div>
+      <footer class="mt-auto pb-3">
         <% if params[:id] %>
           <%= link_to 'Back', '/students/' + params[:id], :class => 'btn btn-secondary' %>
         <% else %>
