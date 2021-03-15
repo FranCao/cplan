@@ -9,4 +9,12 @@ describe ApplicationHelper do
     #     end
     # end
 
+    # describe '#require_login' do
+    #     it 'redirects to the home page if user is not logged in' do
+    #         delete :destroy
+    #         get :edit, params: {id: 1}
+    #         expect(flash[:notice]).to match(/Please login to view this page/)
+    #     end
+    # end
+
 end

@@ -8,7 +8,9 @@ describe StudentsController, :type => :controller do
 	# 		Student.stub(:find).with("2").and_return(@student_info)
 
 	# 		get :show, params:{id:2}
-	# 		expect(response).to redirect_to(edit_student_path(@student))
+	# 		if @student.graduation_year.present? = nil do
+	# 			expect(response).to redirect_to(edit_student_path(@student))
+	# 		end
 	# 	end
 	# end
 	
@@ -37,7 +39,7 @@ describe StudentsController, :type => :controller do
 			@fake_results = {last_name: "Fake student", first_name: "fak"}
 			Student.stub(:find).with("1").and_return(@fake_results)
 			get :edit, params: {id: 1}
-			expect(response).to render_template("edit")
+			expect(response).to render_template(:edit)
 		end
 	end
 
