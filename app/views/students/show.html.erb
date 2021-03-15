@@ -21,6 +21,9 @@
           Graduation Year:
           <%= @student.graduation_year %>
         </li>
+        <li>
+          <%= link_to 'Course List', courses_path(:id => @student.id) %>
+        </li>
       </ul>
       <%= link_to 'Edit', edit_student_path(@student) %> |
       <%= link_to 'Back', students_path %>

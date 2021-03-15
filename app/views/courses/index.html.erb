@@ -49,6 +49,11 @@
           <% end %>
         </tbody>
       </table>
+      <% if params[:id] %>
+        <%= link_to 'Back', '/students/' + params[:id], :class => 'btn btn-secondary' %>
+      <% else %>
+        <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
+      <% end %>
     </div>
   </main>
 
