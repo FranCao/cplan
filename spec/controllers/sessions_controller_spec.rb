@@ -21,7 +21,7 @@ describe SessionsController, type: :controller do
 
         it 'clears the session' do
             delete :destroy
-            session[:student_is].should be_nil
+            session[:student_id].should be_nil
         end
     end
 end
