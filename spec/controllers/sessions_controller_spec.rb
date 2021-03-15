@@ -19,17 +19,9 @@ describe SessionsController, type: :controller do
             expect(response).to redirect_to home_path
         end
 
-        # it 'clears the session' do
-        #     session[:email].should_not be_nil
-        #     delete :destroy
-        #     session[:email].should be_nil
-        # end
+        it 'clears the session' do
+            delete :destroy
+            session[:student_is].should be_nil
+        end
     end
-
-    # describe '#GET #auth' do
-    #     it 'brings the user to the google authentication page' do
-    #         get :auth=>:provider/callback
-    #         # expect(response).to redirect_to auth_failure_path
-    #     end
-    # end
 end
