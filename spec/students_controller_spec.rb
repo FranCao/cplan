@@ -2,15 +2,15 @@ require 'rails_helper'
 
 describe StudentsController, :type => :controller do
 
-	# describe 'show' do
-	# 	it	"redirect if no graduation_year" do
-	# 		@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
-	# 		Student.stub(:find).with("2").and_return(@student_info)
+	describe 'show' do
+		it	"redirect if no graduation_year" do
+			@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(@student_info)
 
-	# 		get :show, params:{id:2}
-	# 		expect(response).to redirect_to(edit_student_path(@student))
-	# 	end
-	# end
+			get :show, params:{id:2}
+			expect(response).to redirect_to(edit_student_path(@student))
+		end
+	end
 	
 	describe 'create' do
 		it "render the flash notice" do

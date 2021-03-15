@@ -6,7 +6,6 @@ $primary: #000d74;
 @import "bootstrap";
 
 .session {
-    background-color: #000d74;
     height:100%;
     width:100%;
     background-image: url('https://www.columbia.edu/content/sites/default/files/styles/cu_crop/public/content/Morningside%20Campus%20at%20Dusk%202.jpg?itok=SkwvzD5S');
@@ -14,11 +13,6 @@ $primary: #000d74;
     background-attachment: fixed;
     background-size: 100%;
     background-position: center;
-}
-
-.start{
-    position: relative;
-    align: center;
 }
 
 #cplan-logo {
@@ -37,15 +31,6 @@ $primary: #000d74;
     display: inline-block;
     text-decoration: none;
 }
-
-// .splash {
-//     background-image: url('https://www.columbia.edu/content/sites/default/files/styles/cu_crop/public/content/Morningside%20Campus%20at%20Dusk%202.jpg?itok=SkwvzD5S');
-//     background-repeat: no-repeat;
-//     background-attachment: fixed;
-//     background-size: 100%;
-//     background-position: center;
-//     background-color: #000d74;
-// }
 
 .vertical-center {
   min-height: 100%;

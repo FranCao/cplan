@@ -4,78 +4,44 @@
     <title>Students</title>
   </head>
 
-  <body class="d-flex h-100 bg-primary">
-    <div class="container-fluid d-flex w-100 vh-100 p-3 mx-auto flex-column">
-      <header class = "mb-auto">
-        <div class="d-flex justify-content-between">
-          <div id="cplan-logo" class="col align-self-center">
-            <%= link_to(image_tag("cplan-logo.png"), home_path) %>
-          </div>
-          <% if logged_in? %>
-            <div class="dropdown align-self-center">
-              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= current_user.first_name %> <%= current_user.last_name %>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/home">Home</a>
-                <a class="dropdown-item" href="/courses">Courses</a>
-                <a data-method="delete" class="dropdown-item" href="/logout">Log Out</a>
-              </div>
-            </div>
-          <% else %>
-            <div class="align-self-center">
-              <%= link_to '/auth/google_oauth2' do %>
-                <%= image_tag 'https://cuit.columbia.edu/sites/default/files/styles/cu_crop/public/content/LionMail%20logo.png?itok=fLp1cPo7', :class => 'sign-img'%>
-              <% end %>
-              <%= link_to 'Sign in', '/auth/google_oauth2', :class => 'sign-in'%>
-            </div>
+  <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+    <div>
+      <p id="notice"><%= notice %></p>
+      <h1>Students</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @students.each do |student| %>
+            <tr>
+              <td>
+                <%= student.id %>
+              </td>
+              <td>
+                <%= student.first_name %>
+              </td>
+              <td>
+                <%= student.last_name %>
+              </td>
+              <td>
+                <%= student.email %>
+              </td>
+              <td><%= link_to 'Show', student %></td>
+              <td><%= link_to 'Edit', edit_student_path(student) %></td>
+              <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
           <% end %>
-        </div>
-      </header>
-      <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
-        <div>
-          <p id="notice"><%= notice %></p>
-          <h1>Students</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Student</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @students.each do |student| %>
-                <tr>
-                  <td>
-                    <%= student.id %>
-                  </td>
-                  <td>
-                    <%= student.first_name %>
-                  </td>
-                  <td>
-                    <%= student.last_name %>
-                  </td>
-                  <td>
-                    <%= student.email %>
-                  </td>
-                  <td><%= link_to 'Show', student %></td>
-                  <td><%= link_to 'Edit', edit_student_path(student) %></td>
-                  <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <br>
-          <%= link_to 'New Student', new_student_path %>
-        </div>
-      </main>
-      <footer class = "mt-auto">
-        <%= image_tag("Columbia_logo.png", {:style => "width:25%; margin-bottom:1.5%; margin-left:1.5%"}) %>
-      </footer>
+        </tbody>
+      </table>
+      <br>
+      <%= link_to 'New Student', new_student_path %>
     </div>
-    <%= yield %>
-  </body>
+  </main>
 
 </html>
