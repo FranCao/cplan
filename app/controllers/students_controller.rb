@@ -2,14 +2,14 @@ class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
 
-	def index
-		@students = Student.all
-	end
+	# def index
+	# 	@students = Student.all
+	# end
 
 	def show
 		id = params[:id]
 		@student = Student.find(id)
-		if @student.graduation_year.nil?
+		if @student.graduation_year == nil or @student.graduation_year.nil?
 			redirect_to edit_student_path(@student)
 		end
 	end
