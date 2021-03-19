@@ -14,8 +14,8 @@
         <%= text_field :student, :last_name, :class => 'form-control',value:@student.last_name %>
         <%= label :student, :major, 'Select Your Major', :class => 'col-form-label'  %>
         <%= select :student, :major, ["Math", "Computer Science"], include_blank: true %>
-        <%= label :student, :track, 'Select Your Track', :class => 'col-form-label'  %>
-        <%= select :student, :track, ["Software Systems", "Machine Learning"], include_blank: true %>
+        <%= label :student, :track_id, 'Select Your Track', :class => 'col-form-label'  %>
+        <%= select :student, :track_id, @trackNames, include_blank: true %>
         <%= label :student, :graduation_year, 'Expected Graduation Year', :class => 'col-form-label'  %>
         <%= text_field :student, :graduation_year, :class => 'form-control' %>
         <%= label :student, :graduation_semester, 'Expected Graduation Semester', :class => 'col-form-label'  %>
