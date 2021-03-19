@@ -31,11 +31,17 @@ class StudentsController < ApplicationController
 	def edit
 		id = params[:id]
 		@student = Student.find(id)
+		# @student.track_id = Track.find(@student.track_id).name
+		@trackNames = Track.pluck(:name)
 	end
 
 	def update
 		@student = Student.find params[:id]
+
 		params[:student].keys.each do |key|
+			if key == "track_id"
+				params[:student][:track_id] = Track.find_by_name(params[:student][:track_id]).id
+			end
 			@student.update!(key => params[:student][key])
 		end
 		flash[:notice] = "#{@student.first_name} #{@student.last_name} was successfully updated."
