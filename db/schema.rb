@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_224114) do
+ActiveRecord::Schema.define(version: 2021_03_19_195927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2021_03_14_224114) do
     t.string "last_name"
     t.string "first_name"
     t.string "degree"
-    t.string "track"
     t.string "graduation_semester"
     t.integer "graduation_year"
     t.integer "initial_total_credit"
@@ -52,7 +51,30 @@ ActiveRecord::Schema.define(version: 2021_03_14_224114) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
     t.string "major"
+    t.bigint "track_id"
     t.index ["email"], name: "uniq_email", unique: true
+    t.index ["track_id"], name: "index_students_on_track_id"
   end
 
+  create_table "track_requirements", force: :cascade do |t|
+    t.bigint "track_id"
+    t.bigint "course_id"
+    t.boolean "is_general_elective"
+    t.boolean "is_breadth_requirement"
+    t.boolean "is_required"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_track_requirements_on_course_id"
+    t.index ["track_id"], name: "index_track_requirements_on_track_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "students", "tracks"
+  add_foreign_key "track_requirements", "courses"
+  add_foreign_key "track_requirements", "tracks"
 end
