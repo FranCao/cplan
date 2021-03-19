@@ -33,6 +33,9 @@ class StudentsController < ApplicationController
 		@student = Student.find(id)
 		# @student.track_id = Track.find(@student.track_id).name
 		@trackNames = Track.pluck(:name)
+		if @trackNames.empty?
+			@trackNames = ["Software Systems", "Machine Learning"]
+		end
 	end
 
 	def update
