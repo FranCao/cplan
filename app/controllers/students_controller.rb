@@ -43,7 +43,11 @@ class StudentsController < ApplicationController
 
 		params[:student].keys.each do |key|
 			if key == "track_id"
-				params[:student][:track_id] = Track.find_by_name(params[:student][:track_id]).id
+				begin
+					params[:student][:track_id] = Track.find_by_name(params[:student][:track_id]).id
+				rescue
+					params[:student].delete(:track_id)
+				end
 			end
 			@student.update!(key => params[:student][key])
 		end
