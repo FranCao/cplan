@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bundler'
 gem 'jquery-rails'
+gem 'simple_calendar', '~> 2.4'
 
 # Google Authentication
 gem 'omniauth'
