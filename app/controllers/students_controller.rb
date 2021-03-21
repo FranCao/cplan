@@ -35,11 +35,23 @@ class StudentsController < ApplicationController
 
 	def update
 		@student = Student.find params[:id]
-		params[:student].keys.each do |key|
-			@student.update!(key => params[:student][key])
+		if !params[:course].nil?
+			@student.courses << Course.where(id: params[:course][:id])
+			redirect_to edit_student_path(@student)
+		else
+			params[:student].keys.each do |key|
+				@student.update!(key => params[:student][key])
+				flash[:notice] = "#{@student.first_name} #{@student.last_name} was successfully updated."
+			end
+			redirect_to student_path(@student)
 		end
-		flash[:notice] = "#{@student.first_name} #{@student.last_name} was successfully updated."
-		redirect_to student_path(@student)
+	end
+
+	def remove_course
+		@student = Student.find params[:id]
+		@course = Course.where(id: params[:course_id])
+		@student.courses.delete(@course)
+		redirect_to edit_student_path(@student)
 	end
 
 	# def destroy
