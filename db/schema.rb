@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_020218) do
+ActiveRecord::Schema.define(version: 2021_03_24_044357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
+    t.string "year"
+    t.string "semester"
+    t.string "call_number"
+    t.string "subject"
+    t.string "course_number"
+    t.string "course_identifier"
+    t.string "course_name"
+  end
+
+  create_table "courses_offering", force: :cascade do |t|
     t.string "year"
     t.string "semester"
     t.string "school_code"
@@ -61,12 +71,10 @@ ActiveRecord::Schema.define(version: 2021_03_24_020218) do
     t.bigint "track_id"
     t.bigint "course_id"
     t.boolean "is_general_elective"
+    t.boolean "is_breadth_requirement"
     t.boolean "is_required"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_systems_breadth_requirement"
-    t.boolean "is_theory_breadth_requirement"
-    t.boolean "is_aiapplications_breadth_requirement"
     t.index ["course_id"], name: "index_track_requirements_on_course_id"
     t.index ["track_id"], name: "index_track_requirements_on_track_id"
   end
@@ -78,6 +86,6 @@ ActiveRecord::Schema.define(version: 2021_03_24_020218) do
   end
 
   add_foreign_key "students", "tracks"
-  add_foreign_key "track_requirements", "courses"
+  add_foreign_key "track_requirements", "courses_offering", column: "course_id"
   add_foreign_key "track_requirements", "tracks"
 end
