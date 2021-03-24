@@ -12,13 +12,19 @@
         <h1>Schedule</h1>
     </div>
 
-    <%= week_calendar(number_of_weeks: 1) do |date| %>
-        <% 6.upto(23).each do |hour| %>
+
+    <%= week_calendar schedule: @courses do |time, course| %>
+        <span class="date-str"><%= time %></span>
+        <% course.each do |c| %>
             <div>
-                <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+                <%= c.course_name %>
             </div>
         <% end %>
     <% end %>
+
+    <% @courses %>
+
+
 
     <footer class="mt-auto pb-3">
         <% if params[:id] %>

@@ -1,0 +1,7 @@
+<%= week_calendar(number_of_weeks: 1) do |date| %>
+    <% 6.upto(23).each do |hour| %>
+        <div>
+            <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+        </div>
+    <% end %>
+<% end %>
