@@ -85,7 +85,9 @@ trackRequirements = [
 		course_id: 2,
 		track_id: 7,
 		is_general_elective: false,
-		is_breadth_requirement: true,
+		is_systems_breadth_requirement: true,
+		is_theory_breadth_requirement: false,
+		is_aiapplications_breadth_requirement: false,
 		is_required: false
 	}
 ]

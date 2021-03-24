@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_204632) do
+ActiveRecord::Schema.define(version: 2021_03_24_020218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,10 +61,12 @@ ActiveRecord::Schema.define(version: 2021_03_21_204632) do
     t.bigint "track_id"
     t.bigint "course_id"
     t.boolean "is_general_elective"
-    t.boolean "is_breadth_requirement"
     t.boolean "is_required"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_systems_breadth_requirement"
+    t.boolean "is_theory_breadth_requirement"
+    t.boolean "is_aiapplications_breadth_requirement"
     t.index ["course_id"], name: "index_track_requirements_on_course_id"
     t.index ["track_id"], name: "index_track_requirements_on_track_id"
   end
