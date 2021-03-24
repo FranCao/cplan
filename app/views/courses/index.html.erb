@@ -22,9 +22,6 @@
               <th>Year</th>
               <th>Semester</th>
               <th>Course</th>
-              <th>Section</th>
-              <th>Time</th>
-              <th>Instructor</th>
             </tr>
           </thead>
           <tbody>
@@ -38,15 +35,6 @@
                 </td>
                 <td>
                   <%= course.course_identifier %> <%= course.course_name %>
-                </td>
-                <td>
-                  <%= course.section_number %>
-                </td>
-                <td>
-                  <%= course.time %>
-                </td>
-                <td>
-                  <%= course.instructor_name %>
                 </td>
               </tr>
             <% end %>
