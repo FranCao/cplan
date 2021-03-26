@@ -38,65 +38,29 @@ courses = [
 	{
 		:year => "2021",
 		:semester => "Summer",
-		:school_code => "SEAS",
 		:call_number => "11494",
 		:subject => "COMS",
 		:course_number => "4732",
-		:section_number => "1",
 		:course_identifier => "COMSW4732",
-		:course_name => "Computer Vision II: Learning",
-		:subterm_name => "05/03-06/14",
-		:subterm_code => "A",
-		:time => "TR 10:10AM-12:40PM",
-		:instructor_name => "Carl Vondrick",
-		:instructor_uni => "cv2428",
-		:location_name => "",
-		:location_room => "ONLINE",
-		:enrollment_max => "120",
-		:enrollment_number => "33",
-		:method => "On-Line Only",
+		:course_name => "Computer Vision II: Learning"
 	},
 	{
 		:year => "2021",
 		:semester => "Summer",
-		:school_code => "SEAS",
 		:call_number => "12175",
 		:subject => "CSOR",
 		:course_number => "4231",
-		:section_number => "1",
 		:course_identifier => "CSORW4231",
-		:course_name => "ANALYSIS OF ALGORITHMS I",
-		:subterm_name => "05/03-06/14",
-		:subterm_code => "A",
-		:time => "TR 1:10PM-3:40PM",
-		:instructor_name => "Xi Chen",
-		:instructor_uni => "xc2198",
-		:location_name => "",
-		:location_room => "ONLINE",
-		:enrollment_max => "99",
-		:enrollment_number => "30",
-		:method => "On-Line Only",
+		:course_name => "ANALYSIS OF ALGORITHMS I"
 	},
 	{
 		:year => "2021",
 		:semester => "Summer",
-		:school_code => "SEAS",
 		:call_number => "12375",
 		:subject => "CSOR",
 		:course_number => "4231",
-		:section_number => "1",
 		:course_identifier => "COMSW4111",
-		:course_name => "ANALYSIS OF ALGORITHMS I",
-		:subterm_name => "05/03-06/14",
-		:subterm_code => "A",
-		:time => "TR 1:10PM-3:40PM",
-		:instructor_name => "Xi Chen",
-		:instructor_uni => "xc2198",
-		:location_name => "",
-		:location_room => "ONLINE",
-		:enrollment_max => "99",
-		:enrollment_number => "30",
-		:method => "On-Line Only",
+		:course_name => "ANALYSIS OF ALGORITHMS I"
 	}
 ]
 
@@ -159,6 +123,55 @@ students = [
 students.each do |student|
 	Track.find(student[:track_id]).students.find_or_create_by(student)
   # Student.find_or_create_by(student)
+end
+
+courses_offerings = [
+	{
+		:year => "2021",
+		:semester => "Summer",
+		:method => "On-Line Only",
+		:call_number => "11494",
+		:subject => "COMS",
+		:course_number => "4732",
+		:section_number => "1",
+		:course_identifier => "COMSW4732",
+		:course_name => "Computer Vision II: Learning",
+		:subterm_name => "05/03-06/14",
+		:subterm_code => "A",
+		:instructor_name => "Carl Vondrick",
+		:instructor_uni => "cv2428",
+		:location_name => "",
+		:location_room => "ONLINE",
+		:start_time_1 => DateTime.new(2021,5,3,10,10),
+		:end_time_1 => DateTime.new(2021,5,3,12,40),
+		:start_time_2 => DateTime.new(2021,5,5,10,10),
+		:end_time_2 => DateTime.new(2021,5,5,12,40)
+	},
+	{
+		:year => "2021",
+		:semester => "Summer",
+		:method => "On-Line Only",
+		:call_number => "12175",
+		:subject => "CSOR",
+		:course_number => "4231",
+		:section_number => "1",
+		:course_identifier => "CSORW4231",
+		:course_name => "ANALYSIS OF ALGORITHMS I",
+		:subterm_name => "05/03-06/14",
+		:subterm_code => "A",
+		:instructor_name => "Xi Chen",
+		:instructor_uni => "xc2198",
+		:location_name => "",
+		:location_room => "ONLINE",
+		:start_time_1 => DateTime.new(2021,5,4,16,10),
+		:end_time_1 => DateTime.new(2021,5,4,18,40),
+		:start_time_2 => DateTime.new(2021,5,6,16,10),
+		:end_time_2 => DateTime.new(2021,5,6,18,40)
+	}
+]
+
+courses_offerings.each do |course|
+  CoursesOffering.find_or_create_by(course)
 end
 
 

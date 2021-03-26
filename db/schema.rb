@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_045948) do
+ActiveRecord::Schema.define(version: 2021_03_26_025836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 2021_03_24_045948) do
     t.string "course_name"
   end
 
-  create_table "courses_offering", force: :cascade do |t|
+  create_table "courses_offerings", force: :cascade do |t|
     t.string "year"
     t.string "semester"
-    t.string "school_code"
+    t.string "method"
     t.string "call_number"
     t.string "subject"
     t.string "course_number"
@@ -37,18 +37,17 @@ ActiveRecord::Schema.define(version: 2021_03_24_045948) do
     t.string "course_name"
     t.string "subterm_name"
     t.string "subterm_code"
-    t.string "time"
+    t.string "weekday"
     t.string "instructor_name"
     t.string "instructor_uni"
     t.string "location_name"
     t.string "location_room"
-    t.string "enrollment_max"
-    t.string "enrollment_number"
-    t.string "method"
+    t.datetime "start_time_1"
+    t.datetime "end_time_1"
+    t.datetime "start_time_2"
+    t.datetime "end_time_2"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "student_id"
-    t.index ["call_number"], name: "uniq_call_number", unique: true
   end
 
   create_table "students", force: :cascade do |t|
@@ -88,6 +87,6 @@ ActiveRecord::Schema.define(version: 2021_03_24_045948) do
   end
 
   add_foreign_key "students", "tracks"
-  add_foreign_key "track_requirements", "courses_offering", column: "course_id"
+  # add_foreign_key "track_requirements", "courses_offerings", column: "course_id"
   add_foreign_key "track_requirements", "tracks"
 end
