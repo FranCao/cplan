@@ -1,5 +1,7 @@
 class Student < ApplicationRecord
+	belongs_to :track, optional: true
 
+    has_many :courses
     def self.from_omniauth(auth)
         where(email: auth.info.email).first_or_initialize do |student|
             # student.uid = auth.info.uid

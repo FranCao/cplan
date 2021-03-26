@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/home', to: 'sessions#index'
   delete '/logout', to: 'sessions#destroy'
 
+  post '/students/:id/remove_course/:course_id' => 'students#remove_course', as: :remove_course
+
   #tentative route
   # post '/students/:uid/relatedClass' => 'students#add_related_class'
 

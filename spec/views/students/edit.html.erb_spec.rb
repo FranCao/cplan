@@ -6,6 +6,7 @@ RSpec.describe "students/edit", type: :view do
   end
 
   it "renders the edit student form" do
+  	@trackNames = ['asd']
     render
 
     assert_select "form[action=?][method=?]", student_path(@student), "post" do
