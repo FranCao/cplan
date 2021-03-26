@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
   def index
-    @courses = Course.where(semester: 'Summer')
+    @courses = CoursesOffering.where(semester: 'Summer')
   end
 end
