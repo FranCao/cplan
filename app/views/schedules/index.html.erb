@@ -1,45 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Schedule</title>
-  </head>
+    <head>
+        <title>Schedule</title>
+    </head>
 
-  <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
-    <div class="d-flex flex-column">
+    <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+        <div class="d-flex flex-column">
 
-    <div class="mb-auto">
-        <p id="notice"><%= notice %></p>
-        <h1>Schedule</h1>
-    </div>
-
-
-    <%= week_calendar schedule: @courses do |time, course| %>
-        <span class="date-str"><%= time %></span>
-        <% course.each do |c| %>
-            <div>
-                <%= c.course_name %>
+            <div class="mb-auto">
+                <p id="notice"><%= notice %></p>
+                <h1>Schedule</h1>
             </div>
-        <% end %>
-    <% end %>
 
-    <%= week_calendar(number_of_weeks: 1) do |date| %>
-        <% 6.upto(23).each do |hour| %>
-            <div>
-                <%= Time.parse("#{hour}:00").strftime("%l %P") %>
-            </div>
-        <% end %>
-    <% end %>
+            <footer class="mt-auto pb-3">
+                <% if params[:id] %>
+                    <%= link_to 'Back', '/students/' + params[:id], :class => 'btn btn-secondary' %>
+                <% else %>
+                    <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
+                <% end %>
+            </footer>
 
-
-    <footer class="mt-auto pb-3">
-        <% if params[:id] %>
-            <%= link_to 'Back', '/students/' + params[:id], :class => 'btn btn-secondary' %>
-        <% else %>
-            <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
-        <% end %>
-    </footer>
-
-    </div>
+        </div>
     </main>
 
 </html>
