@@ -5,5 +5,7 @@ class ApplicationController < ActionController::Base
   #     session[:student_id] = cookies[:stub_student_id] if cookies[:stub_student_id]
   #   end
   # end
+  include ApplicationHelper
+  protect_from_forgery with: :exception
 
 end

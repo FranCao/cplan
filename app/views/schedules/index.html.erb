@@ -4,6 +4,12 @@
     <title>Schedule</title>
   </head>
 
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
+
   <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
     <div class="d-flex flex-column">
 
@@ -40,7 +46,7 @@
                   <%= course.course_identifier %> <%= course.course_name %>
                 </td>
                 <td>
-                    <%= course.start_time_1.parseTime %> <%= course.end_time_1.parseTime %>
+                    <%= parseTime(course.start_time_1) %> <%= parseTime(course.end_time_1) %>
               </tr>
             <% end %>
           </tbody>
@@ -52,10 +58,11 @@
         <% courses.each do |course| %>
             <div>
                 <%= course.course_identifier %>
-                <%= course.start_time_1.parseTime %> - <%= course.end_time_1.parseTime %>
+                <%= parseTime(course.start_time_1) %> - <%= parseTime(course.end_time_1) %>
             </div>
         <% end %>
     <% end %>
+
 
 
     <footer class="mt-auto pb-3">
