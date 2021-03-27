@@ -40,7 +40,7 @@
                   <%= course.course_identifier %> <%= course.course_name %>
                 </td>
                 <td>
-                    <%= course.start_time_1 %> <%= course.end_time_1 %>
+                    <%= course.start_time_1.parseTime %> <%= course.end_time_1.parseTime %>
               </tr>
             <% end %>
           </tbody>
@@ -52,20 +52,7 @@
         <% courses.each do |course| %>
             <div>
                 <%= course.course_identifier %>
-                <%= course.start_time_1 %> - <%= course.end_time_1 %>
-            </div>
-        <% end %>
-    <% end %>
-
-    <%= week_calendar(attribute: :start_time_1, end_attribute: :end_time_1, events: @courses) do |date, courses| %>
-        <% 7.upto(23).each do |hour| %>
-            <div>
-                <%= Time.parse("#{hour}:00").strftime("%l%P") %>
-            </div>
-            <div>
-                <%= courses.each do |course| %>
-                    <%= course.course_identifier %>
-                <% end %>
+                <%= course.start_time_1.parseTime %> - <%= course.end_time_1.parseTime %>
             </div>
         <% end %>
     <% end %>
