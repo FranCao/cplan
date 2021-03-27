@@ -175,10 +175,10 @@ courses_offerings.each do |course|
 end
 
 
-# Dir[Rails.root.join('db/*_seeds.rb')].sort.each do |file|
-# puts "Processing #{file.split('/').last}"
-# require file
-# end
+Dir[Rails.root.join('db/*_seeds.rb')].sort.each do |file|
+puts "Processing #{file.split('/').last}"
+require file
+end
 
 
 
