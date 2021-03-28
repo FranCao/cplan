@@ -4,7 +4,7 @@ require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
 Given /I am not logged in/ do
-  page.has_link?("/auth/google_oauth2")
+  ENV['stub_student_id'] = nil
 end
 
 Given /I am logged in/ do

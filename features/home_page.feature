@@ -4,6 +4,7 @@ Feature: Homepage View
 
 Scenario: Seeing the homepage for CPlan
     Given I am on the home page
+    Given I am not logged in
     Then I should see the CPlan logo
     And I should see “Sign in”
     And I should see “Start Planning”
