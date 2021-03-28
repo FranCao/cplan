@@ -44,3 +44,8 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
     assert page.has_no_content?(text)
   end
 end
+
+Then('I should redirect to Audit Degree') do
+  Student.create(:id => 1, :first_name => "Fake", :last_name => "Student", :track_id => 1)
+  visit student_path(1)
+end
