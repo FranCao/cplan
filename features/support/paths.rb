@@ -8,6 +8,7 @@ module NavigationHelpers
       when /^the create profile page for "(.*)"/ then "/students/#{Student.find_by_first_name($1).id}/edit"
       when /^the audit degree page for "(.*)"/ then "/students/#{Student.find_by_first_name($1).id}"
       when /^the schedule page for "(.*)"/ then '/schedule'
+      when /^the audit degree page for "(.*)"/ then "/students/#{Student.find_by_first_name($1).id}/show"
       # Add more mappings here.
       # Here is an example that pulls values out of the Regexp:
       #
