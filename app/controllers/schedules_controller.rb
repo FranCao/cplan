@@ -24,6 +24,7 @@ class SchedulesController < ApplicationController
     @student = session[:student_id]
     # @schedule = Schedule.find_or_create_by(:student_id => @student, :courses_offering_id => @course)
     Schedule.where(student_id: @student, courses_offering_id: @course).first_or_create
+    redirect_back(fallback_location: schedule_path)
   end
 
   def destroy
@@ -31,6 +32,7 @@ class SchedulesController < ApplicationController
     @student = session[:student_id]
     Schedule.where(student_id: @student, courses_offering_id: @course).delete_all
     flash[:success] = "Course removed from schedule."
+    redirect_back(fallback_location: schedule_path)
   end
 
 end
