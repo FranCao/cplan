@@ -2,6 +2,13 @@ Feature: User Login
     If a user is not logged in, they can use single-sign-on to login to LionMail
     Or they can go to their audit page if they are logged in
 
+Background:
+    Given the following tracks exist:
+    |name             | id |
+    |Computer Biology | 1  |
+    |Software Systems | 2  |
+    |Machine Learning | 3  |
+
 @javascript
 Scenario: Logging in when I am on the homepage
     Given I am on the home page
@@ -17,4 +24,4 @@ Scenario: What I should see on the homepage if I am not logged in
 Scenario: What happens after I log in
     Given I am on the home page
     When I am logged in
-    Then I should be on the students page
+    Then I should redirect to Audit Degree

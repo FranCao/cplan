@@ -22,7 +22,6 @@ Background:
 
     Given I am logged in
 
-
 Scenario: CS major, Software systems track
     Given I am logged in
     Given I am on the create profile page for "Yunbo"

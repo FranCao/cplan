@@ -6,20 +6,26 @@ Feature: View Schedule
 Background:
     Given I am logged in
     Given the following tracks exist:
-    |name             | id |
+    | name            | id |
     |Computer Bio     | 1  |
     |Software Systems | 2  |
     |Machine Learning | 3  |
+
     Given the following courses_offerings exist:
-    | subject        | course_number | course_name                         | semester | weekday | start_time_1        | end_time_1          |
-    | COMS           | 4732          | Computer Vision II: Learning        | Summer   | MW      | 2021-05-04 10:10:00 | 2021-05-04 12:40:00 |
-    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I            | Summer   | TR      | 2021-05-05 16:10:00 | 2021-05-05 18:40:00 |
-    | COMS           | 4115          | PROGRAMMING LANGUAGES & TRANSLATORS | Spring   | TR      | 2021-05-05 16:10:00 | 2021-05-05 18:40:00 |
+    | subject        | course_number | course_name                         | semester | weekday | start_time_1        | end_time_1          | id                  |
+    | COMS           | 4732          | Computer Vision II: Learning        | Summer   | MW      | 2021-05-04 10:10:00 | 2021-05-04 12:40:00 | 1                   |
+    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I            | Summer   | TR      | 2021-05-05 16:10:00 | 2021-05-05 18:40:00 | 2                   |
+    | COMS           | 4115          | PROGRAMMING LANGUAGES & TRANSLATORS | Spring   | TR      | 2021-05-05 16:10:00 | 2021-05-05 18:40:00 | 3                   |
+
     Given the following students exist:
-    | first_name        | last_name | email                   |track_id |
-    | Yunbo             | Liang     | yunboliang@columbia.edu |1        |
-    | leo               | lee       | leolee@columbia.edu     |1        |
-    | Joy               | Li        | joyli@columbia.edu      |1        |
+    | first_name        | last_name | email                   |track_id | id         |
+    | Yunbo             | Liang     | yunboliang@columbia.edu |1        | 1          |
+    | leo               | lee       | leolee@columbia.edu     |1        | 2          |
+    | Joy               | Li        | joyli@columbia.edu      |1        | 3          |
+
+    Given the following schedules exist:
+    | student_id    | courses_offering_id |
+    | 2             | 1                   |
 
 Scenario: See all courses for the next semester
     Given I am on the schedule page for "leo"
@@ -31,11 +37,11 @@ Scenario: Add a course to my schedule
     And I don't have "CSOR4231" on my schedule
     Then I should see "Add"
     When I click on "Add" for "ANALYSIS OF ALGORITHMS I"
-    Then I should see "CSOR4231" on the calendar
+    Then I have "CSOR4231" on my schedule
 
 Scenario: Delete a course from schedule
     Given I am on the schedule page for "Joy"
     And I have "COMS4732" on my schedule
     Then I should see "Remove"
     When I click on "Remove" for "Computer Vision II: Learning"
-    Then I should not see "COMS4732" on the calendar
+    Then I don't have "COMS4732" on my schedule
