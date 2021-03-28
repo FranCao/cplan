@@ -34,7 +34,7 @@
                             <div class="top-info"><span>Monday</span></div>
                             <ul>
                                 <% @courses.each do |course| %>
-                                    <li class="single-event" data-start="<%= course.start_time_1 %>" data-end="<%= course.end_time_1 %>" data-content="event-abs-circuit" data-event="event-1">
+                                    <li class="single-event" data-start="<%= course.translateTime(course.start_time_1) %>" data-end="<%= course.translateTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
                                     </li>
                                 <% end %>
                             </ul>
