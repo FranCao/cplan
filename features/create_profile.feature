@@ -31,7 +31,6 @@ Scenario: CS major, Software systems track
     And I should see "Yunbo"
 
 Scenario: CS major, Machine Learning track
-    Given I am logged in
     Given I am on the create profile page for "leo"
     When I select "Machine Learning" from "Select Your Track"
     When I fill in "Expected Graduation Year" with "2022"
