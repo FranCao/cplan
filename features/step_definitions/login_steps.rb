@@ -12,6 +12,12 @@ Given /I am logged in/ do
   ENV['stub_student_id'] = "1233"
 end
 
+Given /I am logged in as "(.+)"/ do
+  # request.session['stub_student_id'] => "1233"
+  @student = 
+  cookies[:stub_student_id] = @current_user[:id]
+end
+
 # Then /^(?:|I )should be on (.+)$/ do |page_name|
 # 	# expect(page).to have_content(page_name)
 # 	expect(page).to have_current_path(page_name)

@@ -14,8 +14,6 @@ Background:
     | COMS           | 4732          | Computer Vision II: Learning |
     | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |
 
-
-
 Scenario: CS major, Software systems track
     Given I am on the create profile page for "Yunbo"
     When I select "Software Systems" from "Select Your Track"
@@ -27,6 +25,7 @@ Scenario: CS major, Software systems track
     And I should see "Yunbo"
 
 Scenario: CS major, Machine Learning track
+    Given I am logged in
     Given I am on the create profile page for "leo"
     When I select "Machine Learning" from "Select Your Track"
     When I fill in "Expected Graduation Year" with "2022"
