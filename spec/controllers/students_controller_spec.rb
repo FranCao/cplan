@@ -2,17 +2,15 @@ require 'rails_helper'
 
 describe StudentsController, :type => :controller do
 
-	# describe 'show' do
-	# 	it	"redirect if no graduation_year" do
-	# 		@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
-	# 		Student.stub(:find).with("2").and_return(@student_info)
+	describe 'show' do
+		it	"redirect if no graduation_year" do
+			@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 
-	# 		get :show, params:{id:2}
-	# 		if @student.graduation_year.present? = nil do
-	# 			expect(response).to redirect_to(edit_student_path(@student))
-	# 		end
-	# 	end
-	# end
+			get :show, params:{id:2}
+			expect(response).to redirect_to(edit_student_path(2))
+		end
+	end
 	
 	describe 'create' do
 		it "render the flash notice" do
@@ -53,12 +51,51 @@ describe StudentsController, :type => :controller do
 			expect(flash[:notice]).to match(/was successfully updated/)
 		end
 		it "redirect after update" do
-			@update_pair = {last_name: "Not fake student"}
+			@update_pair = {last_name: "Not fake student", track_id: "1"}
 			@fake_result = {id: "3", last_name: "fake student"}
 			Student.stub(:find).with("3").and_return(Student.new(@fake_results))
 			
 			put :update, params: {id:"3", student: @update_pair}
 			expect(response.location).to match(/students/)
+		end
+		it "add courses" do
+			@course_info = 	{
+				:id => 1,
+				:year => "2021",
+				:semester => "Summer",
+				:call_number => "11494",
+				:subject => "COMS",
+				:course_number => "4732",
+				:course_identifier => "COMSW4732",
+				:course_name => "Computer Vision II: Learning"
+			}
+			@fake_student = {id: "3", last_name: "fake student"}
+			Student.stub(:find).with("3").and_return(Student.new(@fake_student))
+			Course.stub(:where).with(id: "1").and_return(Course.new(@course_info))
+			
+			put :update, params: {id:"3", course: {id: "1"}}
+			expect(response.location).to match("/students/3/edit")
+		end
+	end
+
+	describe 'remove_course' do
+		it "remove courses" do
+			@course_info = 	{
+				:id => 1,
+				:year => "2021",
+				:semester => "Summer",
+				:call_number => "11494",
+				:subject => "COMS",
+				:course_number => "4732",
+				:course_identifier => "COMSW4732",
+				:course_name => "Computer Vision II: Learning"
+			}
+			@fake_student = {id: "3", last_name: "fake student"}
+			Student.stub(:find).with("3").and_return(Student.new(@fake_student))
+			Course.stub(:where).with(id: "1").and_return(Course.new(@course_info))
+			
+			put :remove_course, params: {id:"3", course_id: "1"}
+			expect(response.location).to match("/students/3/edit")
 		end
 	end
 

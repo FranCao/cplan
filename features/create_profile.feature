@@ -9,6 +9,12 @@ Background:
     | Yunbo             | Liang     | yunboliang@columbia.edu |
     | leo               | lee       | leolee@columbia.edu     |
     | Joy               | Li        | joyli@columbia.edu      |
+    Given the following courses exist:
+    | subject        | course_number | course_name                  |
+    | COMS           | 4732          | Computer Vision II: Learning |
+    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |
+
+
 
 Scenario: CS major, Software systems track
     Given I am on the create profile page for "Yunbo"
@@ -29,3 +35,30 @@ Scenario: CS major, Machine Learning track
     Then I should be on the audit degree page for "leo"
     And I should see "2022"
     And I should see "leo"
+
+Scenario: Add courses should show up in both edit profile and show profile page
+    Given I am on the create profile page for "Yunbo"
+    Then I should see "Courses Taken"
+    When I select "COMS 4732 Computer Vision II: Learning" from "Courses Taken"
+    And I press "Add"
+    Then I should be on the create profile page for "Yunbo"
+    And I should see "COMS 4732 Computer Vision II: Learning"
+    When I follow "Cancel"
+    Then I should be on the audit degree page for "Yunbo" 
+    And I should see "COMS 4732 Computer Vision II: Learning"
+
+Scenario: Remove courses
+    Given I am on the create profile page for "Yunbo"
+    When I select "COMS 4732 Computer Vision II: Learning" from "Courses Taken"
+    And I press "Add"
+    Then I should be on the create profile page for "Yunbo"
+    And I should see "COMS 4732 Computer Vision II: Learning"
+    When I click remove after "4732"
+    Then I should be on the create profile page for "Yunbo"
+    And I should not see "COMS 4732 Computer Vision II: Learning" in the table
+    When I select "Machine Learning" from "Select Your Track"
+    When I fill in "Expected Graduation Year" with "2022"
+    When I select "Spring" from "Expected Graduation Semester"
+    And I press "Submit"
+    Then I should be on the audit degree page for "Yunbo" 
+    And I should not see "COMS 4732 Computer Vision II: Learning"

@@ -13,7 +13,7 @@
         <%= label :student, :last_name, 'Last Name', :class => 'col-form-label' %>
         <%= text_field :student, :last_name, :class => 'form-control',value:@student.last_name %>
         <%= label :student, :major, 'Select Your Major', :class => 'col-form-label'  %>
-        <%= select :student, :major, ["Math", "Computer Science"], include_blank: true %>
+        <%= select :student, :major, ["Math", "Computer Science"] %>
         <%= label :student, :track_id, 'Select Your Track', :class => 'col-form-label'  %>
         <%= select :student, :track_id, @trackNames, include_blank: true %>
         <%= label :student, :graduation_year, 'Expected Graduation Year', :class => 'col-form-label'  %>
@@ -27,9 +27,9 @@
     </div>
     <div>
         <%= form_tag student_path(@student), :method => :put do %>
-        <%= label :student, :courses, 'Courses Taken', :class => 'col-form-label'  %>
-          <%= select :course, :id, Course.all.collect {|c| [[ c.subject, c.course_number, c.course_name ].join(" "), c.id] }, include_blank: true %>
-          <%= submit_tag 'Add', :class => 'btn btn-primary' %>
+        <%= label :course, :id, 'Courses Taken', :class => 'col-form-label'  %>
+        <%= select :course, :id, Course.all.collect {|c| [[ c.subject, c.course_number, c.course_name ].join(" "), c.id] }, include_blank: true %>
+        <%= submit_tag 'Add', :class => 'btn btn-primary' %>
         <% end %>
         <table>
           <tbody>
@@ -38,7 +38,7 @@
                 <td>
                   <%= course.course_identifier %> <%= course.course_name %>
                 </td>
-                <td><%= link_to 'Remove', remove_course_path(@student,course), method: :post%></td>
+                <td><%= link_to 'Remove', remove_course_path(@student,course), method: :post, :id => "#{course.course_number}_remove"%></td>
               </tr>
             <% end %>
           </tbody>
