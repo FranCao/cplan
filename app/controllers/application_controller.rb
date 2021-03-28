@@ -8,4 +8,6 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   protect_from_forgery with: :exception
 
+  @student = :current_user
+
 end

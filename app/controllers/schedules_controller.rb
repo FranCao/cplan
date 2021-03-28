@@ -12,5 +12,6 @@ class SchedulesController < ApplicationController
 
   def index
     @courses = CoursesOffering.where(semester: 'Summer')
+    # @student = Student.find params[:id]
   end
 end
