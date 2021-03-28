@@ -11,7 +11,11 @@
   <% end %>
 
     <main class="session align-self-center d-flex justify-content-center">
+    <% if logged_in? %>
       <%= link_to "Start Planning", '/auth/google_oauth2', :class => 'btn btn-primary btn-lg align-self-center' %>
+    <% else %>
+      <%= link_to "Start Planning", '/home' %>
+    <% end %>
     </main>
 
 </html>
