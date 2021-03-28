@@ -1,15 +1,23 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the SchedulesHelper. For example:
-#
-# describe SchedulesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe SchedulesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "parseTime" do
+    it "parseTime should work when not nil" do
+      expect(helper.parseTime(DateTime.new(2021,5,3,10,10))).to eq("10:10")
+    end
+    it "parseTime should work when nil" do
+      expect(helper.parseTime(nil)).to eq("")
+    end
+  end
+
+  describe "parseTimePretty" do
+    it "parseTimePretty should work" do
+      expect(helper.parseTimePretty(DateTime.new(2021,5,3,10,10))).to eq("10:10AM")
+    end
+    it "parseTimePretty should work when nil" do
+      expect(helper.parseTimePretty(nil)).to eq("")
+    end
+  end
+
 end
