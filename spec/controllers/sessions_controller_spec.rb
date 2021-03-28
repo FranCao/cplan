@@ -18,6 +18,11 @@ describe SessionsController, type: :controller do
             delete :destroy
             expect(response).to redirect_to home_path
         end
+        it 'should flash a message when loged out' do
+            delete :destroy
+            # should have_selector('div.flash', text: 'You have successfully logged out')
+            # expect(flash[:success]).to match(/You have successfully logged out*/)
+        end
 
         it 'clears the session' do
             delete :destroy
