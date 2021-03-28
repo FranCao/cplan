@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :courses
   resources :schedules
 
+  post 'schedule/add/:courses_offering_id' => 'schedules#add', as: :add_schedule 
+
 end

@@ -110,8 +110,12 @@
                 3 credits<br><br>
                 Call Number: <%= course.call_number %><br>
                 Day and Time: <%= course.weekday %> <%= parseTimePretty(course.start_time_1) %>-<%= parseTimePretty(course.end_time_1) %><br>
-                Instructor: <%= course.instructor_name %>
+                Instructor: <%= course.instructor_name %><br>
+                <%= link_to 'Add', add_schedule_path(@student, course), method: :post %>
                 <hr>
+            <% end %>
+
+            <%= @schedule.each do |s| %>
             <% end %>
         </div>
     </main>
