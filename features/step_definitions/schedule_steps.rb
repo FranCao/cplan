@@ -15,3 +15,11 @@ Given /the following courses_offerings exist/ do |courses_offerings_table|
         CoursesOffering.create course
     end
 end
+
+# And /^(?:|I ) don't have "([^"]*)" on my schedule$/ do |text|
+#     if page.respond_to? :should
+#       expect(page).to have_content(text)
+#     else
+#       assert page.has_content?(text)
+#     end
+# end

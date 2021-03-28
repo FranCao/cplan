@@ -19,7 +19,7 @@ Background:
     | first_name        | last_name | email                   |track_id |
     | Yunbo             | Liang     | yunboliang@columbia.edu |1        |
     | leo               | lee       | leolee@columbia.edu     |1        |
-    | Joy               | Li        | joyli@columbia.edu      |1 
+    | Joy               | Li        | joyli@columbia.edu      |1        |
 
 Scenario: See all courses for the next semester
     Given I am on the schedule page for "leo"
