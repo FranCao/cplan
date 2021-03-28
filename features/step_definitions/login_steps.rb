@@ -12,6 +12,10 @@ Given /I am logged in/ do
   ENV['stub_student_id'] = "1"
 end
 
+Given /I am student with id (.+)/ do |id|
+  ENV['stub_student_id'] = id
+end
+
 # Then /^(?:|I )should be on (.+)$/ do |page_name|
 # 	# expect(page).to have_content(page_name)
 # 	expect(page).to have_current_path(page_name)
