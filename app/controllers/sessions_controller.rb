@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   # before_action :require_login, except: [:index, :omniauth, :auth]
 
   def index
+    @student = session[:student_id]
   end
 
   def omniauth

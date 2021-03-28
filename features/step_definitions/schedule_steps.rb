@@ -2,6 +2,10 @@ Then('I should see all the courses for the next semester') do
     expect(page).to have_content('Computer Vision II: Learning')
 end
 
+Then('I should not see courses for other semesters') do
+    expect(page).to_not have_content('Spring')
+  end  
+
 Then /I should see "Add"/ do
     expect(page).to have_link('Add', href: add_schedule_path)
 end
