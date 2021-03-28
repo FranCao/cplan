@@ -18,5 +18,9 @@ Rails.application.routes.draw do
   # post '/students/:uid/relatedClass' => 'students#add_related_class'
 
   resources :courses
+  resources :schedules
+
+  post 'schedule/add/:courses_offering_id' => 'schedules#add', as: :add_schedule
+  delete '/schedule/delete/:courses_offering_id' => 'schedules#destroy', as: :delete_schedule
 
 end

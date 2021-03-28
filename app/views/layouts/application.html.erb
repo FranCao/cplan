@@ -25,9 +25,10 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="/home">Home</a>
-                <% if !@student.nil? %>
-                  <a class="dropdown-item" <%= link_to 'Audit Degree', student_path(@student) %>
+                <% if logged_in? %>
+                  <a class="dropdown-item" <%= link_to 'Audit Degree', student_path(@current_user.id) %></a>
                 <% end %>
+                <a class="dropdown-item" href="/schedule">Schedule</a>
                 <a class="dropdown-item" href="/courses">Courses</a>
                 <a data-method="delete" class="dropdown-item" href="/logout">Log Out</a>
               </div>

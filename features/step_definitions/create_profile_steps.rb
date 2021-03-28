@@ -18,6 +18,12 @@ Given /the following courses exist/ do |courses_table|
     end
 end
 
+Given /the following tracks exist/ do |tracks_table|
+    tracks_table.hashes.each do |track|
+        Track.create track
+    end
+end
+
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
     if page.respond_to? :should
       expect(page).to have_content(text)
