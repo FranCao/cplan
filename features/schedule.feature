@@ -5,15 +5,21 @@ Feature: View Schedule
 
 Background:
     Given I am logged in
+    Given the following tracks exist:
+    |name            | id|
+    |Computer bio    | 1 |
+    |Software Systems| 2 |
+    |Machine Learning| 3 |
     Given the following courses exist:
-    | subject        | course_number | course_name                  |
-    | COMS           | 4732          | Computer Vision II: Learning |
-    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |
+    | subject        | course_number | course_name                  |semester
+    | COMS           | 4732          | Computer Vision II: Learning |Summer
+    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |Summer
+    | COMS           | 4115          | PROGRAMMING LANGUAGES & TRANSLATORS |Spring
     Given the following students exist:
-    | first_name        | last_name | email                   |
-    | Yunbo             | Liang     | yunboliang@columbia.edu |
-    | leo               | lee       | leolee@columbia.edu     |
-    | Joy               | Li        | joyli@columbia.edu      |
+    | first_name        | last_name | email                   |track_id
+    | Yunbo             | Liang     | yunboliang@columbia.edu |1
+    | leo               | lee       | leolee@columbia.edu     |1
+    | Joy               | Li        | joyli@columbia.edu      |1
 
 Scenario: See all courses for the next semester
     Given I am on the schedule page for "leo"
