@@ -34,8 +34,9 @@ describe StudentsController, :type => :controller do
 
 	describe 'edit' do
 		it "render the form" do
-			@fake_results = {last_name: "Fake student", first_name: "fak"}
-			Student.stub(:find).with("1").and_return(@fake_results)
+			@fake_results = {last_name: "Fake student", first_name: "fak", track_id: 1}
+			Student.stub(:find).with("1").and_return(Student.new(@fake_results))
+			Track.stub(:find).with(1).and_return(Track.new({name: "computer Bio"}))
 			get :edit, params: {id: 1}
 			expect(response).to render_template(:edit)
 		end
