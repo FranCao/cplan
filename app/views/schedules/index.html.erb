@@ -33,11 +33,13 @@
                             <div class="top-info"><span>Monday</span></div>
                             <ul>
                                 <% @schedule.each do |course| %>
-                                    <% if course.weekday.include? "M" %>
-                                        <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
-                                            <%= course.subject %><%= course.course_number %><br>
-                                            <%= course.course_name %>
-                                        </li>
+                                    <% if !course.weekday.nil? %>
+                                        <% if course.weekday.include? "M" %>
+                                            <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
+                                                <%= course.subject %><%= course.course_number %><br>
+                                                <%= course.course_name %>
+                                            </li>
+                                        <% end %>
                                     <% end %>
                                 <% end %>
                             </ul>
@@ -47,11 +49,13 @@
                             <div class="top-info"><span>Tuesday</span></div>
                             <ul>
                                 <% @schedule.each do |course| %>
-                                    <% if course.weekday.include? "T" %>
-                                        <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
-                                            <%= course.subject %><%= course.course_number %><br>
-                                            <%= course.course_name %>
-                                        </li>
+                                    <% if !course.weekday.nil? %>
+                                        <% if course.weekday.include? "T" %>
+                                            <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
+                                                <%= course.subject %><%= course.course_number %><br>
+                                                <%= course.course_name %>
+                                            </li>
+                                        <% end %>
                                     <% end %>
                                 <% end %>
                             </ul>
@@ -61,11 +65,13 @@
                             <div class="top-info"><span>Wednesday</span></div>
                             <ul>
                                 <% @schedule.each do |course| %>
-                                    <% if course.weekday.include? "W" %>
-                                        <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
-                                            <%= course.subject %><%= course.course_number %><br>
-                                            <%= course.course_name %>
-                                        </li>
+                                    <% if !course.weekday.nil? %>
+                                        <% if course.weekday.include? "W" %>
+                                            <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
+                                                <%= course.subject %><%= course.course_number %><br>
+                                                <%= course.course_name %>
+                                            </li>
+                                        <% end %>
                                     <% end %>
                                 <% end %>
                             </ul>
@@ -75,11 +81,13 @@
                             <div class="top-info"><span>Thursday</span></div>
                             <ul>
                                 <% @schedule.each do |course| %>
-                                    <% if course.weekday.include? "R" %>
-                                        <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
-                                            <%= course.subject %><%= course.course_number %><br>
-                                            <%= course.course_name %>
-                                        </li>
+                                    <% if !course.weekday.nil? %>
+                                        <% if course.weekday.include? "R" %>
+                                            <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
+                                                <%= course.subject %><%= course.course_number %><br>
+                                                <%= course.course_name %>
+                                            </li>
+                                        <% end %>
                                     <% end %>
                                 <% end %>
                             </ul>
@@ -89,11 +97,13 @@
                             <div class="top-info"><span>Friday</span></div>
                             <ul>
                                 <% @schedule.each do |course| %>
-                                    <% if course.weekday.include? "F" %>
-                                        <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
-                                            <%= course.subject %><%= course.course_number %><br>
-                                            <%= course.course_name %>
-                                        </li>
+                                    <% if !course.weekday.nil? %>
+                                        <% if course.weekday.include? "F" %>
+                                            <li class="single-event" data-start="<%= parseTime(course.start_time_1) %>" data-end="<%= parseTime(course.end_time_1) %>" data-content="event-abs-circuit" data-event="event-1">
+                                                <%= course.subject %><%= course.course_number %><br>
+                                                <%= course.course_name %>
+                                            </li>
+                                        <% end %>
                                     <% end %>
                                 <% end %>
                             </ul>

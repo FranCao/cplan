@@ -1,9 +1,17 @@
 module SchedulesHelper
     def parseTime(t)
-        return t.strftime("%H:%M") 
+        if t.nil?
+            return ""
+        else
+            return t.strftime("%H:%M")
+        end
     end
 
     def parseTimePretty(t)
-        return t.strftime("%I:%M%p") 
+        if t.nil?
+            return ""
+        else
+            return t.strftime("%I:%M%p")
+        end
     end
 end

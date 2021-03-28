@@ -169,6 +169,23 @@ courses_offerings = [
 		:end_time_1 => DateTime.new(2021,5,4,18,40),
 		:start_time_2 => DateTime.new(2021,5,6,16,10),
 		:end_time_2 => DateTime.new(2021,5,6,18,40)
+	},
+	{
+		:year => "2021",
+		:semester => "Summer",
+		:method => "On-Line Only",
+		:call_number => "10086",
+		:subject => "COMS",
+		:course_number => "4111",
+		:section_number => "1",
+		:course_identifier => "CSORW4231",
+		:course_name => "Into to Database",
+		:subterm_name => "05/03-06/14",
+		:subterm_code => "A",
+		:instructor_name => "Some Body",
+		:instructor_uni => "sb1111",
+		:location_name => "",
+		:location_room => "ONLINE",
 	}
 ]
 
