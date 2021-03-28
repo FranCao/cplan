@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   # post '/students/:uid/relatedClass' => 'students#add_related_class'
 
   resources :courses
+  resources :schedules
 
 end
