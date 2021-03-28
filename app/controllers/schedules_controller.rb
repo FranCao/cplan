@@ -11,4 +11,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find_or_create_by(:student_id => @student, :courses_offering_id => @course)
   end
 
+  def remove
+  end
+
 end
