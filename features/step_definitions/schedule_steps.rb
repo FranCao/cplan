@@ -8,6 +8,6 @@ end
 
 Given /the following courses_offerings exist/ do |courses_offerings_table|
     courses_offerings_table.hashes.each do |course|
-        Course.create course
+        CoursesOffering.create course
     end
 end
