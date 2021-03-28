@@ -35,9 +35,5 @@ When /^(?:|I )don't have "([^"]*)" on my schedule$/ do |text|
 end
 
 When /^(?:|I )have "([^"]*)" on my schedule$/ do |text|
-    if page.respond_to? :should
-        expect(page).to have_no_content(text)
-    else
-        assert !page.has_content?(text)
-    end
+    expect(page).to have_content(text)
 end
