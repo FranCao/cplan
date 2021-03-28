@@ -28,7 +28,9 @@ class StudentsController < ApplicationController
 	def edit
 		id = params[:id]
 		@student = Student.find(id)
-		@selected_track = Track.find(@student.track_id).name
+		if @student.track_id
+			@selected_track = Track.find(@student.track_id).name
+		end
 		@selected_major = @student.major
 		@selected_semester = @student.graduation_semester
 		@trackNames = Track.pluck(:name)

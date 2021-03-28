@@ -10,11 +10,6 @@ class Student < ApplicationRecord
             student.first_name = auth.info.first_name
             student.last_name = auth.info.last_name
             student.email = auth.info.email
-            if !Rails.env.test?
-                student.track_id = 9
-                student.major = "undecided"
-                student.graduation_semester = "spring"
-            end
         end
     end
 end
