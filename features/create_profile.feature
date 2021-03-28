@@ -4,17 +4,19 @@ Feature: Create Profile
 
 Background: 
     Given I am logged in
+
     Given the following tracks exist:
-    |name            | id|
-    | computer bio   | 1 |
-    |Software Systems| 2 |
-    |Machine Learning|3  |
+    |name             | id |
+    |Computer Biology | 1  |
+    |Software Systems | 2  |
+    |Machine Learning | 3  |
 
     Given the following students exist:
     | first_name        | last_name | email                   | track_id |
     | Yunbo             | Liang     | yunboliang@columbia.edu | 1        |
     | leo               | lee       | leolee@columbia.edu     | 1        |
     | Joy               | Li        | joyli@columbia.edu      | 1        |
+
     Given the following courses exist:
     | subject        | course_number | course_name                  |
     | COMS           | 4732          | Computer Vision II: Learning |

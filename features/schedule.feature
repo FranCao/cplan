@@ -6,20 +6,20 @@ Feature: View Schedule
 Background:
     Given I am logged in
     Given the following tracks exist:
-    |name            | id|
-    |Computer bio    | 1 |
-    |Software Systems| 2 |
-    |Machine Learning| 3 |
+    |name             | id |
+    |Computer Bio     | 1  |
+    |Software Systems | 2  |
+    |Machine Learning | 3  |
     Given the following courses_offerings exist:
-    | subject        | course_number | course_name                  |semester
-    | COMS           | 4732          | Computer Vision II: Learning |Summer
-    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |Summer
-    | COMS           | 4115          | PROGRAMMING LANGUAGES & TRANSLATORS |Spring
+    | subject        | course_number | course_name                         | semester | weekday | start_time_1        | end_time_1          |
+    | COMS           | 4732          | Computer Vision II: Learning        | Summer   | MW      | 2021-05-04 10:10:00 | 2021-05-04 12:40:00 |
+    | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I            | Summer   | TR      | 2021-05-05 16:10:00 | 2021-05-05 18:40:00 |
+    | COMS           | 4115          | PROGRAMMING LANGUAGES & TRANSLATORS | Spring   | TR      | 2021-05-05 16:10:00 | 2021-05-05 18:40:00 |
     Given the following students exist:
-    | first_name        | last_name | email                   |track_id
-    | Yunbo             | Liang     | yunboliang@columbia.edu |1
-    | leo               | lee       | leolee@columbia.edu     |1
-    | Joy               | Li        | joyli@columbia.edu      |1
+    | first_name        | last_name | email                   |track_id |
+    | Yunbo             | Liang     | yunboliang@columbia.edu |1        |
+    | leo               | lee       | leolee@columbia.edu     |1        |
+    | Joy               | Li        | joyli@columbia.edu      |1        |
 
 Scenario: See all courses for the next semester
     Given I am on the schedule page for "leo"
