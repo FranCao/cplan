@@ -3,8 +3,6 @@ Feature: Create Profile
     If I am not logged in, I should redirect to homepage
 
 Background: 
-    Given I am logged in
-
     Given the following tracks exist:
     |name             | id |
     |Computer Biology | 1  |
@@ -12,17 +10,21 @@ Background:
     |Machine Learning | 3  |
 
     Given the following students exist:
-    | first_name        | last_name | email                   | track_id |
-    | Yunbo             | Liang     | yunboliang@columbia.edu | 1        |
-    | leo               | lee       | leolee@columbia.edu     | 1        |
-    | Joy               | Li        | joyli@columbia.edu      | 1        |
+    |id| first_name        | last_name | email                   | track_id |
+    |1 | Yunbo             | Liang     | yunboliang@columbia.edu | 1        |
+    |2 | leo               | lee       | leolee@columbia.edu     | 1        |
+    |3 | Joy               | Li        | joyli@columbia.edu      | 1        |
 
     Given the following courses exist:
     | subject        | course_number | course_name                  |
     | COMS           | 4732          | Computer Vision II: Learning |
     | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |
 
+    Given I am logged in
+
+
 Scenario: CS major, Software systems track
+    Given I am logged in
     Given I am on the create profile page for "Yunbo"
     When I select "Software Systems" from "Select Your Track"
     When I fill in "Expected Graduation Year" with "2023"

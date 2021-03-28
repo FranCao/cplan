@@ -67,6 +67,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'simplecov', require: false
+  gem "launchy", "~> 2.1.2"
 end
 
 group :production do

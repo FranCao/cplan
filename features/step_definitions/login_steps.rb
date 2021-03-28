@@ -9,13 +9,7 @@ end
 
 Given /I am logged in/ do
   # request.session['stub_student_id'] => "1233"
-  ENV['stub_student_id'] = "1233"
-end
-
-Given /I am logged in as "(.+)"/ do
-  # request.session['stub_student_id'] => "1233"
-  @student = 
-  cookies[:stub_student_id] = @current_user[:id]
+  ENV['stub_student_id'] = "1"
 end
 
 # Then /^(?:|I )should be on (.+)$/ do |page_name|
