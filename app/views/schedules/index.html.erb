@@ -105,4 +105,15 @@
         </div>
     </main>
 
+    <div>
+        <%= @courses.each do |course| %>
+            <%= course.course_name %><br>
+            <%= course.subject %> <%= course.course_number %> (<%= course.course_identifier %>)<br>
+            3 credits<br><br>
+            Call Number: <%= course.call_number %><br>
+            Day and Time: <%= course.weekday %> <%= parseTimePretty(course.start_time_1) %>-<%= parseTimePretty(course.end_time_1) %><br>
+            Instructor: <%= course.instructor_name %>
+        <% end %>                
+    </div>
+
 </html>
