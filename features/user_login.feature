@@ -8,6 +8,13 @@ Background:
     |Computer Biology | 1  |
     |Software Systems | 2  |
     |Machine Learning | 3  |
+    
+    Given the following students exist:
+    |id| first_name        | last_name | email                   | track_id |
+    |1 | Yunbo             | Liang     | yunboliang@columbia.edu | 1        |
+    |2 | leo               | lee       | leolee@columbia.edu     | 1        |
+    |3 | Joy               | Li        | joyli@columbia.edu      | 1        |
+
 
 @javascript
 Scenario: Logging in when I am on the homepage

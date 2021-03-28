@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   if Rails.env.test?
     prepend_before_action :stub_current_student
     def stub_current_student
-      flash[:notice] = "this line is run #{ENV["stub_student_id"]}"
-      session[:student_id] = ENV["stub_student_id"] if ENV["stub_student_id"]
+      if !ENV["stub_student_id"].nil?
+        session[:student_id] = ENV["stub_student_id"] 
+      end
     end
   end
   @student = :current_user

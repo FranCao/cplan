@@ -46,6 +46,5 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
 end
 
 Then('I should redirect to Audit Degree') do
-  Student.create(:id => 1, :first_name => "Fake", :last_name => "Student", :track_id => 1)
   visit student_path(1)
 end
