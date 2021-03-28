@@ -28,7 +28,9 @@ class StudentsController < ApplicationController
 	def edit
 		id = params[:id]
 		@student = Student.find(id)
-		# @student.track_id = Track.find(@student.track_id).name
+		@selected_track = Track.find(@student.track_id).name
+		@selected_major = @student.major
+		@selected_semester = @student.graduation_semester
 		@trackNames = Track.pluck(:name)
 		if @trackNames.empty?
 			@trackNames = ["Software Systems", "Machine Learning"]
