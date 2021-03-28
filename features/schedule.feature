@@ -37,7 +37,10 @@ Scenario: Add a course to my schedule
     And I don't have "CSOR4231" on my schedule
     Then I should see "Add"
     When I click on "Add" for "ANALYSIS OF ALGORITHMS I"
-    Then I should see "CSOR4231" on the calendar
+    Then the following schedules are added:
+    | student_id    | courses_offering_id |
+    | 2             | 2                   |
+    Then I have "CSOR4231" on my schedule
 
 Scenario: Delete a course from schedule
     Given I am on the schedule page for "Joy"
