@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
-	# before_action :require_login
+	before_action :require_login
 
 	def show
 		id = params[:id]
