@@ -5,6 +5,9 @@
 
 tracks = [
 	{
+		name: "undecided"
+	},
+	{
 		name: "computer biology",
 	},
 	{
@@ -27,9 +30,6 @@ tracks = [
 	},
 	{
 		name: "vision, graphics, interaction, and robotics"
-	},
-	{
-		name: "undecided"
 	}
 ]
 
