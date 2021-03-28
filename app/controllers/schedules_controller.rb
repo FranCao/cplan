@@ -1,9 +1,3 @@
-# module SchedulesHelper
-#   def parseTime(t)
-#       return t.strftime("%I:%M %p") 
-#   end
-# end
-
 class SchedulesController < ApplicationController
   # helper_method :parseTime
   # skip_before_action :require_login, :raise => false
