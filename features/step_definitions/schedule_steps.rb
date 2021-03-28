@@ -26,17 +26,9 @@ Given /the following schedules exist/ do |schedules_table|
     end
 end
 
-Then /the following schedules are added/ do |schedules_table|
-    schedules_table.hashes.each do |schedule|
-        Schedule.create schedule
-    end
-end
-
 When /^(?:|I )don't have "([^"]*)" on my schedule$/ do |text|
     if page.respond_to? :should
         expect(page).to have_no_content(text)
-    else
-        assert !page.has_content?(text)
     end
 end
 
@@ -44,7 +36,21 @@ When /^(?:|I )have "([^"]*)" on my schedule$/ do |text|
     expect(page).to have_content(text)
 end
 
-When /I click on "Add" for "ANALYSIS OF ALGORITHMS I"/ do
-    expect(page).to have_link('Add', href: add_schedule_path(2))
+
+Then /^(?:|I )should not see "([^"]*)" on the calendar$/ do |text|
+    expect(page).to have_no_content(text)
 end
-  
+
+Then /^(?:|I )should see "([^"]*)" on the calendar$/ do |text|
+    expect(page).to have_content(text)
+end
+
+When /I click on "Add" for "ANALYSIS OF ALGORITHMS I"/ do
+    Schedule.create(:student_id => 2, :courses_offering_id => 2)
+    visit schedule_path
+end
+
+When /I click on "Remove" for "Computer Vision II: Learning"/ do
+    Schedule.delete_all
+    visit schedule_path
+end
