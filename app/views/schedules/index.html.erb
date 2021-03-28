@@ -111,7 +111,8 @@
                     Call Number: <%= course.call_number %><br>
                     Day and Time: <%= course.weekday %> <%= parseTimePretty(course.start_time_1) %>-<%= parseTimePretty(course.end_time_1) %><br>
                     Instructor: <%= course.instructor_name %><br>
-                    <%= link_to 'Add', add_schedule_path(@student, course), method: :post %>
+                    <%= hidden_field_tag :courses_offering_id, course.id %>
+                    <%= link_to 'Add', add_schedule_path(course.id), method: :post %>
                     <hr>
                 <% end %>
             </div>
