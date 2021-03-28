@@ -18,8 +18,8 @@ Background:
 
 @javascript
 Scenario: Logging in when I am on the homepage
-    Given I am on the home page
     Given I am not logged in
+    Given I am on the home page
     When I click "Start Planning"
     Then I should redirect to Google Authentication
 
