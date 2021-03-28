@@ -10,7 +10,7 @@ Background:
     |Computer bio    | 1 |
     |Software Systems| 2 |
     |Machine Learning| 3 |
-    Given the following courses exist:
+    Given the following courses_offerings exist:
     | subject        | course_number | course_name                  |semester
     | COMS           | 4732          | Computer Vision II: Learning |Summer
     | CSOR           | 4231          | ANALYSIS OF ALGORITHMS I     |Summer
