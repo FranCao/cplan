@@ -20,6 +20,12 @@ Given /the following courses_offerings exist/ do |courses_offerings_table|
     end
 end
 
+Given /the following schedules exist/ do |schedules_table|
+    schedules_table.hashes.each do |schedule|
+        Schedule.create schedule
+    end
+end
+
 When /^(?:|I )don't have "([^"]*)" on my schedule$/ do |text|
     if page.respond_to? :should
         expect(page).to have_no_content(text)
@@ -29,5 +35,9 @@ When /^(?:|I )don't have "([^"]*)" on my schedule$/ do |text|
 end
 
 When /^(?:|I )have "([^"]*)" on my schedule$/ do |text|
-    Schedule.create 
+    if page.respond_to? :should
+        expect(page).to have_no_content(text)
+    else
+        assert !page.has_content?(text)
+    end
 end
