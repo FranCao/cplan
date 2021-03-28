@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :schedules
 
-  post 'schedule/add/:courses_offering_id' => 'schedules#add', as: :add_schedule 
+  post 'schedule/add/:courses_offering_id' => 'schedules#add', as: :add_schedule
+  delete '/schedule/delete/:courses_offering_id' => 'schedules#destroy', as: :delete_schedule
 
 end
