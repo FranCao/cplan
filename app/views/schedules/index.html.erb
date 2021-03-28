@@ -4,6 +4,12 @@
     <title>Schedule</title>
   </head>
 
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
+
   <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
     <div class="d-flex flex-column">
 
@@ -13,22 +19,50 @@
     </div>
 
 
-    <%= week_calendar schedule: @courses do |time, course| %>
-        <span class="date-str"><%= time %></span>
-        <% course.each do |c| %>
+    <div class="course-list h-75">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Semester</th>
+              <th>Course</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @courses.each do |course| %>
+              <tr>
+                <td>
+                  <%= course.year %>
+                </td>
+                <td>
+                  <%= course.semester %>
+                </td>
+                <td>
+                  <%= course.course_identifier %> <%= course.course_name %>
+                </td>
+                <td>
+                    <%= parseTime(course.start_time_1) %> <%= parseTime(course.end_time_1) %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+
+    <%= month_calendar(attribute: :start_time_1, end_attribute: :end_time_1, events: @courses) do |date, courses| %>
+        <%= date %>
+        <% courses.each do |course| %>
             <div>
-                <%= c.course_name %>
+                <%= course.course_identifier %>
+                <%= parseTime(course.start_time_1) %> - <%= parseTime(course.end_time_1) %>
             </div>
         <% end %>
     <% end %>
 
-    <%= week_calendar(number_of_weeks: 1) do |date| %>
-        <% 6.upto(23).each do |hour| %>
-            <div>
-                <%= Time.parse("#{hour}:00").strftime("%l %P") %>
-            </div>
-        <% end %>
-    <% end %>
 
 
     <footer class="mt-auto pb-3">

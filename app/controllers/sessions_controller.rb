@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # skip_before_action :require_login
+  # before_action :require_login, except: [:index, :omniauth, :auth]
 
   def index
   end
@@ -13,7 +13,12 @@ class SessionsController < ApplicationController
 
   # logout
   def destroy
-    session.clear
+    if logged_in?
+      session.clear
+      flash[:success] = 'You have successfully logged out'
+    else
+      flash[:error] = 'You were never logged in'
+    end      
     redirect_to home_path
   end
 
