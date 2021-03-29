@@ -15,13 +15,16 @@ describe SessionsController, type: :controller do
 
     describe '#DELETE #destroy' do
         it 'redirects to home page' do
+            get :omniauth
+            session[:student_id].should_not be_nil
             delete :destroy
             expect(response).to redirect_to home_path
         end
         it 'should flash a message when loged out' do
+            get :omniauth
+            session[:student_id].should_not be_nil
             delete :destroy
-            # should have_selector('div.flash', text: 'You have successfully logged out')
-            # expect(flash[:success]).to match(/You have successfully logged out*/)
+            expect(flash[:success]).to match(/You have successfully logged out/)
         end
 
         it 'clears the session' do
