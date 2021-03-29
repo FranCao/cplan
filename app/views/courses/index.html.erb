@@ -19,20 +19,12 @@
           </thead>
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Semester</th>
               <th>Course</th>
             </tr>
           </thead>
           <tbody>
             <% @courses.each do |course| %>
               <tr>
-                <td>
-                  <%= course.year %>
-                </td>
-                <td>
-                  <%= course.semester %>
-                </td>
                 <td>
                   <%= course.course_identifier %> <%= course.course_name %>
                 </td>
