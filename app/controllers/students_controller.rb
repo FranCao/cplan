@@ -58,10 +58,17 @@ class StudentsController < ApplicationController
 				end
 			end
 		end
-
-		@breadth_req = {"name": "Breadth Requirements", "satisfied": false, "theory": @theory_req, "system": @system_req, "ai": @ai_req}
-
-		@track_req = {"breadth": @breadth_req, "required": @required_req, "general elective": @general_req, "track elective": @track_elective_req}
+		puts @theory_req
+		@breadth_req = {"name": "Breadth Requirements", "satisfied": false, "groups":[
+			{"name": "Theory", "info":@theory_req}, 
+			{"name":" System", "info":@system_req}, 
+			{"name":"AI & Applications", "info":@ai_req}
+		]}
+		@track_req = [
+			{"name": "Required", "info": @required_req},
+			{"name": "Track elective","info": @track_elective_req},
+			{"name": "General elective","info": @general_req},
+		]
 
 	end
 

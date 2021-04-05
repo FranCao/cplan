@@ -1,3 +1,49 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.requirement-box {
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 1px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    margin: 0px 0px 3px 0px;
+}
+
+#table-like {
+  display: table;
+}
+
+#table-like div { 
+  display: table-row;
+}
+
+#table-like div span { 
+  display: table-cell;
+  width: 20%;
+  font-size: 60%;
+}
+
+#requirement-table {
+    display: table;
+    width: 100%;
+    border-spacing: 1px;
+
+}
+
+#requirement-table div {
+    display: table-row;
+    overflow: hidden;
+}
+
+#requirement-table div title { 
+  display: table-cell;
+  font-size: 80%;
+
+  overflow: hidden;
+}
+
+#requirement-table div course { 
+  display: table-cell;
+  font-size: 30%;
+  overflow: hidden;
+}
+
+

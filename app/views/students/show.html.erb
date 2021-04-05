@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html>
+  <meta charset="UTF-8">
   <head>
     <title>Audit Degree</title>
   </head>
 
   <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+    <p id="notice"><%= notice %></p>
     <div>
-      <p id="notice"><%= notice %></p>
-      <h1>Audit Degree<h1>
-      <ul id="audit">
-        <li>
+      <h2>Audit Degree<h1>
+    <div>
+    <div id="table-like" class="requirement-box">
+      <div>
+        <span>
           Name:
           <%= @student.first_name %> <%= @student.last_name %>
-        </li>
-        <li>
+        </span>
+        <span>
           Email:
           <%= @student.email%>
-        </li>
-        <li>
+        </span>
+      </div>
+      <div>
+        <span>
           Track:
           <%= Track.find(@student.track_id).name%>
-        </li>
-        <li>
+        </span>
+        <span>
           Graduation Year:
-          <%= @student.graduation_year %>
-        </li>
-        <li>
-          Courses Taken:
-          <table>
-            <tbody>
-              <% @student.courses.each do |course| %>
-                <tr>
-                  <td>
-                    <%= course.id %> <%= course.course_identifier %> <%= course.course_name %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          Required Courses:
-          <table>
-            <tbody>
-              <% @required_req[:courses_completed].each do |course| %>
-                <tr>
-                  <td>
-                    <%= course.id %> <%= course.course_identifier %> <%= course.course_name %>
-                  </td>
-                  <td>Completed</td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          System Courses:
-          <table>
-            <tbody>
-              <% @system_req[:courses_completed].each do |course| %>
-                <tr>
-                  <td>
-                    <%= course.id %> <%= course.course_identifier %> <%= course.course_name %>
-                  </td>
-                  <td>Completed</td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          <%= link_to 'Course List', courses_path(:id => @student.id) %>
-        </li>
-      </ul>
-      <%= link_to 'Edit', edit_student_path(@student) %>
-      <%= stylesheet_link_tag 'students' %>
+          <%= @student.graduation_semester %> <%= @student.graduation_year %>
+        </span>
+      </div>
+      <div>
+        <span>
+          <%= link_to 'Edit Profile', edit_student_path(@student) %>
+        </span>
+      </div>
     </div>
+    <% @breadth_req[:groups].each do |group| %>
+      <div id="requirement-table" class="requirement-box">
+        <% if group[:info][:satisfied] %>
+          <div>
+            <title>✅ <%= @breadth_req[:name]%> <%= group[:name] %>:</title>
+          </div>
+        <% else %>
+          <div>
+            <title>☑️ <%= @breadth_req[:name]%> <%= group[:name] %>:</title>
+          </div>
+          <% group[:info][:courses_pending].each do |course| %>
+            <div>
+              <course>
+                <%= course.course_identifier %> <%= course.course_name %>
+              </course>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <% @track_req.each do |req| %>
+      <div id="requirement-table" class="requirement-box">
+        <% if req[:info][:satisfied] %>
+          <div>
+            <title>✅ <%= req[:name]%> :</title>
+          </div>
+        <% else %>
+          <div>
+            <title>☑️ <%= req[:name]%> :</title>
+          </div>
+          <% req[:info][:courses_pending].each do |course| %>
+            <div>
+              <course>
+                <%= course.course_identifier %> <%= course.course_name %>
+              </course>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= stylesheet_link_tag 'students' %>
   </main>
 
 </html>
