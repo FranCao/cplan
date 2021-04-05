@@ -1,7 +1,7 @@
 class Student < ApplicationRecord
 	belongs_to :track, optional: true
-
-    has_many :courses
+    has_many :taken_courses
+    has_many :courses, -> { distinct }, through: :taken_courses
     has_many :schedules
 
     def self.from_omniauth(auth)

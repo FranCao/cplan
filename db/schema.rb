@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_164243) do
+ActiveRecord::Schema.define(version: 2021_04_02_222732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,31 @@ ActiveRecord::Schema.define(version: 2021_03_28_164243) do
     t.string "course_identifier"
     t.string "course_name"
     t.integer "student_id"
+  end
+
+  create_table "courses_offering", force: :cascade do |t|
+    t.string "year"
+    t.string "semester"
+    t.string "school_code"
+    t.string "call_number"
+    t.string "subject"
+    t.string "course_number"
+    t.string "section_number"
+    t.string "course_identifier"
+    t.string "course_name"
+    t.string "subterm_name"
+    t.string "subterm_code"
+    t.string "time"
+    t.string "instructor_name"
+    t.string "instructor_uni"
+    t.string "location_name"
+    t.string "location_room"
+    t.string "enrollment_max"
+    t.string "enrollment_number"
+    t.string "method"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["call_number"], name: "uniq_call_number", unique: true
   end
 
   create_table "courses_offerings", force: :cascade do |t|
@@ -72,6 +97,13 @@ ActiveRecord::Schema.define(version: 2021_03_28_164243) do
     t.bigint "track_id"
     t.index ["email"], name: "uniq_email", unique: true
     t.index ["track_id"], name: "index_students_on_track_id"
+  end
+
+  create_table "taken_courses", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "track_requirements", force: :cascade do |t|
