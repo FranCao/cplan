@@ -18,6 +18,10 @@
           <%= @student.email%>
         </li>
         <li>
+          Track:
+          <%= Track.find(@student.track_id).name%>
+        </li>
+        <li>
           Graduation Year:
           <%= @student.graduation_year %>
         </li>
@@ -28,8 +32,38 @@
               <% @student.courses.each do |course| %>
                 <tr>
                   <td>
-                    <%= course.course_identifier %> <%= course.course_name %>
+                    <%= course.id %> <%= course.course_identifier %> <%= course.course_name %>
                   </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </li>
+        <li>
+          Required Courses:
+          <table>
+            <tbody>
+              <% @required_req[:courses_completed].each do |course| %>
+                <tr>
+                  <td>
+                    <%= course.id %> <%= course.course_identifier %> <%= course.course_name %>
+                  </td>
+                  <td>Completed</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </li>
+        <li>
+          System Courses:
+          <table>
+            <tbody>
+              <% @system_req[:courses_completed].each do |course| %>
+                <tr>
+                  <td>
+                    <%= course.id %> <%= course.course_identifier %> <%= course.course_name %>
+                  </td>
+                  <td>Completed</td>
                 </tr>
               <% end %>
             </tbody>
