@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_164243) do
+ActiveRecord::Schema.define(version: 2021_04_05_011004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,5 +95,6 @@ ActiveRecord::Schema.define(version: 2021_03_28_164243) do
   end
 
   add_foreign_key "students", "tracks"
+  add_foreign_key "track_requirements", "courses"
   add_foreign_key "track_requirements", "tracks"
 end
