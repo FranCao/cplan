@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get '/schedule', to: 'schedules#index'
   resources :students
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # resources :sessions, only: [:new, :create, :destroy]
@@ -20,7 +19,8 @@ Rails.application.routes.draw do
   resources :courses
   resources :schedules
 
-  post 'schedule/add/:courses_offering_id' => 'schedules#add', as: :add_schedule
-  delete '/schedule/delete/:courses_offering_id' => 'schedules#destroy', as: :delete_schedule
+  # get '/schedule/:student_id', to: 'schedules#index'
+  post '/schedules/add/:student_id/:courses_offering_id' => 'schedules#add', as: :add_schedule
+  delete '/schedules/delete/:student_id/:courses_offering_id' => 'schedules#destroy', as: :delete_schedule
 
 end

@@ -128,8 +128,8 @@
                     Day and Time: <%= course.weekday %> <%= parseTimePretty(course.start_time_1) %>-<%= parseTimePretty(course.end_time_1) %><br>
                     Instructor: <%= course.instructor_name %><br>
                     <%= hidden_field_tag :courses_offering_id, course.id %>
-                    <%= link_to 'Add', add_schedule_path(course.id), method: :post %>
-                    <%= link_to 'Remove', delete_schedule_path(course.id), method: :delete %>
+                    <%= link_to 'Add', add_schedule_path(@student,course.id), method: :post %>
+                    <%= link_to 'Remove', delete_schedule_path(@student, course.id), method: :delete %>
                     <hr>
                 <% end %>
             </div>
