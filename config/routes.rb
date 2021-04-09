@@ -16,9 +16,17 @@ Rails.application.routes.draw do
   #tentative route
   # post '/students/:uid/relatedClass' => 'students#add_related_class'
 
-  resources :courses
-  resources :schedules
+  # resources :courses
+  get '/courses', to: 'courses#index'
 
+  get '/admin', to: 'admin#index'
+  # delete '/admin/del/:course_id' => 'admin#destroy', as: :del_course
+  get '/admin/add' => 'admin#new', as: :new_course
+  post '/admin/add' => 'admin#add', as: :add_course
+  get '/admin/edit/:course_id' => 'admin#edit', as: :edit_course
+  put '/admin/update/:course_id' => 'admin#update', as: :update_course
+
+  resources :schedules
   # get '/schedule/:student_id', to: 'schedules#index'
   post '/schedules/add/:student_id/:courses_offering_id' => 'schedules#add', as: :add_schedule
   delete '/schedules/delete/:student_id/:courses_offering_id' => 'schedules#destroy', as: :delete_schedule

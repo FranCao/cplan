@@ -31,7 +31,11 @@
                 <% if logged_in? %>
                   <a class="dropdown-item" <%= link_to 'Schedule', schedule_path(session[:student_id]) %></a>
                 <% end %>
-                <a class="dropdown-item" href="/courses">Courses</a>
+                <% if is_admin? %>
+                  <a class="dropdown-item" href="/admin">Courses</a>
+                <% else %>
+                  <a class="dropdown-item" href="/courses">Courses</a>
+                <% end %>
                 <a data-method="delete" class="dropdown-item" href="/logout">Log Out</a>
               </div>
             </div>

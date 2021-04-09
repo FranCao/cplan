@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Course Portal</title>
+  </head>
+
+  <% flash.each do |type, msg| %>
+    <div class="flash">
+      <%= msg %>
+    </div>
+  <% end %>
+
+  <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+    <div class="d-flex flex-column">
+      <div class="mb-auto">
+        <p id="notice"><%#= notice %></p>
+        <h1>Edit Course <%= @course.course_identifier %></h1>
+      </div>
+        
+      <%= form_tag update_course_path(@course), :method => :put do %>
+        <%= label :course, :call_number, 'Call Number', :class => 'col-form-label' %>
+        <%= text_field :course, :call_number, :class => 'form-control' %>
+        <%= label :course, :subject, 'Subject', :class => 'col-form-label'  %>
+        <%= select :course, :subject, ['Computer Science','Math','Business Analytics'], {}, {:class => 'form-control col-12'} %>
+        <%= label :course, :course_number, 'Course Number', :class => 'col-form-label' %>
+        <%= text_field :course, :course_number, :class => 'form-control' %>
+        <%= label :course, :course_name, 'Course Name', :class => 'col-form-label' %>
+        <%= text_field :course, :course_name, :class => 'form-control' %>
+        <%= label :course, :course_identifier, 'Course Identifier', :class => 'col-form-label' %>
+        <%= text_field :course, :course_identifier, :class => 'form-control' %>
+        <br/>
+
+        <%= submit_tag 'Update Course Info', :class => 'btn btn-primary' %>
+        <%= link_to 'Cancel', admin_path, :class => 'btn btn-secondary' %>
+      <% end %>
+      
+      <footer class="mt-auto pb-3">
+        <% if logged_in? %>
+          <a class="btn btn-secondary" <%= link_to 'Back to Audit Degree', student_path(@current_user.id) %></a>
+        <% else %>
+          <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
+        <% end %>
+      </footer>
+      
+    </div>
+  </main>
+  </html>

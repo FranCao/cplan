@@ -44,6 +44,15 @@
             <% end %>
           </tbody>
         </table>
+
+        <footer class="mt-auto pb-3">
+          <% if logged_in? %>
+              <a class="btn btn-secondary" <%= link_to 'Back to Audit Degree', student_path(@current_user.id) %></a>
+          <% else %>
+              <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
+          <% end %>
+      </footer>
+      
     </div>
   </main>
 

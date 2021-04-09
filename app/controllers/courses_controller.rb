@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
   # def show
   # end
 
-  # GET /courses/new
+  # GET /admin/new
   # def new
   #   @course = Course.new
   # end

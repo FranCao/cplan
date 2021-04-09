@@ -18,6 +18,7 @@ require 'rspec/rails'
 OmniAuth.config.test_mode = true
 omniauth_hash = { 'provider' => 'google_oauth2',
                   'info' => {
+                      'id' => 1,
                       'email' => 'fake@columbia.edu',
                       'first_name' => 'Fake',
                       'last_name' => 'Student'

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add New Course</title>
+  </head>
+
+  <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
+    <div class="d-flex flex-column">
+      <div class="mb-auto">
+      <h1>Add New Course</h1>
+      </div>
+
+    <%= form_tag add_course_path, :class => 'form' do %>
+    <%= label :course, :call_number, 'Call Number', :class => 'col-form-label' %>
+    <%= text_field :course, :call_number, :class => 'form-control' %>
+    <%= label :course, :subject, 'Subject', :class => 'col-form-label'  %>
+    <%= select :course, :subject, ['Computer Science','Math','Business Analytics'], {}, {:class => 'form-control col-12'} %>
+    <%= label :course, :course_number, 'Course Number', :class => 'col-form-label' %>
+    <%= text_field :course, :course_number, :class => 'form-control' %>
+    <%= label :course, :course_name, 'Course Name', :class => 'col-form-label' %>
+    <%= text_field :course, :course_name, :class => 'form-control' %>
+    <%= label :course, :course_identifier, 'Course Identifier', :class => 'col-form-label' %>
+    <%= text_field :course, :course_identifier, :class => 'form-control' %>
+    <br/>
+
+    <%= submit_tag 'Save Changes', :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_path, :class => 'btn btn-secondary' %>
+    <% end %>
+
+    <footer class="mt-auto pb-3">
+        <% if logged_in? %>
+            <a class="btn btn-secondary" <%= link_to 'Back to Audit Degree', student_path(@current_user.id) %></a>
+        <% else %>
+            <%= link_to 'Back', students_path, :class => 'btn btn-secondary' %>
+        <% end %>
+    </footer>
+
+</div>
+</main>
+</html>
