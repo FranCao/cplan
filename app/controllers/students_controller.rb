@@ -13,57 +13,10 @@ class StudentsController < ApplicationController
 		@taken_courses = @student.courses
 		@track_requirements = Track.find(@student.track_id).trackRequirements
 
-		@system_req =  {"name": "Breadth Requirement System Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
-		@theory_req = {"name": "Breadth Requirement Theory Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
-		@ai_req = {"name": "Breadth Requirement AI & Applications Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
+		@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = build_requirements(@taken_courses, @track_requirements)
 		
-		@required_req = {"name": "Required Courses", "satisfied": false, "courses_pending": [], "courses_completed": []}
-		
-		@general_req = {"name": "General Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
-
-		@track_elective_req = {"name": "Track Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
-
-		@track_requirements.each do |requirement|
-			course = Course.find(requirement.course_id)
-			completed = @taken_courses.include?(course)
-			if requirement.is_required
-				if completed
-					@required_req[:courses_completed] << course
-				else
-					@required_req[:courses_pending] << course
-				end
-			elsif requirement.is_aiapplications_breadth_requirement
-				if completed
-					@ai_req[:courses_completed] << course
-				else
-					@ai_req[:courses_pending] << course
-				end
-			elsif requirement.is_systems_breadth_requirement
-				if completed
-					@system_req[:courses_completed] << course
-				else
-					@system_req[:courses_pending] << course
-				end
-			elsif requirement.is_theory_breadth_requirement
-				if completed
-					@theory_req[:courses_completed] << course
-				else
-					@theory_req[:courses_pending] << course
-				end
-			elsif requirement.is_general_elective
-				if completed
-					@track_elective_req[:courses_completed] << course
-				else
-					@track_elective_req[:courses_pending] << course
-				end
-			end
-		end
 		puts @theory_req
-		@breadth_req = {"name": "Breadth Requirements", "satisfied": false, "groups":[
-			{"name": "Theory", "info":@theory_req}, 
-			{"name":" System", "info":@system_req}, 
-			{"name":"AI & Applications", "info":@ai_req}
-		]}
+		
 		@track_req = [
 			{"name": "Required", "info": @required_req},
 			{"name": "Track elective","info": @track_elective_req},
@@ -148,5 +101,83 @@ class StudentsController < ApplicationController
 			:graduation_year,
 			:initial_total_credit
 		)
+	end
+
+	def build_requirements(taken_courses, track_requirements)
+		@system_req =  {"name": "Breadth Requirement System Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
+		@theory_req = {"name": "Breadth Requirement Theory Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
+		@ai_req = {"name": "Breadth Requirement AI & Applications Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
+		
+		@required_req = {"name": "Required Courses", "satisfied": false, "courses_pending": [], "courses_completed": []}
+		
+		@general_req = {"name": "General Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
+
+		@track_elective_req = {"name": "Track Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
+
+		
+
+		track_requirements.each do |requirement|
+			course = Course.find(requirement.course_id)
+			completed = taken_courses.include?(course)
+			if requirement.is_required
+				if completed
+					@required_req[:courses_completed] << course
+				else
+					@required_req[:courses_pending] << course
+				end
+			elsif requirement.is_aiapplications_breadth_requirement
+				if completed
+					@ai_req[:courses_completed] << course
+				else
+					@ai_req[:courses_pending] << course
+				end
+			elsif requirement.is_systems_breadth_requirement
+				if completed
+					@system_req[:courses_completed] << course
+				else
+					@system_req[:courses_pending] << course
+				end
+			elsif requirement.is_theory_breadth_requirement
+				if completed
+					@theory_req[:courses_completed] << course
+				else
+					@theory_req[:courses_pending] << course
+				end
+			elsif requirement.is_general_elective
+				if completed
+					@track_elective_req[:courses_completed] << course
+				else
+					@track_elective_req[:courses_pending] << course
+				end
+			end
+		end
+		if @required_req[:courses_pending].empty?
+			@required_req[:satisfied] = true 
+		end
+		if @track_elective_req[:courses_completed].length() >= 2
+			@track_elective_req[:satisfied] = true 
+		end
+		if @system_req[:courses_completed].length() >= 1
+			@track_elective_req[:satisfied] = true 
+		end
+		if @theory_req[:courses_completed].length() >= 1
+			@theory_req[:satisfied] = true 
+		end
+		if @ai_req[:courses_completed].length() >= 1
+			@ai_req[:satisfied] = true 
+		end
+
+
+		@breadth_req = {"name": "Breadth Requirements", "satisfied": false, "groups":[
+			{"name": "Theory", "info":@theory_req}, 
+			{"name":" System", "info":@system_req}, 
+			{"name":"AI & Applications", "info":@ai_req}
+		]}
+
+		if @ai_req[:courses_completed].length() + @theory_req[:courses_completed].length() + @system_req[:courses_completed].length() >= 4
+			@breadth_req[:satisfied] = true 
+		end
+
+		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 end
