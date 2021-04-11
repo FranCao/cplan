@@ -116,9 +116,14 @@ Primary style
     float: right;
   }
 
-  .courses {
+  .courses-out {
     overflow: auto;
     height: 90%
+  }
+
+  .courses-in {
+    overflow: auto;
+    height: 85%
   }
 
   .schedule {

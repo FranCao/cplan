@@ -130,8 +130,8 @@
                     <%= submit_tag 'Refresh', :id => 'filter', :class => 'refresh' %>
                 <% end %>
             </div>
-            <div class="d-flex courses flex-column justify-content-center ml-0">
-                <div class="courses">
+            <div class="d-flex courses-out flex-column justify-content-center ml-0">
+                <div class="courses-in">
                     <% @courses_filter.each do |course| %>
                         <div class="course">
                             <%= course.subject %>&nbsp&nbsp<%= course.course_number %>&nbsp&nbsp<%= course.course_name %>
