@@ -152,6 +152,10 @@ class StudentsController < ApplicationController
 				else
 					@track_elective_req[:courses_pending] << course
 				end
+			else 
+				if completed
+					@general_req[:courses_completed] << course
+				end
 			end
 		end
 		if @required_req[:courses_pending].empty?
@@ -162,7 +166,7 @@ class StudentsController < ApplicationController
 		else
 			number_of_track_electives = 2
 		end
-		
+
 		if !@track.number_of_general_electives.nil?
 			number_of_general_electives = @track.number_of_general_electives
 		else
@@ -177,7 +181,7 @@ class StudentsController < ApplicationController
 		end
 
 		if @system_req[:courses_completed].length() >= 1
-			@track_elective_req[:satisfied] = true 
+			@system_req[:satisfied] = true 
 		end
 		if @theory_req[:courses_completed].length() >= 1
 			@theory_req[:satisfied] = true 
