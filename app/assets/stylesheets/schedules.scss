@@ -84,16 +84,34 @@ Primary style
   Main Components 
   
   -------------------------------- */
+  .course {
+    border: 1px groove;
+    padding: 5px;
+    margin-bottom: 5px;
+    width: 80%;
+  }
+
+  .remove {
+    float: right;
+  }
+
+  .overflow {
+    overflow: auto;
+  }
 
   .schedule {
-    overflow: auto;
+    width: 70%;
+  }
+
+  .courselist{
+    width: 30%;
   }
 
   .cd-schedule {
     position: relative;
     margin: 2em 0;
   }
-  
+
   .cd-schedule::before {
     /* never visible - this is used in js to check the current MQ */
     content: 'mobile';
