@@ -6,9 +6,11 @@ class StudentsController < ApplicationController
 	def show
 		id = params[:id]
 		@student = Student.find(id)
-		# if @student.graduation_year == nil or @student.graduation_year.nil?
-		if @student.graduation_year == nil || @student.graduation_year.nil?
+
+		if @student.graduation_year == nil || @student.graduation_year.nil? || @student.track_id.nil?
+			# puts "rediecting to"
 			redirect_to edit_student_path(@student)
+			return
 		end
 		@taken_courses = @student.courses
 		@track = Track.find(@student.track_id)
