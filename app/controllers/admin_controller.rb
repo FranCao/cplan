@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   end
 
   def index
-    @courses = Course.all
+    @courses = Course.all.order(:course_number)
   end
 
   def edit

@@ -29,7 +29,7 @@
     <div class = "overflow-auto">
         <%= form_tag student_path(@student), :method => :put do %>
         <%= label :course, :id, 'Courses Taken', :class => 'col-form-label'  %>
-        <%= select :course, :id, Course.all.collect {|c| [[ c.subject, c.course_number, c.course_name ].join(" "), c.id] }, include_blank: true %>
+        <%= select :course, :id, Course.all.order(:course_number).collect {|c| [[ c.subject, c.course_number, c.course_name ].join(" "), c.id] }, include_blank: true %>
         <%= submit_tag 'Add', :class => 'btn btn-primary' %>
         <% end %>
         <table>
