@@ -136,6 +136,7 @@ breadth_req_aiapp = [
 
 (breadth_req_sys + breadth_req_theory + breadth_req_aiapp).each do |req|
 	course = Course.find_by(:course_identifier => req[:course_identifier])
+	puts course
 	req.delete(:course_identifier)
 	if course
 		(2..9).each do |n|
