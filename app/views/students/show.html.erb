@@ -42,18 +42,6 @@
         </span>
       </div>
     </div>
-    <div id="requirement-table" class="requirement-box">
-      <div>
-        <title>Courses Taken</title>
-      </div>
-      <% @taken_courses.each do |course| %>
-        <div>
-          <course>
-            <%= course.course_identifier %> <%= course.course_name %>
-          </course>
-        </div>
-      <% end %>
-    </div>
     <% @breadth_req[:groups].each do |group| %>
       <div id="requirement-table" class="requirement-box">
         <% if group[:info][:satisfied] %>
@@ -62,15 +50,15 @@
           </div>
         <% else %>
           <div>
-            <title>☑️ <%= @breadth_req[:name]%> <%= group[:name] %>:</title>
+            <title>❌ <%= @breadth_req[:name]%> <%= group[:name] %>:</title>
           </div>
-          <% group[:info][:courses_pending].each do |course| %>
-            <div>
-              <course>
-                <%= course.course_identifier %> <%= course.course_name %>
-              </course>
-            </div>
-          <% end %>
+        <% end %>
+        <% group[:info][:courses_completed].each do |course| %>
+          <div>
+            <course>
+              ✔️ <%= course.course_identifier %> <%= course.course_name %>
+            </course>
+          </div>
         <% end %>
       </div>
     <% end %>
@@ -82,15 +70,15 @@
           </div>
         <% else %>
           <div>
-            <title>☑️ <%= req[:name]%> :</title>
+            <title>❌ <%= req[:name]%> :</title>
           </div>
-          <% req[:info][:courses_pending].each do |course| %>
-            <div>
-              <course>
-                <%= course.course_identifier %> <%= course.course_name %>
-              </course>
-            </div>
-          <% end %>
+        <% end %>
+        <% req[:info][:courses_completed].each do |course| %>
+          <div>
+            <course>
+              ✔️ <%= course.course_identifier %> <%= course.course_name %>
+            </course>
+          </div>
         <% end %>
       </div>
     <% end %>
