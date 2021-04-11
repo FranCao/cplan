@@ -34,17 +34,14 @@ class SchedulesController < ApplicationController
         end
       end
       @trackReq.each do |tq|
-        if (tq.is_systems_breadth_requirement || tq.is_theory_breadth_requirement || tq.is_aiapplications_breadth_requirement) && @offer_breadth.exclude?(course) then
+        @course_identifier = Course.find(tq.course_id).course_identifier
+        if (tq.is_systems_breadth_requirement || tq.is_theory_breadth_requirement || tq.is_aiapplications_breadth_requirement) && @course_identifier == course.course_identifier && @offer_breadth.exclude?(course) then
           @offer_breadth << course
         end
-      end
-      @trackReq.each do |tq|
-        if tq.is_required && @offer_required.exclude?(course) then
+        if tq.is_required && @course_identifier == course.course_identifier && @offer_required.exclude?(course) then
           @offer_required << course
         end
-      end
-      @trackReq.each do |tq|
-        if tq.is_general_elective && @offer_elective.exclude?(course) then
+        if tq.is_general_elective && @course_identifier == course.course_identifier && @offer_elective.exclude?(course) then
           @offer_elective << course
         end
       end
