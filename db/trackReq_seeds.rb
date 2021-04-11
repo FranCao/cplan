@@ -136,11 +136,13 @@ breadth_req_aiapp = [
 
 (breadth_req_sys + breadth_req_theory + breadth_req_aiapp).each do |req|
 	course = Course.find_by(:course_identifier => req[:course_identifier])
+	puts course
 	req.delete(:course_identifier)
 	if course
 		(2..9).each do |n|
 			req[:track_id] = n
-			course.trackRequirements.find_or_create_by(req)
+			res = course.trackRequirements.find_or_create_by(req)
+			puts res.id
 		end
 	end
 end
@@ -216,7 +218,7 @@ ml = [
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4772 ",
+		:course_identifier => "COMSW4772",
 		:is_required => true
 	},
 	{
@@ -546,82 +548,82 @@ foundOfComp = [
 ml = [
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4111",
+		:course_identifier => "COMSW4111",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4252",
+		:course_identifier => "COMSW4252",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "CSOR W4246",
+		:course_identifier => "CSORW4246",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4705",
+		:course_identifier => "COMSW4705",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4731",
+		:course_identifier => "COMSW4731",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4733",
+		:course_identifier => "COMSW4733",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4737",
+		:course_identifier => "COMSW4737",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4761",
+		:course_identifier => "COMSW4761",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4771",
+		:course_identifier => "COMSW4771",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4772",
+		:course_identifier => "COMSW4772",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4776",
+		:course_identifier => "COMSW4776",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4995",
+		:course_identifier => "COMSW4995",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6111",
+		:course_identifier => "COMSE6111",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6232",
+		:course_identifier => "COMSE6232",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6253",
+		:course_identifier => "COMSE6253",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6735",
+		:course_identifier => "COMSE6735",
 		:is_general_elective => true
 	}
 ]
@@ -630,72 +632,72 @@ ml = [
 nlp = [
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4170",
+		:course_identifier => "COMSW4170",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4172",
+		:course_identifier => "COMSW4172",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4252",
+		:course_identifier => "COMSW4252",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4701",
+		:course_identifier => "COMSW4701",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4771",
+		:course_identifier => "COMSW4771",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4772",
+		:course_identifier => "COMSW4772",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS 4995",
+		:course_identifier => "COMS4995",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS E6901",
+		:course_identifier => "COMSE6901",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS E6998",
+		:course_identifier => "COMSE6998",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "SIEO W4150",
+		:course_identifier => "SIEOW4150",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "ECBM E6040",
+		:course_identifier => "ECBME6040",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "EECS E6894",
+		:course_identifier => "EECSE6894",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "ELEN E4810",
+		:course_identifier => "ELENE4810",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "ELEN E6829",
+		:course_identifier => "ELENE6829",
 		:is_general_elective => true
 	}
 ]
@@ -869,122 +871,122 @@ softwareSys = [
 cv = [
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4160",
+		:course_identifier => "COMSW4160",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4162",
+		:course_identifier => "COMSW4162",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4165",
+		:course_identifier => "COMSW4165",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4167",
+		:course_identifier => "COMSW4167",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4170",
+		:course_identifier => "COMSW4170",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4172",
+		:course_identifier => "COMSW4172",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4731",
+		:course_identifier => "COMSW4731",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4733",
+		:course_identifier => "COMSW4733",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4735",
+		:course_identifier => "COMSW4735",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4737",
+		:course_identifier => "COMSW4737",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4771",
+		:course_identifier => "COMSW4771",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4772",
+		:course_identifier => "COMSW4772",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4995",
+		:course_identifier => "COMSW4995",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6160",
+		:course_identifier => "COMSE6160",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6161",
+		:course_identifier => "COMSE6161",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6174",
+		:course_identifier => "COMSE6174",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6176",
+		:course_identifier => "COMSE6176",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6731",
+		:course_identifier => "COMSE6731",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6732",
+		:course_identifier => "COMSE6732",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6733",
+		:course_identifier => "COMSE6733",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6734",
+		:course_identifier => "COMSE6734",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6735",
+		:course_identifier => "COMSE6735",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6737",
+		:course_identifier => "COMSE6737",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6901",
+		:course_identifier => "COMSE6901",
 		:is_general_elective => true
 	}
 ]
@@ -1158,82 +1160,82 @@ foundOfComp = [
 ml = [
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4111",
+		:course_identifier => "COMSW4111",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4252",
+		:course_identifier => "COMSW4252",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "CSOR W4246",
+		:course_identifier => "CSORW4246",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4705",
+		:course_identifier => "COMSW4705",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4731",
+		:course_identifier => "COMSW4731",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4733",
+		:course_identifier => "COMSW4733",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4737",
+		:course_identifier => "COMSW4737",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4761",
+		:course_identifier => "COMSW4761",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4771",
+		:course_identifier => "COMSW4771",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4772",
+		:course_identifier => "COMSW4772",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4776",
+		:course_identifier => "COMSW4776",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS W4995",
+		:course_identifier => "COMSW4995",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6111",
+		:course_identifier => "COMSE6111",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6232",
+		:course_identifier => "COMSE6232",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6253",
+		:course_identifier => "COMSE6253",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 5,
-		:course_identifier => "COMS E6735",
+		:course_identifier => "COMSE6735",
 		:is_general_elective => true
 	}
 ]
@@ -1242,32 +1244,32 @@ ml = [
 nlp = [
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4170",
+		:course_identifier => "COMSW4170",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4172",
+		:course_identifier => "COMSW4172",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4252",
+		:course_identifier => "COMSW4252",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4701",
+		:course_identifier => "COMSW4701",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4771",
+		:course_identifier => "COMSW4771",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS W4772",
+		:course_identifier => "COMSW4772",
 		:is_general_elective => true
 	},
 	{
@@ -1277,37 +1279,37 @@ nlp = [
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS E6901",
+		:course_identifier => "COMSE6901",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "COMS E6998",
+		:course_identifier => "COMSE6998",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "SIEO W4150",
+		:course_identifier => "SIEOW4150",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "ECBM E6040",
+		:course_identifier => "ECBME6040",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "EECS E6894",
+		:course_identifier => "EECSE6894",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "ELEN E4810",
+		:course_identifier => "ELENE4810",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 6,
-		:course_identifier => "ELEN E6829",
+		:course_identifier => "ELENE6829",
 		:is_general_elective => true
 	}
 ]
@@ -1481,122 +1483,122 @@ softwareSys = [
 cv = [
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4160",
+		:course_identifier => "COMSW4160",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4162",
+		:course_identifier => "COMSW4162",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4165",
+		:course_identifier => "COMSW4165",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4167",
+		:course_identifier => "COMSW4167",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4170",
+		:course_identifier => "COMSW4170",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4172",
+		:course_identifier => "COMSW4172",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4731",
+		:course_identifier => "COMSW4731",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4733",
+		:course_identifier => "COMSW4733",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4735",
+		:course_identifier => "COMSW4735",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4737",
+		:course_identifier => "COMSW4737",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4771",
+		:course_identifier => "COMSW4771",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4772",
+		:course_identifier => "COMSW4772",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS W4995",
+		:course_identifier => "COMSW4995",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6160",
+		:course_identifier => "COMSE6160",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6161",
+		:course_identifier => "COMSE6161",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6174",
+		:course_identifier => "COMSE6174",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6176",
+		:course_identifier => "COMSE6176",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6731",
+		:course_identifier => "COMSE6731",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6732",
+		:course_identifier => "COMSE6732",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6733",
+		:course_identifier => "COMSE6733",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6734",
+		:course_identifier => "COMSE6734",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6735",
+		:course_identifier => "COMSE6735",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6737",
+		:course_identifier => "COMSE6737",
 		:is_general_elective => true
 	},
 	{
 		:track_id => 9,
-		:course_identifier => "COMS E6901",
+		:course_identifier => "COMSE6901",
 		:is_general_elective => true
 	}
 ]

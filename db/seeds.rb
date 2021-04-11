@@ -192,9 +192,9 @@ courses_offerings = [
 	}
 ]
 
-courses_offerings.each do |course|
-  CoursesOffering.find_or_create_by(course)
-end
+# courses_offerings.each do |course|
+#   CoursesOffering.find_or_create_by(course)
+# end
 
 
 Dir[Rails.root.join('db/*_seeds.rb')].sort.each do |file|
