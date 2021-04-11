@@ -5,31 +5,31 @@
 
 tracks = [
 	{
-		name: "undecided"
+		name: "Undecided"
 	},
 	{
-		name: "computer biology",
+		name: "Computer Biology",
 	},
 	{
-		name: "computer security",
+		name: "Computer Security",
 	},
 	{
-		name: "foundations of computer science",
+		name: "Foundations of Computer Science",
 	},
 	{
-		name: "machine learning",
+		name: "Machine Learning",
 	},
 	{
-		name: "natural language processing",
+		name: "Natural Language Processing",
 	},
 	{
-		name: "network systems",
+		name: "Network Systems",
 	},
 	{
-		name: "software systems",
+		name: "Software Systems",
 	},
 	{
-		name: "vision, graphics, interaction, and robotics"
+		name: "Vision, Graphics, Interaction, and Robotics"
 	}
 ]
 
