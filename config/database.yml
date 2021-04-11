@@ -7,15 +7,15 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV.fetch('POSTGRES_USER') {"cplan"}%>
-  password: <%= ENV.fetch('POSTGRES_PASSWORD') {"yoloCplan"}%>
-  host: <%= ENV.fetch('POSTGRES_HOST') {"localhost"}%>
+  username: <%= ENV.fetch('POSTGRES_USER') {"qpnopfugkxoruy"}%>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') {"d102cbd9338732a8e11ff44d56c85f3d52bf2e5f296bb4c935b0d4798d05c6b7"}%>
+  host: <%= ENV.fetch('POSTGRES_HOST') {"ec2-54-160-7-200.compute-1.amazonaws.com"}%>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  database: <%= ENV.fetch('POSTGRES_DB') {"cplanDevelopment"}%>
+  database: <%= ENV.fetch('POSTGRES_DB') {"d6u45p51cu17h6"}%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
