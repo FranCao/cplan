@@ -174,7 +174,12 @@ class StudentsController < ApplicationController
 			{"name":"AI & Applications", "info":@ai_req}
 		]}
 
-		if @ai_req[:courses_completed].length() + @theory_req[:courses_completed].length() + @system_req[:courses_completed].length() >= 4
+		if @ai_req[:courses_completed].length() >= 1 \
+			 && @theory_req[:courses_completed].length() >= 1 \
+			 && @system_req[:courses_completed].length() >= 1 \
+			 && @ai_req[:courses_completed].length() + \
+			 @theory_req[:courses_completed].length() + \
+			 @system_req[:courses_completed].length() >= 4
 			@breadth_req[:satisfied] = true 
 		end
 
