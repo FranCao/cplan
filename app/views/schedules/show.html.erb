@@ -121,14 +121,17 @@
 
         <div class="courselist">
             <div class="checkboxes">
-                <%= check_box_tag "Taken", id:"taken" %> Taken
-                <%= check_box_tag "Breadth", id:"breadth" %> Breadth Requirement
-                <%= check_box_tag "Track", id:"track" %> Track Elective
-                <br>
-                <%= submit_tag 'Refresh', :id => 'filter', :class => 'refresh' %>
+                <%= form_tag schedule_path(@studentID), :method => :get, :id => 'filter' do %>
+                    <%= check_box_tag "Taken", 1, @taken, :id => "taken" %> Taken
+                    <%= check_box_tag "Breadth", 1, @breadth, :id => "breadth" %> Breadth Requirement
+                    <%= check_box_tag "Require", 1, @require, :id => "require" %> Required
+                    <%= check_box_tag "Elective", 1, @elective, :id => "elective" %> Track Elective
+                    <br>
+                    <%= submit_tag 'Refresh', :id => 'filter', :class => 'refresh' %>
+                <% end %>
             </div>
             <div class="d-flex overflow flex-column justify-content-center ml-0">
-                <% @courses.each do |course| %>
+                <% @courses_filter.each do |course| %>
                     <div class="course">
                         <%= course.subject %>&nbsp&nbsp<%= course.course_number %>&nbsp&nbsp<%= course.course_name %>
                         <br>
