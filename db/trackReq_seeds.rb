@@ -141,7 +141,8 @@ breadth_req_aiapp = [
 	if course
 		(2..9).each do |n|
 			req[:track_id] = n
-			course.trackRequirements.find_or_create_by(req)
+			res = course.trackRequirements.find_or_create_by(req)
+			puts res.id
 		end
 	end
 end
