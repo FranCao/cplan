@@ -11,9 +11,9 @@ class StudentsController < ApplicationController
 			redirect_to edit_student_path(@student)
 		end
 		@taken_courses = @student.courses
-		@track_requirements = Track.find(@student.track_id).trackRequirements
+		@track = Track.find(@student.track_id)
 
-		@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = build_requirements(@taken_courses, @track_requirements)
+		@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = build_requirements(@taken_courses, @track)
 		
 		puts @theory_req
 		
@@ -103,7 +103,8 @@ class StudentsController < ApplicationController
 		)
 	end
 
-	def build_requirements(taken_courses, track_requirements)
+	def build_requirements(taken_courses, track)
+		track_requirements = Track.find(@student.track_id).trackRequirements
 		@system_req =  {"name": "Breadth Requirement System Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		@theory_req = {"name": "Breadth Requirement Theory Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		@ai_req = {"name": "Breadth Requirement AI & Applications Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
@@ -154,9 +155,25 @@ class StudentsController < ApplicationController
 		if @required_req[:courses_pending].empty?
 			@required_req[:satisfied] = true 
 		end
-		if @track_elective_req[:courses_completed].length() >= 2
+		if !@track.number_of_track_electives.nil?
+			number_of_track_electives = @track.number_of_track_electives
+		else
+			number_of_track_electives = 2
+		end
+		
+		if !@track.number_of_general_electives.nil?
+			number_of_general_electives = @track.number_of_general_electives
+		else
+			number_of_general_electives = 2
+		end
+
+		if @track_elective_req[:courses_completed].length() >= number_of_track_electives
 			@track_elective_req[:satisfied] = true 
 		end
+		if @general_req[:courses_completed].length() >= number_of_general_electives
+			@general_req[:satisfied] = true 
+		end
+
 		if @system_req[:courses_completed].length() >= 1
 			@track_elective_req[:satisfied] = true 
 		end
