@@ -84,6 +84,27 @@ Primary style
   Main Components 
   
   -------------------------------- */
+  .refresh {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .checkboxes {
+    margin-top: 5%;
+    border: 1px groove;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+
   .course {
     border: 1px groove;
     padding: 5px;
