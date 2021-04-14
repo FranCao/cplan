@@ -7,8 +7,14 @@ class StudentsController < ApplicationController
 		id = params[:id]
 		@student = Student.find(id)
 
-		if @student.graduation_year == nil || @student.graduation_year.nil? || @student.track_id.nil?
-			# puts "rediecting to"
+		if @student.track_id.nil? || @student.track_id == 1
+			flash[:notice] = "Please select a valid track"
+			redirect_to edit_student_path(@student)
+			return
+		end
+
+		if @student.graduation_year == nil || @student.graduation_year.nil?
+			flash[:notice] = "Please type your graduation year"
 			redirect_to edit_student_path(@student)
 			return
 		end

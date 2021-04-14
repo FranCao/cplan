@@ -4,6 +4,12 @@
     <title>Edit Profile</title>
   </head>
 
+  <% flash.each do |type, msg| %>
+    <div class="flash">
+      <%= msg %>
+    </div>
+  <% end %>
+
   <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
     <div>
       <h2>Edit Profile</h2>
