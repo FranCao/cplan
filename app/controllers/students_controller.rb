@@ -7,7 +7,7 @@ class StudentsController < ApplicationController
 		id = params[:id]
 		@student = Student.find(id)
 
-		if @student.track_id.nil? || @student.track_id == 1
+		if @student.track_id.nil? || Track.find(@student.track_id).name == "Undecided"
 			flash[:notice] = "Please select a valid track"
 			redirect_to edit_student_path(@student)
 			return
