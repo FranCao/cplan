@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   # helper_method :parseTime
   # skip_before_action :require_login, :raise => false
   # skip_before_action :require_login, only: [:index]
-  # before_action :require_login
+  before_action :require_login
 
   def show
     @courses = CoursesOffering.where(semester: 'Summer')
