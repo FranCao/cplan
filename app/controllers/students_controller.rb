@@ -127,6 +127,7 @@ class StudentsController < ApplicationController
 
 		track_requirements.each do |requirement|
 			course = Course.find(requirement.course_id)
+
 			completed = taken_courses.include?(course)
 			if requirement.is_required
 				if completed
@@ -164,9 +165,11 @@ class StudentsController < ApplicationController
 				end
 			end
 		end
-		if @required_req[:courses_pending].empty?
+
+		if @required_req[:courses_pending].empty? and @track_elective_req[:courses_completed].length() > 0
 			@required_req[:satisfied] = true 
 		end
+
 		if !@track.number_of_track_electives.nil?
 			number_of_track_electives = @track.number_of_track_electives
 		else
