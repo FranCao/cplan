@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
-  before_action :require_login
-  before_action :is_admin?
-  
+  # before_action :require_login
+  before_action :require_admin
+
   def new
   end
 

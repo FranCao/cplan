@@ -20,7 +20,19 @@ module ApplicationHelper
     end
 
     def is_admin?
-        !!current_user.is_admin
+        if !!current_user
+            !!current_user.is_admin
+        else
+            flash[:error] = 'Please login to view this page'
+            redirect_to home_path
+        end
+    end
+
+    def require_admin
+        unless is_admin?
+            flash[:error] = 'You must be an admin to view this page'
+            redirect_to home_path
+        end
     end
 
 
