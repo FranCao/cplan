@@ -139,7 +139,7 @@ class StudentsController < ApplicationController
 				else
 					@required_req[:courses_pending] << course
 				end
-			elsif requirement.is_aiapplications_breadth_requirement && !ai_req[:satisfied]
+			elsif requirement.is_aiapplications_breadth_requirement
 				if completed
 					@ai_req[:courses_completed] << course
 				else
@@ -169,30 +169,16 @@ class StudentsController < ApplicationController
 				end
 			end
 			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
-		end
-
-<<<<<<< HEAD
-
-		
-
-
-
+		end 
 		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 
 	def update_satisfied(track, system_req, theory_req, ai_req, required_req, general_req, track_elective_req, breadth_req)
-		if @required_req[:courses_pending].empty?
-			@required_req[:satisfied] = true 
-		end
-
-		if !track.number_of_track_electives.nil?
-=======
-		if @required_req[:courses_pending].empty? and @track_elective_req[:courses_completed].length() > 0
+		if @required_req[:courses_pending].empty? && @track_elective_req[:courses_completed].length() > 0
 			@required_req[:satisfied] = true 
 		end
 
 		if !@track.number_of_track_electives.nil?
->>>>>>> 3c00aeff4cfee1fb36164ffc281546539810377e
 			number_of_track_electives = @track.number_of_track_electives
 		else
 			number_of_track_electives = 2
