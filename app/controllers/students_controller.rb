@@ -1,14 +1,20 @@
 class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
-	# before_action :require_login
+	before_action :require_login
 
 	def show
 		id = params[:id]
 		@student = Student.find(id)
 
-		if @student.graduation_year == nil || @student.graduation_year.nil? || @student.track_id.nil?
-			# puts "rediecting to"
+		if @student.track_id.nil? || Track.find(@student.track_id).name == "Undecided"
+			flash[:notice] = "Please select a valid track"
+			redirect_to edit_student_path(@student)
+			return
+		end
+
+		if @student.graduation_year == nil || @student.graduation_year.nil?
+			flash[:notice] = "Please type your graduation year"
 			redirect_to edit_student_path(@student)
 			return
 		end
@@ -125,6 +131,7 @@ class StudentsController < ApplicationController
 
 		track_requirements.each do |requirement|
 			course = Course.find(requirement.course_id)
+
 			completed = taken_courses.include?(course)
 			if requirement.is_required
 				if completed
@@ -164,6 +171,7 @@ class StudentsController < ApplicationController
 			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
 		end
 
+<<<<<<< HEAD
 
 		
 
@@ -178,6 +186,13 @@ class StudentsController < ApplicationController
 		end
 
 		if !track.number_of_track_electives.nil?
+=======
+		if @required_req[:courses_pending].empty? and @track_elective_req[:courses_completed].length() > 0
+			@required_req[:satisfied] = true 
+		end
+
+		if !@track.number_of_track_electives.nil?
+>>>>>>> 3c00aeff4cfee1fb36164ffc281546539810377e
 			number_of_track_electives = @track.number_of_track_electives
 		else
 			number_of_track_electives = 2

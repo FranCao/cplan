@@ -4,6 +4,12 @@
     <title>Edit Profile</title>
   </head>
 
+  <% flash.each do |type, msg| %>
+    <div class="flash">
+      <%= msg %>
+    </div>
+  <% end %>
+
   <main class="d-flex justify-content-center w-100 h-75 d-inline-block align-self-center bg-light">
     <div>
       <h2>Edit Profile</h2>
@@ -29,7 +35,7 @@
     <div class = "overflow-auto">
         <%= form_tag student_path(@student), :method => :put do %>
         <%= label :course, :id, 'Courses Taken', :class => 'col-form-label'  %>
-        <%= select :course, :id, Course.all.collect {|c| [[ c.subject, c.course_number, c.course_name ].join(" "), c.id] }, include_blank: true %>
+        <%= select :course, :id, Course.all.order(:course_number).collect {|c| [[ c.subject, c.course_number, c.course_name ].join(" "), c.id] }, include_blank: true %>
         <%= submit_tag 'Add', :class => 'btn btn-primary' %>
         <% end %>
         <table>

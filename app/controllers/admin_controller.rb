@@ -1,9 +1,12 @@
 class AdminController < ApplicationController
+  # before_action :require_login
+  before_action :require_admin
+
   def new
   end
 
   def index
-    @courses = Course.all
+    @courses = Course.all.order(:course_number)
   end
 
   def edit

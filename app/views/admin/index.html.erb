@@ -24,30 +24,22 @@
           </thead>
           <thead>
             <tr>
-              <th>Subject</th>
-              <th>Course Identifier</th>
-              <th>Course Name</th>
-              <th>Call Number</th>
-              <th>Course Number</th>
+              <th><b>Course Identifier</b></th>
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Course Name</b></th>
+              <th><b>Call Number</b></th>
             </tr>
           </thead>
           <tbody>
             <% @courses.each do |course| %>
               <tr>
                 <td>
-                    <%= course.subject %>
-                </td>
-                <td>
                     <%= course.course_identifier %>
                 </td>
                 <td>
-                    <%= course.course_name %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= course.course_name %>
                 </td>
                 <td>
                     <%= course.call_number %>
-                </td>
-                <td>
-                    <%= course.course_number %>
                 </td>
                 <td>
                     <%= link_to 'Edit', edit_course_path(course.id) %>
