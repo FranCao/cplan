@@ -117,7 +117,11 @@ class StudentsController < ApplicationController
 
 		@track_elective_req = {"name": "Track Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
 
-		
+		@breadth_req = {"name": "Breadth Requirements", "satisfied": false, "groups":[
+			{"name": "Theory", "info":@theory_req}, 
+			{"name":" System", "info":@system_req}, 
+			{"name":"AI & Applications", "info":@ai_req}
+		]}
 
 		track_requirements.each do |requirement|
 			course = Course.find(requirement.course_id)
@@ -128,7 +132,7 @@ class StudentsController < ApplicationController
 				else
 					@required_req[:courses_pending] << course
 				end
-			elsif requirement.is_aiapplications_breadth_requirement
+			elsif requirement.is_aiapplications_breadth_requirement && !ai_req[:satisfied]
 				if completed
 					@ai_req[:courses_completed] << course
 				else
@@ -157,23 +161,35 @@ class StudentsController < ApplicationController
 					@general_req[:courses_completed] << course
 				end
 			end
+			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
 		end
+
+
+		
+
+
+
+		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
+	end
+
+	def update_satisfied(track, system_req, theory_req, ai_req, required_req, general_req, track_elective_req, breadth_req)
 		if @required_req[:courses_pending].empty?
 			@required_req[:satisfied] = true 
 		end
-		if !@track.number_of_track_electives.nil?
+
+		if !track.number_of_track_electives.nil?
 			number_of_track_electives = @track.number_of_track_electives
 		else
 			number_of_track_electives = 2
 		end
 
-		if !@track.number_of_general_electives.nil?
-			number_of_general_electives = @track.number_of_general_electives
+		if !track.number_of_general_electives.nil?
+			number_of_general_electives = track.number_of_general_electives
 		else
 			number_of_general_electives = 2
 		end
 
-		if @track_elective_req[:courses_completed].length() >= number_of_track_electives
+		if track_elective_req[:courses_completed].length() >= number_of_track_electives
 			@track_elective_req[:satisfied] = true 
 		end
 		if @general_req[:courses_completed].length() >= number_of_general_electives
@@ -189,23 +205,17 @@ class StudentsController < ApplicationController
 		if @ai_req[:courses_completed].length() >= 1
 			@ai_req[:satisfied] = true 
 		end
-
-
-		@breadth_req = {"name": "Breadth Requirements", "satisfied": false, "groups":[
-			{"name": "Theory", "info":@theory_req}, 
-			{"name":" System", "info":@system_req}, 
-			{"name":"AI & Applications", "info":@ai_req}
-		]}
-
+		
 		if @ai_req[:courses_completed].length() >= 1 \
-			 && @theory_req[:courses_completed].length() >= 1 \
-			 && @system_req[:courses_completed].length() >= 1 \
-			 && @ai_req[:courses_completed].length() + \
-			 @theory_req[:courses_completed].length() + \
-			 @system_req[:courses_completed].length() >= 4
+				&& @theory_req[:courses_completed].length() >= 1 \
+				&& @system_req[:courses_completed].length() >= 1 \
+				&& @ai_req[:courses_completed].length() + \
+				@theory_req[:courses_completed].length() + \
+				@system_req[:courses_completed].length() >= 4
 			@breadth_req[:satisfied] = true 
-		end
+	   end
 
-		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
+
+	   return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 end
