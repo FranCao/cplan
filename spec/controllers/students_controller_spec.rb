@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 describe StudentsController, :type => :controller do
-	
+	before(:each) do
+		ENV["stub_student_id"] = "2"
+	end
+
 	describe 'show' do
 
 		it	"redirect if no graduation_year" do
@@ -39,8 +42,9 @@ describe StudentsController, :type => :controller do
 		end
 
 		it "redirect" do
-			# ENV["stub_student_id"] = "2"
+			ENV["stub_student_id"] = "2"
 			@student_info = {email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 			Student.stub(:create!).with(@student_info).and_return(Student.new(@student_info))
 			Student.stub(:find_by_email).with("fake@google.com").and_return(Student.new({id:'2'}))
 
@@ -51,8 +55,9 @@ describe StudentsController, :type => :controller do
 
 	describe 'edit' do
 		it "render the form" do
-			@fake_results = {last_name: "Fake student", first_name: "fak", track_id: 1}
-			Student.stub(:find).with("2").and_return(Student.new(@fake_results))
+			ENV["stub_student_id"] = "2"
+			@student_info = {email: "fake@google.com", last_name: "Fake student", first_name: "fak", track_id: 1}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 			Track.stub(:find).with(1).and_return(Track.new({id: 1, name: "Computer Bio"}))
 			get :edit, params: {id: 2}
 			expect(response).to render_template(:edit)
@@ -61,22 +66,31 @@ describe StudentsController, :type => :controller do
 
 	describe 'update' do
 		it "render the flash notice" do
-			@update_pair = {last_name: "Not fake student"}
-			@fake_result = {id: "1", last_name: "fake student"}
-			Student.stub(:find).with("1").and_return(Student.new(@fake_results))
+			ENV["stub_student_id"] = "2"
+			@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 			
-			put :update, params: {id:"1", student: @update_pair}
+			@update_pair = {last_name: "Not fake student"}
+			
+			put :update, params: {id:"2", student: @update_pair}
 			expect(flash[:notice]).to match(/was successfully updated/)
 		end
 		it "redirect after update" do
+			ENV["stub_student_id"] = "2"
+			@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
+
 			@update_pair = {last_name: "Not fake student", track_id: "1"}
-			@fake_result = {id: "3", last_name: "fake student"}
-			Student.stub(:find).with("3").and_return(Student.new(@fake_results))
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 			
-			put :update, params: {id:"3", student: @update_pair}
+			put :update, params: {id:"2", student: @update_pair}
 			expect(response.location).to match(/students/)
 		end
 		it "add courses" do
+			ENV["stub_student_id"] = "2"
+			@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
+
 			@course_info = 	{
 				:id => 1,
 				:year => "2021",
@@ -87,17 +101,20 @@ describe StudentsController, :type => :controller do
 				:course_identifier => "COMSW4732",
 				:course_name => "Computer Vision II: Learning"
 			}
-			@fake_student = {id: "3", last_name: "fake student"}
-			Student.stub(:find).with("3").and_return(Student.new(@fake_student))
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 			Course.stub(:where).with(id: "1").and_return(Course.new(@course_info))
 			
-			put :update, params: {id:"3", course: {id: "1"}}
-			expect(response.location).to match("/students/3/edit")
+			put :update, params: {id:"2", course: {id: "1"}}
+			expect(response.location).to match("/students/2/edit")
 		end
 	end
 
 	describe 'remove_course' do
 		it "remove courses" do
+			ENV["stub_student_id"] = "2"
+			@student_info = {id: "2", email: "fake@google.com", last_name: "Fake student", first_name: "fak"}
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
+
 			@course_info = 	{
 				:id => 1,
 				:year => "2021",
@@ -108,12 +125,11 @@ describe StudentsController, :type => :controller do
 				:course_identifier => "COMSW4732",
 				:course_name => "Computer Vision II: Learning"
 			}
-			@fake_student = {id: "3", last_name: "fake student"}
-			Student.stub(:find).with("3").and_return(Student.new(@fake_student))
+			Student.stub(:find).with("2").and_return(Student.new(@student_info))
 			Course.stub(:where).with(id: "1").and_return(Course.new(@course_info))
 			
-			put :remove_course, params: {id:"3", course_id: "1"}
-			expect(response.location).to match("/students/3/edit")
+			put :remove_course, params: {id:"2", course_id: "1"}
+			expect(response.location).to match("/students/2/edit")
 		end
 	end
 
