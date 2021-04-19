@@ -18,8 +18,8 @@ Given /the following schedules exist/ do |schedules_table|
     end
 end
 
-Given /I am looking at Leo's schedule/ do
-    visit schedule_path(2)
+Given /I am looking at Liang's schedule/ do
+    visit schedule_path(1)
 end
 
 When /^(?:|I )don't have "([^"]*)" on my schedule$/ do |text|
@@ -31,11 +31,11 @@ When /^(?:|I )have "([^"]*)" on my schedule$/ do |text|
 end
 
 When /I click on "Add" for "ANALYSIS OF ALGORITHMS I"/ do
-    Schedule.create(:student_id => 2, :courses_offering_id => 2)
-    visit schedule_path(2)
+    Schedule.create(:student_id => 1, :courses_offering_id => 2)
+    visit schedule_path(1)
 end
 
 When /I click on "Remove" for "Computer Vision II: Learning"/ do
     Schedule.delete_all
-    visit schedule_path(2)
+    visit schedule_path(1)
 end

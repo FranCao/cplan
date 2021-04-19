@@ -25,23 +25,23 @@ Background:
 
     Given the following schedules exist:
     | student_id    | courses_offering_id |
-    | 2             | 1                   |
+    | 1             | 1                   |
     | 2             | 2                   |
 
 Scenario: See all courses for the next semester
-    Given I am looking at Leo's schedule
+    Given I am looking at Liang's schedule
     Then I should see all the courses for the next semester
     And I should not see courses for other semesters
 
 Scenario: Add a course to my schedule
-    Given I am looking at Leo's schedule
+    Given I am looking at Liang's schedule
     And I don't have "CSOR4231" on my schedule
     Then I should see "Add"
     When I click on "Add" for "ANALYSIS OF ALGORITHMS I"
     Then I have "CSOR4231" on my schedule
 
 Scenario: Delete a course from schedule
-    Given I am looking at Leo's schedule
+    Given I am looking at Liang's schedule
     And I have "COMS4732" on my schedule
     Then I should see "Remove"
     When I click on "Remove" for "Computer Vision II: Learning"
