@@ -1,13 +1,13 @@
 class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
-	# before_action :require_login
+	before_action :require_login
 
 	def show
 		id = params[:id]
 		@student = Student.find(id)
 
-		if @student.graduation_year == nil || @student.graduation_year.nil?
+		if @student.graduation_year.nil? || @student.graduation_year == nil
 			flash[:notice] = "Please type your graduation year"
 			redirect_to edit_student_path(@student)
 			return
@@ -136,41 +136,45 @@ class StudentsController < ApplicationController
 			course = Course.find(requirement.course_id)
 			general_electives = general_electives - [course]
 			completed = taken_courses.include?(course)
-			if requirement.is_required
+			if requirement.is_required && !required_req[:satisfied]
 				if completed
 					@required_req[:courses_completed] << course
 				else
 					@required_req[:courses_pending] << course
 				end
-			elsif requirement.is_aiapplications_breadth_requirement
+			elsif requirement.is_aiapplications_breadth_requirement && !@ai_req[:satisfied]
 				if completed
 					@ai_req[:courses_completed] << course
 				else
 					@ai_req[:courses_pending] << course
 				end
-			elsif requirement.is_systems_breadth_requirement
+			elsif requirement.is_systems_breadth_requirement && !@system_req[:satisfied]
 				if completed
 					@system_req[:courses_completed] << course
 				else
 					@system_req[:courses_pending] << course
 				end
-			elsif requirement.is_theory_breadth_requirement
+			elsif requirement.is_theory_breadth_requirement && !@theory_req[:satisfied]
 				if completed
 					@theory_req[:courses_completed] << course
 				else
 					@theory_req[:courses_pending] << course
 				end
-			elsif requirement.is_general_elective
+			elsif requirement.is_general_elective && !@general_req[:satisfied]
 				if completed
 					@track_elective_req[:courses_completed] << course
 				else
 					@track_elective_req[:courses_pending] << course
 				end
+			else 
+				if completed
+					general_electives += [course]
+				end
 			end
+			@general_req[:courses_completed] = general_electives.clone
 			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
 		end 
 		
-		@general_req[:courses_completed] = general_electives.clone
 
 		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
