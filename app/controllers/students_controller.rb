@@ -136,7 +136,7 @@ class StudentsController < ApplicationController
 			course = Course.find(requirement.course_id)
 			general_electives = general_electives - [course]
 			completed = taken_courses.include?(course)
-			if requirement.is_required && !required_req[:satisfied]
+			if requirement.is_required && !@required_req[:satisfied]
 				if completed
 					@required_req[:courses_completed] << course
 				else
