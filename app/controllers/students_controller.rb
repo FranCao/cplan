@@ -149,7 +149,7 @@ class StudentsController < ApplicationController
 			elsif !@breadth_extra[:satisfied] && @system_req[:satisfied] && @ai_req[:satisfied] && @theory_req[:satisfied]
 				@breadth_extra, general_electives = add_course_to_req(course, @breadth_extra, completed, general_electives)
 			elsif requirement.is_general_elective 
-				@general_req, general_electives = add_course_to_req(course, @general_req, completed, general_electives)
+				@track_elective_req, general_electives = add_course_to_req(course, @track_elective_req, completed, general_electives)
 			end
 			@general_req[:courses_completed] = general_electives.clone
 			@system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req)

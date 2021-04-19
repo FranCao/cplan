@@ -55,7 +55,7 @@ courses = [
 		:course_number => "4231",
 		:course_identifier => "CSORW4231",
 		:course_name => "ANALYSIS OF ALGORITHMS I"
-	}
+	},
 	{
 		:year => "2021",
 		:semester => "Summer",
@@ -64,6 +64,15 @@ courses = [
 		:course_number => "4771",
 		:course_identifier => "COMS4771",
 		:course_name => "Machine Learning"
+	},
+	{
+		:year => "2021",
+		:semester => "Summer",
+		:call_number => "45678",
+		:subject => "COMS",
+		:course_number => "1234",
+		:course_identifier => "COMS1234",
+		:course_name => "Fake Course"
 	}
 ]
 
