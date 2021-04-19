@@ -1,11 +1,17 @@
 class StudentsController < ApplicationController
 	# skip_before_action :require_login, only: [:create]
 	protect_from_forgery with: :null_session
-	before_action :require_login
+	# before_action :require_login
 
 	def show
 		id = params[:id]
 		@student = Student.find(id)
+		
+		if @student.graduation_year == nil || @student.graduation_year.nil?
+			flash[:notice] = "Please type your graduation year"
+			redirect_to edit_student_path(@student)
+			return
+		end
 
 		if @student.track_id.nil? || Track.find(@student.track_id).name == "Undecided"
 			flash[:notice] = "Please select a valid track"
@@ -13,11 +19,7 @@ class StudentsController < ApplicationController
 			return
 		end
 
-		if @student.graduation_year == nil || @student.graduation_year.nil?
-			flash[:notice] = "Please type your graduation year"
-			redirect_to edit_student_path(@student)
-			return
-		end
+
 		@taken_courses = @student.courses
 		@track = Track.find(@student.track_id)
 
@@ -174,7 +176,7 @@ class StudentsController < ApplicationController
 	end
 
 	def update_satisfied(track, system_req, theory_req, ai_req, required_req, general_req, track_elective_req, breadth_req)
-		if @required_req[:courses_pending].empty? && @track_elective_req[:courses_completed].length() > 0
+		if @required_req[:courses_pending].empty?
 			@required_req[:satisfied] = true 
 		end
 
