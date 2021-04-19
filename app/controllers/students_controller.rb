@@ -121,7 +121,7 @@ class StudentsController < ApplicationController
 		
 		@required_req = {"name": "Required Courses", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		
-		@general_req = {"name": "General Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
+		@general_req = {"name": "General Elective", "satisfied": false, "courses_completed": []}
 
 		@track_elective_req = {"name": "Track Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
 
@@ -130,10 +130,11 @@ class StudentsController < ApplicationController
 			{"name":" System", "info":@system_req}, 
 			{"name":"AI & Applications", "info":@ai_req}
 		]}
+		general_electives = taken_courses.clone
 
 		track_requirements.each do |requirement|
 			course = Course.find(requirement.course_id)
-
+			general_electives = general_electives - [course]
 			completed = taken_courses.include?(course)
 			if requirement.is_required
 				if completed
@@ -168,6 +169,9 @@ class StudentsController < ApplicationController
 			end
 			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
 		end 
+		
+		@general_req[:courses_completed] = general_electives.clone
+
 		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 
