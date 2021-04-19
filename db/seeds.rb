@@ -56,6 +56,15 @@ courses = [
 		:course_identifier => "CSORW4231",
 		:course_name => "ANALYSIS OF ALGORITHMS I"
 	}
+	{
+		:year => "2021",
+		:semester => "Summer",
+		:call_number => "12345",
+		:subject => "COMS",
+		:course_number => "4771",
+		:course_identifier => "COMS4771",
+		:course_name => "Machine Learning"
+	}
 ]
 
 courses.each do |course|
