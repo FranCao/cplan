@@ -6,7 +6,7 @@ class StudentsController < ApplicationController
 	def show
 		id = params[:id]
 		@student = Student.find(id)
-		
+
 		if @student.graduation_year == nil || @student.graduation_year.nil?
 			flash[:notice] = "Please type your graduation year"
 			redirect_to edit_student_path(@student)
@@ -164,10 +164,6 @@ class StudentsController < ApplicationController
 					@track_elective_req[:courses_completed] << course
 				else
 					@track_elective_req[:courses_pending] << course
-				end
-			else 
-				if completed
-					@general_req[:courses_completed] << course
 				end
 			end
 			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
