@@ -23,9 +23,9 @@ class StudentsController < ApplicationController
 		@taken_courses = @student.courses
 		@track = Track.find(@student.track_id)
 
-		@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = build_requirements(@taken_courses, @track)
+		@system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req = build_requirements(@taken_courses, @track)
 		
-		puts @theory_req
+		# puts @theory_req
 		
 		@track_req = [
 			{"name": "Required", "info": @required_req},
@@ -118,7 +118,8 @@ class StudentsController < ApplicationController
 		@system_req =  {"name": "Breadth Requirement System Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		@theory_req = {"name": "Breadth Requirement Theory Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		@ai_req = {"name": "Breadth Requirement AI & Applications Group", "satisfied": false, "courses_pending": [], "courses_completed": []}
-		
+		@breadth_extra = {"name": "Breadth Extra", "satisfied": false, "courses_pending": [], "courses_completed": []}
+
 		@required_req = {"name": "Required Courses", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		
 		@general_req = {"name": "General Elective", "satisfied": false, "courses_completed": []}
@@ -134,52 +135,45 @@ class StudentsController < ApplicationController
 
 		track_requirements.each do |requirement|
 			course = Course.find(requirement.course_id)
-			general_electives = general_electives - [course]
 			completed = taken_courses.include?(course)
-			if requirement.is_required && !@required_req[:satisfied]
-				if completed
-					@required_req[:courses_completed] << course
-				else
-					@required_req[:courses_pending] << course
-				end
-			elsif requirement.is_aiapplications_breadth_requirement && !@ai_req[:satisfied]
-				if completed
-					@ai_req[:courses_completed] << course
-				else
-					@ai_req[:courses_pending] << course
-				end
-			elsif requirement.is_systems_breadth_requirement && !@system_req[:satisfied]
-				if completed
-					@system_req[:courses_completed] << course
-				else
-					@system_req[:courses_pending] << course
-				end
-			elsif requirement.is_theory_breadth_requirement && !@theory_req[:satisfied]
-				if completed
-					@theory_req[:courses_completed] << course
-				else
-					@theory_req[:courses_pending] << course
-				end
-			elsif requirement.is_general_elective && !@general_req[:satisfied]
-				if completed
-					@track_elective_req[:courses_completed] << course
-				else
-					@track_elective_req[:courses_pending] << course
-				end
-			else 
-				if completed
-					general_electives += [course]
-				end
+			general_electives -= [course]
+
+			if requirement.is_required 
+				@required_req, general_electives = add_course_to_req(course, @required_req, completed, general_electives)
+			elsif requirement.is_aiapplications_breadth_requirement 
+				@ai_req, general_electives = add_course_to_req(course, @ai_req, completed, general_electives)
+			elsif requirement.is_systems_breadth_requirement 
+				@system_req, general_electives = add_course_to_req(course, @system_req, completed, general_electives)
+			elsif requirement.is_theory_breadth_requirement 
+				@theory_req, general_electives = add_course_to_req(course, @theory_req, completed, general_electives)
+			elsif !@breadth_extra[:satisfied] && @system_req[:satisfied] && @ai_req[:satisfied] && @theory_req[:satisfied]
+				@breadth_extra, general_electives = add_course_to_req(course, @breadth_extra, completed, general_electives)
+			elsif requirement.is_general_elective 
+				@general_req, general_electives = add_course_to_req(course, @general_req, completed, general_electives)
 			end
 			@general_req[:courses_completed] = general_electives.clone
-			@system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req)
+			@system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req)
 		end 
 		
 
-		return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
+		return @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 
-	def update_satisfied(track, system_req, theory_req, ai_req, required_req, general_req, track_elective_req, breadth_req)
+	def add_course_to_req(course, req, completed, general_electives)
+		if completed 
+			if !req[:satisfied]
+				req[:courses_completed] << course
+			else
+				general_electives += [course]
+			end
+		else
+			req[:courses_pending] << course
+		end
+		return req, general_electives
+	end
+
+
+	def update_satisfied(track, system_req, theory_req, ai_req, breadth_extra, required_req, general_req, track_elective_req, breadth_req)
 		if @required_req[:courses_pending].empty?
 			@required_req[:satisfied] = true 
 		end
@@ -212,17 +206,11 @@ class StudentsController < ApplicationController
 		if @ai_req[:courses_completed].length() >= 1
 			@ai_req[:satisfied] = true 
 		end
-		
-		if @ai_req[:courses_completed].length() >= 1 \
-				&& @theory_req[:courses_completed].length() >= 1 \
-				&& @system_req[:courses_completed].length() >= 1 \
-				&& @ai_req[:courses_completed].length() + \
-				@theory_req[:courses_completed].length() + \
-				@system_req[:courses_completed].length() >= 4
-			@breadth_req[:satisfied] = true 
-	   end
+		if @breadth_extra[:courses_completed].length() >= 1
+			@breadth_extra[:satisfied] = true 
+		end
 
 
-	   return @system_req, @theory_req, @ai_req, @required_req, @general_req, @track_elective_req, @breadth_req
+	   return @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 end
