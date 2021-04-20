@@ -122,7 +122,7 @@ class StudentsController < ApplicationController
 
 		@required_req = {"name": "Required Courses", "satisfied": false, "courses_pending": [], "courses_completed": []}
 		
-		@general_req = {"name": "General Elective", "satisfied": false, "courses_completed": [], "courses_completed": []}
+		@general_req = {"name": "General Elective", "satisfied": false, "courses_completed": []}
 
 		@track_elective_req = {"name": "Track Elective", "satisfied": false, "courses_pending": [], "courses_completed": []}
 
@@ -160,7 +160,7 @@ class StudentsController < ApplicationController
 						@general_req[:courses_completed] += [course]
 					end
 				else
-					@general_req[:courses_pending] << course
+					@track_elective_req[:courses_pending] << course
 				end
 			end
 
