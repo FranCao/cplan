@@ -142,13 +142,10 @@ class StudentsController < ApplicationController
 			course = Course.find(requirement.course_id)
 			completed = taken_courses.include?(course)
 
-			if completed
-				@general_req[:courses_completed] -= [course]
-			end
-
 			if requirement.is_required 
 				if completed 
 					@required_req[:courses_completed] << course
+					@general_req[:courses_completed] -= [course]
 				else
 					@required_req[:courses_pending] << course
 				end
@@ -156,8 +153,7 @@ class StudentsController < ApplicationController
 				if completed 
 					if !@track_elective_req[:satisfied]
 						@track_elective_req[:courses_completed] << course
-					else
-						@general_req[:courses_completed] += [course]
+						@general_req[:courses_completed] -= [course]
 					end
 				else
 					@track_elective_req[:courses_pending] << course
@@ -165,13 +161,13 @@ class StudentsController < ApplicationController
 			end
 
 			if requirement.is_aiapplications_breadth_requirement 
-				@ai_req, general_electives = add_course_to_breadth(course, @ai_req, completed)
+				@ai_req = add_course_to_breadth(course, @ai_req, completed)
 			elsif requirement.is_systems_breadth_requirement 
-				@system_req, general_electives = add_course_to_breadth(course, @system_req, completed)
+				@system_req = add_course_to_breadth(course, @system_req, completed)
 			elsif requirement.is_theory_breadth_requirement 
-				@theory_req, general_electives = add_course_to_breadth(course, @theory_req, completed)
+				@theory_req = add_course_to_breadth(course, @theory_req, completed)
 			elsif !@breadth_extra[:satisfied] && @system_req[:satisfied] && @ai_req[:satisfied] && @theory_req[:satisfied]
-				@breadth_extra, general_electives = add_course_to_breadth(course, @breadth_extra, completed)
+				@breadth_extra = add_course_to_breadth(course, @breadth_extra, completed)
 			end
 			
 			@system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req)
@@ -181,8 +177,10 @@ class StudentsController < ApplicationController
 	end
 
 	def add_course_to_breadth(course, req, completed)
-		if completed && !req[:satisfied]
-			req[:courses_completed] << course
+		if completed
+			if !req[:satisfied]
+				req[:courses_completed] << course
+			end
 		else
 			req[:courses_pending] << course
 		end
