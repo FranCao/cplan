@@ -29,7 +29,7 @@
                   <a class="dropdown-item" <%= link_to 'Audit Degree', student_path(@current_user.id) %></a>
                 <% end %>
                 <% if logged_in? %>
-                  <a class="dropdown-item" <%= link_to 'Schedule', schedule_path(session[:student_id]) %></a>
+                  <a class="dropdown-item" <%= link_to 'Schedule', schedule_path(session[:student_id], :Taken => true, :Breadth => true, :Elective => true, :Require => true) %></a>
                 <% end %>
                 <% if is_admin? %>
                   <a class="dropdown-item" href="/admin">Courses</a>
