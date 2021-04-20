@@ -6,7 +6,7 @@ RSpec.describe "students/show", type: :view do
   end
 
   it "renders attributes in <p>" do
-    if !student.track_id.nil?
+    if !@student.track_id.nil?
       render
     end
   end
