@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
   before_action :require_login
 
   def show
-    @courses = CoursesOffering.where(semester: 'Summer')
+    @courses = CoursesOffering.where(semester: 'Summer').where("course_number LIKE '4%'")
     @studentID = session[:student_id]
     # s = CoursesOffering.joins("INNER JOIN schedules ON schedules.courses_offering_id = courses_offerings.id AND courses_offerings.semester = 'Summer'").select('courses_offerings.*, schedules.student_id')
     s = Schedule.joins("INNER JOIN courses_offerings ON courses_offerings.id = schedules.courses_offering_id").where(student_id: @studentID)
@@ -47,19 +47,19 @@ class SchedulesController < ApplicationController
       end
     end
 
-    @courses_filter = @courses
+    @courses_filter = Array.new
 
-    if !@taken then
-      @courses_filter = (@courses_filter - @offer_taken).uniq
+    if @taken then
+      @courses_filter = (@courses_filter + @offer_taken).uniq
     end
-    if !@breadth then
-      @courses_filter = (@courses_filter - @offer_breadth).uniq
+    if @breadth then
+      @courses_filter = (@courses_filter + @offer_breadth).uniq
     end
-    if !@require then
-      @courses_filter = (@courses_filter - @offer_required).uniq
+    if @require then
+      @courses_filter = (@courses_filter + @offer_required).uniq
     end
-    if !@elective then
-      @courses_filter = (@courses_filter - @offer_elective).uniq
+    if @elective then
+      @courses_filter = (@courses_filter + @offer_elective).uniq
     end
 
     @schedule = CoursesOffering.where(id: c).and(CoursesOffering.where(semester: 'Summer'))
