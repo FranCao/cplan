@@ -59,11 +59,11 @@ courses = [
 	{
 		:year => "2021",
 		:semester => "Summer",
-		:call_number => "12345",
+		:call_number => "12176",
 		:subject => "COMS",
 		:course_number => "4771",
-		:course_identifier => "COMS4771",
-		:course_name => "Machine Learning"
+		:course_identifier => "COMSW4771",
+		:course_name => "MACHINE LEARNING"
 	},
 	{
 		:year => "2021",

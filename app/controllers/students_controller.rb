@@ -131,51 +131,70 @@ class StudentsController < ApplicationController
 			{"name":" System", "info":@system_req}, 
 			{"name":"AI & Applications", "info":@ai_req}
 		]}
-		general_electives = taken_courses.clone
+		if !taken_courses.empty?
+			@general_req[:courses_completed] = taken_courses.clone
+		end
 
 		track_requirements.each do |requirement|
+			puts("***************************************************************")
+			puts(@general_req.to_h)
+			puts("***************************************************************")
 			course = Course.find(requirement.course_id)
 			completed = taken_courses.include?(course)
-			general_electives -= [course]
+
+			if completed
+				@general_req[:courses_completed] -= [course]
+			end
 
 			if requirement.is_required 
-				@required_req, general_electives = add_course_to_req(course, @required_req, completed, general_electives)
-			elsif requirement.is_aiapplications_breadth_requirement 
-				@ai_req, general_electives = add_course_to_req(course, @ai_req, completed, general_electives)
-			elsif requirement.is_systems_breadth_requirement 
-				@system_req, general_electives = add_course_to_req(course, @system_req, completed, general_electives)
-			elsif requirement.is_theory_breadth_requirement 
-				@theory_req, general_electives = add_course_to_req(course, @theory_req, completed, general_electives)
-			elsif !@breadth_extra[:satisfied] && @system_req[:satisfied] && @ai_req[:satisfied] && @theory_req[:satisfied]
-				@breadth_extra, general_electives = add_course_to_req(course, @breadth_extra, completed, general_electives)
-			elsif requirement.is_general_elective 
-				@track_elective_req, general_electives = add_course_to_req(course, @track_elective_req, completed, general_electives)
+				if completed 
+					@required_req[:courses_completed] << course
+				else
+					@required_req[:courses_pending] << course
+				end
+			elsif requirement.is_general_elective && !@required_req[:courses_completed].include?(course) && !@required_req[:courses_pending].include?(course)
+				if completed 
+					if !@track_elective_req[:satisfied]
+						@track_elective_req[:courses_completed] << course
+					else
+						@general_req[:courses_completed] += [course]
+					end
+				else
+					@general_req[:courses_pending] << course
+				end
 			end
-			@general_req[:courses_completed] = general_electives.clone
+
+			if requirement.is_aiapplications_breadth_requirement 
+				@ai_req, general_electives = add_course_to_breadth(course, @ai_req, completed)
+			elsif requirement.is_systems_breadth_requirement 
+				@system_req, general_electives = add_course_to_breadth(course, @system_req, completed)
+			elsif requirement.is_theory_breadth_requirement 
+				@theory_req, general_electives = add_course_to_breadth(course, @theory_req, completed)
+			elsif !@breadth_extra[:satisfied] && @system_req[:satisfied] && @ai_req[:satisfied] && @theory_req[:satisfied]
+				@breadth_extra, general_electives = add_course_to_breadth(course, @breadth_extra, completed)
+			end
+			
 			@system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req = update_satisfied(@track, @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req)
 		end 
-		
 
 		return @system_req, @theory_req, @ai_req, @breadth_extra, @required_req, @general_req, @track_elective_req, @breadth_req
 	end
 
-	def add_course_to_req(course, req, completed, general_electives)
-		if completed 
-			if !req[:satisfied]
-				req[:courses_completed] << course
-			else
-				general_electives += [course]
-			end
+	def add_course_to_breadth(course, req, completed)
+		if completed && !req[:satisfied]
+			req[:courses_completed] << course
 		else
 			req[:courses_pending] << course
 		end
-		return req, general_electives
+		return req
 	end
 
 
 	def update_satisfied(track, system_req, theory_req, ai_req, breadth_extra, required_req, general_req, track_elective_req, breadth_req)
 		if @required_req[:courses_pending].empty?
 			@required_req[:satisfied] = true 
+		else
+			@required_req[:satisfied] = false 
 		end
 
 		if !@track.number_of_track_electives.nil?
@@ -192,22 +211,39 @@ class StudentsController < ApplicationController
 
 		if track_elective_req[:courses_completed].length() >= number_of_track_electives
 			@track_elective_req[:satisfied] = true 
+		else
+			@track_elective_req[:satisfied] = false
 		end
+
 		if @general_req[:courses_completed].length() >= number_of_general_electives
 			@general_req[:satisfied] = true 
+		else
+			@general_req[:satisfied] = false
 		end
 
 		if @system_req[:courses_completed].length() >= 1
 			@system_req[:satisfied] = true 
+		else
+			@system_req[:satisfied] = false
 		end
+
+
 		if @theory_req[:courses_completed].length() >= 1
 			@theory_req[:satisfied] = true 
+		else
+			@theory_req[:satisfied] = false
 		end
+
 		if @ai_req[:courses_completed].length() >= 1
 			@ai_req[:satisfied] = true 
+		else
+			@ai_req[:satisfied] = false
 		end
+
 		if @breadth_extra[:courses_completed].length() >= 1
 			@breadth_extra[:satisfied] = true 
+		else
+			@breadth_extra[:satisfied] = false
 		end
 
 
