@@ -57,7 +57,7 @@ Scenario: CS major, Software Systems track
 Scenario: CS major, Software Systems track
     Given I am student with id 3
 	Given I am on the audit degree page for "Ryan"
-	Then I should see "❌ Breadth Requirements System"
+	Then I should see "✅ Breadth Requirements System"
     Then I should see "❌ Breadth Requirements Theory"
     Then I should see "COMS4111 Introduction to Database"
     Then I should see "❌ Breadth Requirements AI & Applications"
