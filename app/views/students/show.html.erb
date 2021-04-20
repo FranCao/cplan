@@ -62,6 +62,24 @@
         <% end %>
       </div>
     <% end %>
+    <div id="requirement-table" class="requirement-box">
+      <% if @breadth_extra[:satisfied] %>
+        <div>
+          <title>✅ Breadth Requirements Extra:</title>
+        </div>
+      <% else %>
+        <div>
+          <title>❌ Breadth Requirements Extra:</title>
+        </div>
+      <% end %>
+      <% @breadth_extra[:courses_completed].each do |course| %>
+        <div>
+          <course>
+            ✔️ <%= course.course_identifier %> <%= course.course_name %>
+          </course>
+        </div>
+      <% end %>
+    </div>
     <% @track_req.each do |req| %>
       <div id="requirement-table" class="requirement-box">
         <% if req[:info][:satisfied] %>
